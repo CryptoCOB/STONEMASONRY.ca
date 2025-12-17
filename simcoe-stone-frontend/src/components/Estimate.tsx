@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { EstimateRequestPayload } from '../types/api';
+import { submitEstimateRequest } from '../utils/apiClient';
 import AdvancedSEO from './AdvancedSEO';
 
 const Estimate: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<EstimateRequestPayload>({
     name: '',
     email: '',
     phone: '',
@@ -16,6 +18,7 @@ const Estimate: React.FC = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const projectTypes = [
     'Custom Fireplace Installation',
@@ -51,12 +54,28 @@ const Estimate: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    // Redirect to success page
-    window.location.href = '/success.html';
+    try {
+      await submitEstimateRequest(formData);
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        projectType: '',
+        location: '',
+        timeline: '',
+        budget: '',
+        description: '',
+        emergencyService: false
+      });
+    } catch (error) {
+      console.error('Error submitting estimate request:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -162,8 +181,7 @@ const Estimate: React.FC = () => {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-8" data-netlify="true" name="estimate">
-                <input type="hidden" name="form-name" value="estimate" />
+              <form onSubmit={handleSubmit} className="space-y-8" name="estimate">
 
                 {/* Personal Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -329,6 +347,18 @@ const Estimate: React.FC = () => {
                     'Get My Estimate'
                   )}
                 </motion.button>
+
+                {submitStatus === 'success' && (
+                  <div className="p-4 mt-4 text-green-700 bg-green-100 border border-green-400 rounded-lg">
+                    Thank you! Your estimate request has been submitted. Our team will follow up within 24 hours.
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-4 mt-4 text-red-700 bg-red-100 border border-red-400 rounded-lg">
+                    Sorry, there was an issue submitting your estimate request. Please try again or contact us directly.
+                  </div>
+                )}
               </form>
 
               <div className="mt-8 text-center text-sm text-slate-500">

@@ -1,0 +1,469 @@
+openapi: 3.1.0
+info:
+  title: STONEMASONRY Platform API
+  version: 1.0.0
+  description: REST API covering accounts, users, leads, jobs, estimates, invoices, contractor profiles, and moderation.
+servers:
+  - url: https://api.stonemasonry.ca
+  - url: http://localhost:4000
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Account:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        status: { type: string, enum: [active, suspended] }
+        createdAt: { type: string, format: date-time }
+    User:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        accountId: { type: string, format: uuid }
+        email: { type: string, format: email }
+        firstName: { type: string }
+        lastName: { type: string }
+        role: { type: string }
+        phone: { type: string }
+        createdAt: { type: string, format: date-time }
+    Lead:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        accountId: { type: string, format: uuid }
+        source: { type: string }
+        name: { type: string }
+        email: { type: string, format: email }
+        phone: { type: string }
+        message: { type: string }
+        createdAt: { type: string, format: date-time }
+    Property:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        accountId: { type: string, format: uuid }
+        name: { type: string }
+        address: { type: string }
+        latitude: { type: number }
+        longitude: { type: number }
+    ServiceArea:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        accountId: { type: string, format: uuid }
+        name: { type: string }
+        polygon: { type: string, description: "GeoJSON" }
+    QuoteRequest:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        accountId: { type: string, format: uuid }
+        leadId: { type: string, format: uuid }
+        propertyId: { type: string, format: uuid }
+        projectType: { type: string }
+        description: { type: string }
+        status: { type: string, enum: [new, pending_bid, awarded, closed] }
+        createdAt: { type: string, format: date-time }
+    BidResponse:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        quoteRequestId: { type: string, format: uuid }
+        contractorProfileId: { type: string, format: uuid }
+        amount: { type: number }
+        notes: { type: string }
+        status: { type: string, enum: [submitted, accepted, rejected] }
+    Estimate:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        quoteRequestId: { type: string, format: uuid }
+        jobId: { type: string, format: uuid }
+        amount: { type: number }
+        currency: { type: string }
+        expiresAt: { type: string, format: date-time }
+        status: { type: string, enum: [draft, sent, accepted, declined] }
+    Job:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        estimateId: { type: string, format: uuid }
+        startDate: { type: string, format: date-time }
+        status: { type: string, enum: [scheduled, in_progress, completed, cancelled] }
+    Invoice:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        jobId: { type: string, format: uuid }
+        total: { type: number }
+        currency: { type: string }
+        status: { type: string, enum: [draft, open, paid, void] }
+    Payment:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        invoiceId: { type: string, format: uuid }
+        provider: { type: string }
+        amount: { type: number }
+        status: { type: string, enum: [initiated, confirmed, failed, refunded] }
+    ContractorProfile:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        accountId: { type: string, format: uuid }
+        userId: { type: string, format: uuid }
+        headline: { type: string }
+        bio: { type: string }
+        hourlyRate: { type: number }
+        status: { type: string, enum: [draft, active, suspended] }
+    Review:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        jobId: { type: string, format: uuid }
+        rating: { type: integer }
+        comment: { type: string }
+        status: { type: string, enum: [pending, approved, rejected] }
+    ModerationItem:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        type: { type: string, enum: [review, file, lead] }
+        targetId: { type: string, format: uuid }
+        status: { type: string, enum: [pending, approved, rejected] }
+        reason: { type: string }
+        createdAt: { type: string, format: date-time }
+paths:
+  /auth/login:
+    post:
+      summary: Login and receive tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string }
+                password: { type: string }
+      responses:
+        '200':
+          description: Tokens returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken: { type: string }
+                  refreshToken: { type: string }
+  /auth/refresh:
+    post:
+      summary: Refresh access token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken: { type: string }
+      responses:
+        '200':
+          description: Refreshed token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken: { type: string }
+  /accounts:
+    post:
+      security: []
+      summary: Create a new account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+      responses:
+        '201': { description: Account created }
+    get:
+      security:
+        - bearerAuth: []
+      summary: List accounts (admin)
+      responses:
+        '200':
+          description: Paginated accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Account' }
+  /users:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Invite or create a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string }
+                role: { type: string }
+      responses:
+        '201': { description: User created }
+    get:
+      security:
+        - bearerAuth: []
+      summary: List users in account
+      responses:
+        '200':
+          description: Paginated users
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/User' }
+  /leads:
+    post:
+      security: []
+      summary: Create a lead from marketing landing page
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Lead'
+      responses:
+        '201': { description: Lead captured }
+    get:
+      security:
+        - bearerAuth: []
+      summary: List leads for an account
+      responses:
+        '200':
+          description: Leads
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Lead' }
+  /properties:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Create a property record
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Property'
+      responses:
+        '201': { description: Property created }
+  /service-areas:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Create service area polygon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceArea'
+      responses:
+        '201': { description: Service area created }
+  /quote-requests:
+    post:
+      security: []
+      summary: Submit a quote request from the website
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                email: { type: string }
+                phone: { type: string }
+                projectType: { type: string }
+                message: { type: string }
+      responses:
+        '201':
+          description: Quote request created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+  /bid-responses:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Submit a contractor bid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BidResponse'
+      responses:
+        '201': { description: Bid submitted }
+  /estimates:
+    post:
+      security: []
+      summary: Submit estimate request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                email: { type: string }
+                phone: { type: string }
+                projectType: { type: string }
+                location: { type: string }
+                timeline: { type: string }
+                budget: { type: string }
+                description: { type: string }
+                emergencyService: { type: boolean }
+      responses:
+        '201': { description: Estimate queued }
+  /jobs:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Create a job from an accepted estimate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+      responses:
+        '201': { description: Job created }
+  /invoices:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Create invoice for a job
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+      responses:
+        '201': { description: Invoice created }
+  /payments:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Record a payment intent or confirmation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
+      responses:
+        '201': { description: Payment recorded }
+  /contractor-profiles:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Create or update contractor profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractorProfile'
+      responses:
+        '201': { description: Profile updated }
+  /reviews:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Submit a review that goes through moderation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+      responses:
+        '201': { description: Review queued for moderation }
+  /moderation/queue:
+    get:
+      security:
+        - bearerAuth: []
+      summary: List moderation items
+      responses:
+        '200':
+          description: Moderation queue
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/ModerationItem' }
+  /files/sign-upload:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Request signed upload URL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filename: { type: string }
+                contentType: { type: string }
+      responses:
+        '200':
+          description: Signed URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uploadUrl: { type: string }
+                  assetId: { type: string }
+  /files:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Finalize file upload
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assetId: { type: string }
+                relatedType: { type: string }
+                relatedId: { type: string }
+      responses:
+        '201': { description: File linked }
+security:
+  - bearerAuth: []
