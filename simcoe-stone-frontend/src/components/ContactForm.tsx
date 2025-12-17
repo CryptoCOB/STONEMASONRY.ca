@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import SEO from './SEO';
+import { postJson } from '../utils/apiClient';
 
 interface FormData {
   name: string;
@@ -46,39 +47,24 @@ const ContactForm: React.FC = () => {
     setSubmitStatus('idle');
 
     try {
-      // Create form data for Netlify
-      const formData = new FormData();
-      formData.append('form-name', 'contact-form');
-      formData.append('form-type', 'quote-request');
-      formData.append('subject', 'New Quote Request - Stone Masonry');
-      formData.append('name', (e.target as any).name.value);
-      formData.append('email', (e.target as any).email.value);
-      formData.append('phone', (e.target as any).phone.value);
-      formData.append('projectType', (e.target as any).projectType.value);
-      formData.append('message', (e.target as any).message.value);
-
-      // Submit to Netlify Forms
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString()
+      await postJson('/quote-requests', {
+        contact_name: formData.name,
+        contact_email: formData.email,
+        contact_phone: formData.phone,
+        project_type: formData.projectType,
+        description: formData.message
       });
 
-      if (response.ok) {
-        setSubmitStatus('success');
+      setSubmitStatus('success');
 
-        // Reset form after successful submission
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          projectType: '',
-          message: ''
-        });
-      } else {
-        throw new Error('Form submission failed');
-      }
-
+      // Reset form after successful submission
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        projectType: '',
+        message: ''
+      });
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
@@ -121,28 +107,9 @@ const ContactForm: React.FC = () => {
             <form
               name="contact-form"
               method="POST"
-              action="/success.html"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
               className="p-8 bg-white rounded-lg shadow-lg"
             >
-              {/* Hidden field for Netlify Forms */}
-              <input type="hidden" name="form-name" value="contact-form" />
-
-              {/* Hidden field to identify this as a quote request */}
-              <input type="hidden" name="form-type" value="quote-request" />
-
-              {/* Hidden field for email subject */}
-              <input type="hidden" name="subject" value="New Quote Request - STONEMASONRY.CA" />
-
-              {/* Honeypot field for spam protection */}
-              <div style={{ display: 'none' }}>
-                <label>
-                  Don't fill this out if you're human:
-                  <input name="bot-field" />
-                </label>
-              </div>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="block mb-2 font-medium text-gray-700">

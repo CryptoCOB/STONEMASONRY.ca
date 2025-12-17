@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import AdvancedSEO from './AdvancedSEO';
+import { postJson } from '../utils/apiClient';
 
 const Estimate: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ const Estimate: React.FC = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const projectTypes = [
     'Custom Fireplace Installation',
@@ -52,11 +54,35 @@ const Estimate: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const budgetMatch = formData.budget.match(/\d[\d,]*/);
+      await postJson('/quote-requests', {
+        contact_name: formData.name,
+        contact_email: formData.email,
+        contact_phone: formData.phone,
+        project_type: formData.projectType,
+        description: `${formData.description}\n\nLocation: ${formData.location}\nTimeline: ${formData.timeline}\nBudget: ${formData.budget}\nEmergency: ${formData.emergencyService ? 'Yes' : 'No'}`,
+        budget: budgetMatch ? Number(budgetMatch[0].replace(/,/g, '')) : undefined
+      });
 
-    // Redirect to success page
-    window.location.href = '/success.html';
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        projectType: '',
+        location: '',
+        timeline: '',
+        budget: '',
+        description: '',
+        emergencyService: false
+      });
+    } catch (error) {
+      console.error('Failed to submit estimate request', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -162,9 +188,7 @@ const Estimate: React.FC = () => {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-8" data-netlify="true" name="estimate">
-                <input type="hidden" name="form-name" value="estimate" />
-
+              <form onSubmit={handleSubmit} className="space-y-8" name="estimate">
                 {/* Personal Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -329,6 +353,17 @@ const Estimate: React.FC = () => {
                     'Get My Estimate'
                   )}
                 </motion.button>
+
+                {submitStatus === 'success' && (
+                  <div className="p-4 mt-4 text-green-700 bg-green-100 border border-green-400 rounded-lg">
+                    Thanks! Your estimate request was sent to our project coordinators. Expect a response within 24 hours.
+                  </div>
+                )}
+                {submitStatus === 'error' && (
+                  <div className="p-4 mt-4 text-red-700 bg-red-100 border border-red-400 rounded-lg">
+                    We couldn't submit your request right now. Please try again or call us directly for immediate assistance.
+                  </div>
+                )}
               </form>
 
               <div className="mt-8 text-center text-sm text-slate-500">
