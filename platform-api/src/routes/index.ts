@@ -13,6 +13,17 @@ const followUpStatuses = ['pending', 'done'] as const;
 const jobTaskStatuses = ['pending', 'in_progress', 'done'] as const;
 const invoiceStatuses = ['draft', 'sent', 'paid', 'overdue', 'void'] as const;
 
+const requireAccountContext = (request: any, reply: any) => {
+  const accountId = accountIdFromRequest(request);
+
+  if (!accountId) {
+    reply.status(400).send({ message: 'Account context required' });
+    return null;
+  }
+
+  return accountId;
+};
+
 const ingestGuard = async (request: any, reply: any) => {
   if (!publicIngestKey) return;
   const headerKey = request.headers['x-api-key'];
@@ -62,8 +73,15 @@ export async function registerRoutes(fastify: FastifyInstance) {
     return res.rows[0];
   });
 
-  fastify.get('/api/users', { preHandler: fastify.requireRole(['admin']) }, async () => {
-    const res = await pool.query('SELECT id, account_id, email, first_name, last_name, role, created_at FROM users ORDER BY created_at DESC');
+  fastify.get('/api/users', { preHandler: fastify.requireRole(['admin']) }, async (request, reply) => {
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
+    const res = await pool.query(
+      'SELECT id, account_id, email, first_name, last_name, role, created_at FROM users WHERE account_id=$1 ORDER BY created_at DESC',
+      [accountId]
+    );
     return res.rows;
   });
 
@@ -149,10 +167,17 @@ export async function registerRoutes(fastify: FastifyInstance) {
   }, async (request, reply) => {
     const { id } = request.params as { id: string };
     const { status, notes, tags, reason } = request.body as any;
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
 
     const lead = await pool.query('SELECT * FROM leads WHERE id=$1', [id]);
     if (!lead.rows[0]) {
       return reply.status(404).send({ message: 'Lead not found' });
+    }
+
+    if (lead.rows[0].account_id !== accountId) {
+      return reply.status(403).send({ message: 'Lead not in account scope' });
     }
 
     const existing = lead.rows[0];
@@ -183,10 +208,18 @@ export async function registerRoutes(fastify: FastifyInstance) {
   }, async (request, reply) => {
     const { id } = request.params as { id: string };
     const { due_at, note } = request.body as any;
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
     const lead = await pool.query('SELECT account_id FROM leads WHERE id=$1', [id]);
 
     if (!lead.rows[0]) {
       return reply.status(404).send({ message: 'Lead not found' });
+    }
+
+    if (lead.rows[0].account_id !== accountId) {
+      return reply.status(403).send({ message: 'Lead not in account scope' });
     }
 
     const res = await pool.query(
@@ -208,10 +241,18 @@ export async function registerRoutes(fastify: FastifyInstance) {
 
   fastify.get('/api/leads/:id/follow-ups', { preHandler: fastify.requireRole(['admin', 'member']), schema: { params: z.object({ id: z.string() }) } }, async (request, reply) => {
     const { id } = request.params as { id: string };
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
     const lead = await pool.query('SELECT account_id FROM leads WHERE id=$1', [id]);
 
     if (!lead.rows[0]) {
       return reply.status(404).send({ message: 'Lead not found' });
+    }
+
+    if (lead.rows[0].account_id !== accountId) {
+      return reply.status(403).send({ message: 'Lead not in account scope' });
     }
 
     const res = await pool.query('SELECT * FROM lead_followups WHERE lead_id=$1 ORDER BY due_at', [id]);
@@ -227,10 +268,18 @@ export async function registerRoutes(fastify: FastifyInstance) {
   }, async (request, reply) => {
     const { leadId, followUpId } = request.params as { leadId: string; followUpId: string };
     const { status, note } = request.body as any;
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
     const lead = await pool.query('SELECT account_id FROM leads WHERE id=$1', [leadId]);
 
     if (!lead.rows[0]) {
       return reply.status(404).send({ message: 'Lead not found' });
+    }
+
+    if (lead.rows[0].account_id !== accountId) {
+      return reply.status(403).send({ message: 'Lead not in account scope' });
     }
 
     const res = await pool.query(
@@ -325,16 +374,34 @@ export async function registerRoutes(fastify: FastifyInstance) {
     }
   });
 
-  fastify.get('/api/quote-requests', { preHandler: fastify.requireRole(['admin', 'member']) }, async () => {
-    const res = await pool.query('SELECT * FROM quote_requests ORDER BY created_at DESC');
+  fastify.get('/api/quote-requests', { preHandler: fastify.requireRole(['admin', 'member']) }, async (request, reply) => {
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
+    const res = await pool.query('SELECT * FROM quote_requests WHERE account_id=$1 ORDER BY created_at DESC', [accountId]);
     return res.rows;
   });
 
   fastify.post('/api/bid-responses', {
     preHandler: fastify.requireRole(['admin', 'member']),
     schema: { body: z.object({ quote_request_id: z.string(), contractor_profile_id: z.string().optional(), amount: z.number(), notes: z.string().optional(), status: z.string().optional() }) }
-  }, async (request) => {
+  }, async (request, reply) => {
     const { quote_request_id, contractor_profile_id, amount, notes, status } = request.body as any;
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
+    const quoteRequest = await pool.query('SELECT account_id FROM quote_requests WHERE id=$1', [quote_request_id]);
+
+    if (!quoteRequest.rows[0]) {
+      return reply.status(404).send({ message: 'Quote request not found' });
+    }
+
+    if (quoteRequest.rows[0].account_id !== accountId) {
+      return reply.status(403).send({ message: 'Quote request not in account scope' });
+    }
+
     const res = await pool.query(
       'INSERT INTO bid_responses (quote_request_id, contractor_profile_id, amount, notes, status) VALUES ($1,$2,$3,$4,$5) RETURNING *',
       [quote_request_id, contractor_profile_id || null, amount, notes || null, status || 'draft']
@@ -345,9 +412,31 @@ export async function registerRoutes(fastify: FastifyInstance) {
   fastify.post('/api/estimates', {
     preHandler: fastify.requireRole(['admin', 'member']),
     schema: { body: z.object({ quote_request_id: z.string().optional(), property_id: z.string().optional(), total_amount: z.number(), prepared_by: z.string().optional(), details: z.record(z.any()).optional(), status: z.string().optional() }) }
-  }, async (request) => {
+  }, async (request, reply) => {
     const { quote_request_id, property_id, total_amount, prepared_by, details, status } = request.body as any;
-    const accountId = accountIdFromRequest(request);
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
+    if (quote_request_id) {
+      const quote = await pool.query('SELECT account_id FROM quote_requests WHERE id=$1', [quote_request_id]);
+      if (!quote.rows[0]) {
+        return reply.status(404).send({ message: 'Quote request not found' });
+      }
+      if (quote.rows[0].account_id !== accountId) {
+        return reply.status(403).send({ message: 'Quote request not in account scope' });
+      }
+    }
+
+    if (property_id) {
+      const property = await pool.query('SELECT account_id FROM properties WHERE id=$1', [property_id]);
+      if (!property.rows[0]) {
+        return reply.status(404).send({ message: 'Property not found' });
+      }
+      if (property.rows[0].account_id !== accountId) {
+        return reply.status(403).send({ message: 'Property not in account scope' });
+      }
+    }
     const res = await pool.query(
       'INSERT INTO estimates (account_id, quote_request_id, property_id, total_amount, prepared_by, details, status) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *',
       [accountId, quote_request_id || null, property_id || null, total_amount, prepared_by || null, details || {}, status || 'draft']
@@ -358,9 +447,31 @@ export async function registerRoutes(fastify: FastifyInstance) {
   fastify.post('/api/jobs', {
     preHandler: fastify.requireRole(['admin', 'member']),
     schema: { body: z.object({ estimate_id: z.string().optional(), property_id: z.string().optional(), status: z.string().optional(), start_date: z.string().optional(), end_date: z.string().optional(), supervisor_id: z.string().optional() }) }
-  }, async (request) => {
+  }, async (request, reply) => {
     const { estimate_id, property_id, status, start_date, end_date, supervisor_id } = request.body as any;
-    const accountId = accountIdFromRequest(request);
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
+    if (estimate_id) {
+      const estimate = await pool.query('SELECT account_id FROM estimates WHERE id=$1', [estimate_id]);
+      if (!estimate.rows[0]) {
+        return reply.status(404).send({ message: 'Estimate not found' });
+      }
+      if (estimate.rows[0].account_id !== accountId) {
+        return reply.status(403).send({ message: 'Estimate not in account scope' });
+      }
+    }
+
+    if (property_id) {
+      const property = await pool.query('SELECT account_id FROM properties WHERE id=$1', [property_id]);
+      if (!property.rows[0]) {
+        return reply.status(404).send({ message: 'Property not found' });
+      }
+      if (property.rows[0].account_id !== accountId) {
+        return reply.status(403).send({ message: 'Property not in account scope' });
+      }
+    }
     const res = await pool.query(
       'INSERT INTO jobs (account_id, estimate_id, property_id, status, start_date, end_date, supervisor_id) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *',
       [accountId, estimate_id || null, property_id || null, status || 'scheduled', start_date || null, end_date || null, supervisor_id || null]
@@ -369,11 +480,9 @@ export async function registerRoutes(fastify: FastifyInstance) {
   });
 
   fastify.get('/api/dashboard/summary', { preHandler: fastify.requireRole(['admin', 'member']) }, async (request, reply) => {
-    const accountId = accountIdFromRequest(request);
+    const accountId = requireAccountContext(request, reply);
 
-    if (!accountId) {
-      return reply.status(400).send({ message: 'Account context required' });
-    }
+    if (!accountId) return;
 
     const [pendingLeads, todaysJobs, overdueInvoices] = await Promise.all([
       pool.query("SELECT COUNT(*)::int AS count FROM leads WHERE account_id=$1 AND status IN ('new','contacted')", [accountId]),
@@ -408,10 +517,18 @@ export async function registerRoutes(fastify: FastifyInstance) {
   }, async (request, reply) => {
     const { jobId } = request.params as { jobId: string };
     const { description, due_date, assigned_to, status } = request.body as any;
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
     const job = await pool.query('SELECT account_id FROM jobs WHERE id=$1', [jobId]);
 
     if (!job.rows[0]) {
       return reply.status(404).send({ message: 'Job not found' });
+    }
+
+    if (job.rows[0].account_id !== accountId) {
+      return reply.status(403).send({ message: 'Job not in account scope' });
     }
 
     const res = await pool.query(
@@ -436,10 +553,18 @@ export async function registerRoutes(fastify: FastifyInstance) {
     schema: { params: z.object({ jobId: z.string() }) }
   }, async (request, reply) => {
     const { jobId } = request.params as { jobId: string };
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
     const job = await pool.query('SELECT account_id FROM jobs WHERE id=$1', [jobId]);
 
     if (!job.rows[0]) {
       return reply.status(404).send({ message: 'Job not found' });
+    }
+
+    if (job.rows[0].account_id !== accountId) {
+      return reply.status(403).send({ message: 'Job not in account scope' });
     }
 
     const res = await pool.query('SELECT * FROM job_tasks WHERE job_id=$1 ORDER BY due_date NULLS LAST, created_at', [jobId]);
@@ -460,10 +585,18 @@ export async function registerRoutes(fastify: FastifyInstance) {
   }, async (request, reply) => {
     const { jobId, taskId } = request.params as { jobId: string; taskId: string };
     const { description, due_date, assigned_to, status } = request.body as any;
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
     const job = await pool.query('SELECT account_id FROM jobs WHERE id=$1', [jobId]);
 
     if (!job.rows[0]) {
       return reply.status(404).send({ message: 'Job not found' });
+    }
+
+    if (job.rows[0].account_id !== accountId) {
+      return reply.status(403).send({ message: 'Job not in account scope' });
     }
 
     const existing = await pool.query('SELECT * FROM job_tasks WHERE id=$1 AND job_id=$2', [taskId, jobId]);
@@ -499,10 +632,18 @@ export async function registerRoutes(fastify: FastifyInstance) {
     schema: { body: z.object({ job_id: z.string(), amount: z.number(), due_date: z.string().optional(), status: z.enum(invoiceStatuses as [string, ...string[]]).optional() }) }
   }, async (request, reply) => {
     const { job_id, amount, due_date, status } = request.body as any;
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
     const job = await pool.query('SELECT account_id FROM jobs WHERE id=$1', [job_id]);
 
     if (!job.rows[0]) {
       return reply.status(404).send({ message: 'Job not found' });
+    }
+
+    if (job.rows[0].account_id !== accountId) {
+      return reply.status(403).send({ message: 'Job not in account scope' });
     }
 
     const res = await pool.query('INSERT INTO invoices (job_id, amount, due_date, status) VALUES ($1,$2,$3,$4) RETURNING *', [job_id, amount, due_date || null, status || 'draft']);
@@ -524,6 +665,10 @@ export async function registerRoutes(fastify: FastifyInstance) {
     schema: { body: z.object({ invoice_id: z.string(), amount: z.number(), paid_at: z.string().optional(), method: z.string().optional(), reference: z.string().optional(), status: z.string().optional() }) }
   }, async (request, reply) => {
     const { invoice_id, amount, paid_at, method, reference, status } = request.body as any;
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
     const invoice = await pool.query(
       'SELECT invoices.id, jobs.account_id FROM invoices JOIN jobs ON invoices.job_id = jobs.id WHERE invoices.id=$1',
       [invoice_id]
@@ -531,6 +676,10 @@ export async function registerRoutes(fastify: FastifyInstance) {
 
     if (!invoice.rows[0]) {
       return reply.status(404).send({ message: 'Invoice not found' });
+    }
+
+    if (invoice.rows[0].account_id !== accountId) {
+      return reply.status(403).send({ message: 'Invoice not in account scope' });
     }
 
     const res = await pool.query('INSERT INTO payments (invoice_id, amount, paid_at, method, reference, status) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *', [invoice_id, amount, paid_at || null, method || null, reference || null, status || 'pending']);
@@ -556,6 +705,10 @@ export async function registerRoutes(fastify: FastifyInstance) {
   }, async (request, reply) => {
     const { id } = request.params as { id: string };
     const { status, due_date } = request.body as any;
+    const accountId = requireAccountContext(request, reply);
+
+    if (!accountId) return;
+
     const invoice = await pool.query(
       'SELECT invoices.*, jobs.account_id FROM invoices JOIN jobs ON invoices.job_id = jobs.id WHERE invoices.id=$1',
       [id]
@@ -563,6 +716,10 @@ export async function registerRoutes(fastify: FastifyInstance) {
 
     if (!invoice.rows[0]) {
       return reply.status(404).send({ message: 'Invoice not found' });
+    }
+
+    if (invoice.rows[0].account_id !== accountId) {
+      return reply.status(403).send({ message: 'Invoice not in account scope' });
     }
 
     const nextDueDate = typeof due_date === 'undefined' ? invoice.rows[0].due_date : due_date || null;
