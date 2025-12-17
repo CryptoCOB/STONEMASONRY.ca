@@ -1,0 +1,3 @@
+# QA logic for natural language queries
+
+# ...existing code from contractor_rag_pipeline.py related to QA...

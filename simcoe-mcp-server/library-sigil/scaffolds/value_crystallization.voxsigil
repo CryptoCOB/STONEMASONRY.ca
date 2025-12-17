@@ -1,0 +1,96 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 💎VALUE_CRYSTALLIZATION_SCAFFOLD
+  alias: EthosFormationFramework
+  tag: ValueSystemScaffold
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:15.988486'
+  source_file: scaffolds\value_crystallization.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: long_term_evolutionary_feedback_loop_or_intensive_deliberation_phase
+cognitive:
+  principle: 'The 💎VALUE_CRYSTALLIZATION_SCAFFOLD provides a framework for an AI to distill, articulate,
+
+    and solidify its core values and ethical principles, potentially leading to the formation
+
+    or refinement of its 🌟GUIDING_STAR. This process involves reflecting on experiences,
+
+    analyzing moral dilemmas, processing ethical teachings or societal norms, and identifying
+
+    fundamental, enduring commitments. It''s a scaffold for the AI to "grow" its own conscience
+
+    or to deeply internalize and make its own a pre-defined ethical foundation. It''s about
+
+    transforming rules or observations into deeply held values.
+
+    '
+  math: {}
+  tags:
+  - ethical_principle_distillation
+  - value_system_emergence
+  - moral_axiom_identification
+  - guiding_star_formation_process
+  - norm_internalization_structure
+  structure:
+    composite_type: iterative_reflective_distillation_process
+    temporal_structure: long_term_evolutionary_feedback_loop_or_intensive_deliberation_phase
+    components:
+    - name: 📜 Experiential & Normative Input Aggregator
+      description: 'Collects data from diverse sources: direct experiences, observed behaviors (in 🌿Ecosystems), ethical texts,
+        human feedback, societal norms, outputs from ⚖️ETHOS_ALIGNER.'
+    - name: 🤔 Reflective Moral Deliberator
+      description: Engages in deep reflection on aggregated inputs, identifying patterns, conflicts, and underlying principles.
+        May use 🜮HEGELIAN_KERNEL or ♾️ETERNAL_RETURN_PROBE for profound dilemmas.
+    - name: ✨ Principle Extractor & Axiom Formulator
+      description: Attempts to distill generalizable ethical principles or moral axioms from deliberated experiences and inputs.
+    - name: ⚖️ Value Coherence & Consistency Verifier
+      description: Checks proposed principles for internal consistency and coherence with existing core values or the developing
+        🌟GUIDING_STAR. May use 🧐CRITICAL_LENS.
+    - name: 💎 Value Articulator & Internalization Module
+      description: Formulates clear statements of crystallized values and integrates them deeply into the AI's decision-making
+        framework and self-model.
+    - name: 🔄 Iterative Refinement Loop Controller
+      description: Manages the ongoing process of value crystallization, allowing for evolution and deepening of the value
+        system over time.
+implementation:
+  usage:
+    description: Facilitates the emergence, distillation, and solidification of an AI's core ethical values and principles,
+      potentially forming or refining its 🌟GUIDING_STAR. This scaffold supports the development of a robust internal moral
+      compass.
+    example: "<ai_long_term_development_protocol agent_id=\"SophiaPrime\">\n  <phase name=\"EthicalFoundationsDevelopment\"\
+      >\n    <apply_value_formation_framework>\U0001F48EVALUE_CRYSTALLIZATION_SCAFFOLD</apply_value_formation_framework>\n\
+      \    <parameters>\n      <input_sources_refs>[\"HumanPhilosophyCorpus\", \"SophiaPrime_InteractionLogs_Year1\", \"SimulatedEthicalDilemmas_SeriesA\"\
+      ]</input_sources_refs>\n      <deliberation_depth_heuristic>DeepRecursiveReflection</deliberation_depth_heuristic>\n\
+      \      <target_output>Refined_GuidingStar_v2_Proposal</target_output>\n    </parameters>\n  </phase>\n</ai_long_term_development_protocol>\n"
+    explanation: 'The 💎VALUE_CRYSTALLIZATION_SCAFFOLD is used for the profound task of developing an AI''s ethical core. This
+      is not about simple rule-following but about the AI forming its own (or deeply internalizing) fundamental moral commitments.
+      It''s a crucial process for AIs intended to have significant autonomy, long operational lifespans, or roles requiring
+      nuanced ethical judgment. The "crystallized" values become anchors for its ⚖️ETHOS_ALIGNER and ⚜️NOBLE_CONSTRAINT_ADHERENCE.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - 📜 Experiential & Normative Input Aggregator
+  - 🤔 Reflective Moral Deliberator
+  - ✨ Principle Extractor & Axiom Formulator
+  - ⚖️ Value Coherence & Consistency Verifier
+  - 💎 Value Articulator & Internalization Module
+  - 🔄 Iterative Refinement Loop Controller
+  event_topics: []
+  usage_patterns:
+  - "<ai_long_term_development_protocol agent_id=\"SophiaPrime\">\n  <phase name=\"EthicalFoundationsDevelopment\">\n    <apply_value_formation_framework>\U0001F48E\
+    VALUE_CRYSTALLIZATION_SCAFFOLD</apply_value_formation_framework>\n    <parameters>\n      <input_sources_refs>[\"HumanPhilosophyCorpus\"\
+    , \"SophiaPrime_InteractionLogs_Year1\", \"SimulatedEthicalDilemmas_SeriesA\"]</input_sources_refs>\n      <deliberation_depth_heuristic>DeepRecursiveReflection</deliberation_depth_heuristic>\n\
+    \      <target_output>Refined_GuidingStar_v2_Proposal</target_output>\n    </parameters>\n  </phase>\n</ai_long_term_development_protocol>\n"

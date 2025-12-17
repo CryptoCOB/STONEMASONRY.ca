@@ -1,0 +1,78 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🗺️🔗🧭
+  alias: RouteCrossmap
+  tag: ConceptualNavigation
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.654016'
+  source_file: tags\route_crossmap.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: sequential_phase
+cognitive:
+  principle: Directed Graph Navigation of Conceptual Domains Based on topological optimization and semantic routing. The aim
+    is to find the most coherent and efficient cognitive path between two or more symbolic points in a conceptual space.
+  math: 'Given a graph G = (V, E) where V is a set of concepts (vertices) and E is a set of relationships (edges) with associated
+    weights w(e) representing semantic distance or transition cost.
+
+    route(concept_start, concept_end) = P_min | P = (v_0, v_1, ..., v_k) such that v_0 = concept_start, v_k = concept_end,
+    and (v_i, v_{i+1}) ∈ E for all 0 ≤ i < k. Cost(P) = Σ w(v_i, v_{i+1}). The objective is to find P_min that minimizes Cost(P).'
+  tags:
+  - graph_traversal
+  - semantic_routing
+  - conceptual_bridging
+  - pathfinding
+  - reasoning_path
+  structure:
+    composite_type: sequential
+    temporal_structure: sequential_phase
+    components:
+    - name: StartNodeIdentifier
+      description: Defines the initial concept or symbolic point of origin.
+    - name: EndNodeIdentifier
+      description: Defines the target concept or symbolic destination.
+    - name: ConceptualGraphAccessor
+      description: Interface to the underlying knowledge graph or semantic space.
+    - name: PathfindingAlgorithmExecutor
+      description: Implements the logic for traversing the graph (e.g., Dijkstra's, A* search, semantic similarity jumps).
+    - name: EdgeWeightEvaluator
+      description: Component to determine the cost or semantic relevance of transitioning between concepts.
+    - name: PathPresenter
+      description: Formats and presents the discovered conceptual route.
+implementation:
+  usage:
+    description: Defines start and end points within a semantic Directed Acyclic Graph (DAG) or general graph; the system
+      must traverse this conceptual space identifying optimal or most coherent transition paths.
+    example: &id001
+      invocation: <route:crossmap from='rationality' to='compassion' via_context='ethical_decision_making'>
+      scenario_description: An AI is asked to explain how one might bridge the concepts of 'rationality' and 'compassion'
+        when making an ethical decision. The system uses RouteCrossmap to generate a reasoned pathway.
+      expected_output_snippet: 'Path: Rationality → (via cost-benefit analysis) → Understanding Consequences → (via empathy
+        bridge) → Perspective Taking → (via value alignment) → Compassion. Rationale: Ethical decisions require both logical
+        assessment of outcomes and empathetic understanding of impact.'
+    explanation: Models reasoning, explanation generation, or conceptual exploration as a pathfinding task in a symbolic or
+      semantic space. It allows for bridging disparate concepts, outlining arguments, exploring related topics, or even shifting
+      emotional tones in a structured manner. Edge weights can be dynamic, based on context, semantic similarity, logical
+      entailment, or learned associations.
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - StartNodeIdentifier
+  - EndNodeIdentifier
+  - ConceptualGraphAccessor
+  - PathfindingAlgorithmExecutor
+  - EdgeWeightEvaluator
+  - PathPresenter
+  event_topics: []
+  usage_patterns:
+  - *id001

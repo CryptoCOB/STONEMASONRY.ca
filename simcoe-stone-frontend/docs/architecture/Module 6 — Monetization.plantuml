@@ -1,0 +1,59 @@
+@startuml
+title Module 6 — Monetization (Subscriptions, Leads, Commissions, Upsells)
+
+skinparam componentStyle rectangle
+skinparam shadowing true
+skinparam package {
+  BackgroundColor<<money>> #FFF2CC
+  BackgroundColor<<pay>> #F8CECC
+  BackgroundColor<<db>> #DAE8FC
+  BorderColor black
+}
+
+actor Contractor
+actor Client
+actor Admin
+
+package "Monetization Streams" <<money>> {
+  [$288/mo Contractor Subscription (was $250)]
+  [$86–$115 Per Lead Fee (was $75–$100)]
+  [11.5% Job Commission (was 10%)]
+  [Ad Boosts / Featured Listings\n(Premium Placement)]
+  [E-Commerce Store (Tools & Sealants)]
+}
+
+package "Payment Processors" <<pay>> {
+  [Stripe Subscriptions + Checkout]
+  [Crypto.com Pay]
+  [Invoicing (ACH, Card)]
+}
+
+package "Database Records" <<db>> {
+  [USERS.subscription_status]
+  [PAYMENTS (subscriptions, leads, commissions)]
+  [ADS (boosted listings)]
+  [ORDERS (future e-commerce)]
+}
+
+Contractor --> [$288/mo Contractor Subscription (was $250)]
+Contractor --> [$86–$115 Per Lead Fee (was $75–$100)]
+Contractor --> [Ad Boosts / Featured Listings\n(Premium Placement)]
+
+Client --> [11.5% Job Commission (was 10%)]
+Client --> [E-Commerce Store (Tools & Sealants)]
+
+[$288/mo Contractor Subscription (was $250)] --> [Stripe Subscriptions + Checkout]
+[$86–$115 Per Lead Fee (was $75–$100)] --> [Stripe Subscriptions + Checkout]
+[11.5% Job Commission (was 10%)] --> [Crypto.com Pay]
+[Ad Boosts / Featured Listings\n(Premium Placement)] --> [Stripe Subscriptions + Checkout]
+[E-Commerce Store (Tools & Sealants)] --> [Stripe Subscriptions + Checkout]
+
+[Stripe Subscriptions + Checkout] --> [PAYMENTS (subscriptions, leads, commissions)]
+[Crypto.com Pay] --> [PAYMENTS (subscriptions, leads, commissions)]
+[Invoicing (ACH, Card)] --> [PAYMENTS (subscriptions, leads, commissions)]
+
+Admin --> [USERS.subscription_status]
+Admin --> [ADS (boosted listings)]
+Admin --> [ORDERS (future e-commerce)]
+
+@enduml

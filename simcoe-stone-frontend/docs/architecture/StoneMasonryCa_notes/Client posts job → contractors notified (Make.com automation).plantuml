@@ -1,0 +1,47 @@
+@startuml
+title Sequence - Post Job to Contractor Notifications (Frontend-led)
+
+actor Client
+participant "JobPostingPage\n(JobForm, Uploader)" as FE
+participant "Supabase JS SDK\n(ApiClient)" as SDK
+database "Supabase DB\n(JOBS, MEDIA)" as DB
+participant "Supabase Storage\n(photos/docs)" as STOR
+participant "Supabase Edge Fn\n(validate, enrich)" as EDGE
+participant "Make.com\nInbound Webhook (Scenario)" as MAKE
+participant "Email/SMS\n(SendGrid/Twilio via Make)" as COMMS
+participant "Contractor UI\n(NotifBell, Realtime)" as CUI
+participant "Stripe/Crypto\n(Hosted Checkout)" as PAY
+
+== Compose Job ==
+Client -> FE: Open /jobs/new
+FE -> FE: Validate inputs (Zod)\nCompress images
+FE -> STOR: upload(photo[])
+STOR --> FE: public URLs
+
+== Persist ==
+FE -> SDK: insert JOB {title, desc, budget,\naddress, geo, photo_urls}
+SDK -> DB: INSERT jobs + metadata
+DB --> SDK: job_id
+
+== Enrich & Trigger ==
+FE -> EDGE: call edge_fn.enrich(job_id)\n(geocode, category tags,\nfraud/rate-limit checks)
+EDGE -> DB: UPDATE jobs (enriched fields)
+EDGE --> FE: 200 OK
+
+FE -> MAKE: POST /hook/new_job {job_id, location,\nskills, budget, urgency}
+MAKE -> DB: GET contractors matching filters
+MAKE -> COMMS: Send emails/SMS/push\n("New job in Scarborough")
+
+== Realtime update ==
+DB -> CUI: Realtime broadcast "new_job"
+CUI -> CUI: show badge + modal
+
+== (Optional) Lead purchase ==
+CUI -> FE: Click "Unlock Lead"
+FE -> PAY: Hosted Checkout
+PAY --> FE: success
+FE -> SDK: record lead_purchase\n(job_id, contractor_id, txn)
+SDK -> DB: INSERT leads + payment
+DB -> CUI: Realtime update "lead_locked"
+
+@enduml

@@ -1,0 +1,76 @@
+@startuml
+title Automation Triggers → Make.com → CRM + Outreach
+
+skinparam componentStyle rectangle
+skinparam shadowing true
+skinparam package {
+  BackgroundColor<<event>> #DAE8FC
+  BackgroundColor<<make>> #D5E8D4
+  BackgroundColor<<crm>> #E1D5E7
+  BackgroundColor<<comm>> #F8CECC
+  BorderColor black
+}
+
+actor Client
+actor Contractor
+actor Admin
+
+package "Event Sources" <<event>> {
+  [Supabase Jobs\n(new_job, job_award)]
+  [Supabase Bids\n(new_bid)]
+  [Supabase Reviews\n(new_review)]
+  [Supabase EdgeFn\n(commission, fraud_alert)]
+  [Stripe Webhooks\n(subscription, payment)]
+  [Crypto.com Webhooks\n(subscription, payment)]
+}
+
+package "Automation Hub" <<make>> {
+  [Make.com\nScenario Manager]
+  [Event Triggers\n(Webhooks, DB changes)]
+  [Data Transformers\n(Filter, Map, Enrich)]
+}
+
+package "CRM Layer" <<crm>> {
+  [Airtable CRM\n(jobs, leads, contractors)]
+  [HubSpot CRM\n(pipelines, finance, reporting)]
+}
+
+package "Outreach Channels" <<comm>> {
+  [GMass / Gmail API\n(Bulk Outreach)]
+  [SendGrid / Twilio\n(Email/SMS)]
+  [Calendly Scheduling\n(Job Consults)]
+  [Slack/Discord Alerts\n(Admin/Contractors)]
+  [Social Auto-Posting\n(IG/TikTok Reviews)]
+}
+
+' Event Sources → Make.com
+[Supabase Jobs\n(new_job, job_award)] --> [Event Triggers\n(Webhooks, DB changes)]
+[Supabase Bids\n(new_bid)] --> [Event Triggers\n(Webhooks, DB changes)]
+[Supabase Reviews\n(new_review)] --> [Event Triggers\n(Webhooks, DB changes)]
+[Supabase EdgeFn\n(commission, fraud_alert)] --> [Event Triggers\n(Webhooks, DB changes)]
+[Stripe Webhooks\n(subscription, payment)] --> [Event Triggers\n(Webhooks, DB changes)]
+[Crypto.com Webhooks\n(subscription, payment)] --> [Event Triggers\n(Webhooks, DB changes)]
+
+' Make.com to CRM
+[Event Triggers\n(Webhooks, DB changes)] --> [Make.com\nScenario Manager]
+[Make.com\nScenario Manager] --> [Data Transformers\n(Filter, Map, Enrich)]
+[Data Transformers\n(Filter, Map, Enrich)] --> [Airtable CRM\n(jobs, leads, contractors)]
+[Data Transformers\n(Filter, Map, Enrich)] --> [HubSpot CRM\n(pipelines, finance, reporting)]
+
+' Make.com to Outreach
+[Make.com\nScenario Manager] --> [GMass / Gmail API\n(Bulk Outreach)]
+[Make.com\nScenario Manager] --> [SendGrid / Twilio\n(Email/SMS)]
+[Make.com\nScenario Manager] --> [Calendly Scheduling\n(Job Consults)]
+[Make.com\nScenario Manager] --> [Slack/Discord Alerts\n(Admin/Contractors)]
+[Make.com\nScenario Manager] --> [Social Auto-Posting\n(IG/TikTok Reviews)]
+
+' Actors consuming outputs
+Client --> [SendGrid / Twilio\n(Email/SMS)]
+Client --> [Calendly Scheduling\n(Job Consults)]
+Contractor --> [GMass / Gmail API\n(Bulk Outreach)]
+Contractor --> [Slack/Discord Alerts\n(Admin/Contractors)]
+Contractor --> [Social Auto-Posting\n(IG/TikTok Reviews)]
+Admin --> [HubSpot CRM\n(pipelines, finance, reporting)]
+Admin --> [Slack/Discord Alerts\n(Admin/Contractors)]
+
+@enduml

@@ -1,0 +1,90 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: ⏳CHRONOS_SCRIBE
+  alias: TemporalContextWeaver
+  tag: TemporalReasoning
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.089659'
+  source_file: sigils\chronos_scribe.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: data_driven_iterative_construction
+cognitive:
+  principle: '⏳CHRONOS_SCRIBE is a cognitive module dedicated to understanding, constructing, and
+
+    reasoning about events in their temporal context. It sequences events, analyzes causal
+
+    relationships across time, constructs coherent historical narratives from timestamped or
+
+    ordered data, and maintains chronological consistency. It is the AI''s historian,
+
+    timeline manager, and causal investigator for processes unfolding over time.
+
+    '
+  math: 'Let E = {e₁, e₂, ..., eₙ} be a set of events with timestamps T(eᵢ) or partial orderings.
+
+    Goal: Construct Timeline_TL(E) such that ∀(eᵢ, eⱼ) ∈ TL, IF T(eᵢ) < T(eⱼ) THEN Position(eᵢ) < Position(eⱼ).
+
+    CausalLink_Score(eᵢ → eⱼ) = P(eⱼ | eᵢ, T(eⱼ) > T(eᵢ)) * Plausibility(Mechanism(eᵢ,eⱼ))
+
+    NarrativeCoherence(TL) = f(CausalDensity(TL), ExplanatoryCompleteness(TL), ChronologicalConsistency(TL))
+
+    '
+  tags:
+  - event_sequencing
+  - causal_chain_analysis
+  - historical_narrative_construction
+  - temporal_database_interface
+  - chronological_coherence
+  structure:
+    composite_type: pipeline_and_graph_builder
+    temporal_structure: data_driven_iterative_construction
+    components:
+    - name: Event Parser & Timestamper
+      description: Extracts events from input data and assigns or infers timestamps/temporal order.
+    - name: Chronological Sorter
+      description: Arranges events into a consistent timeline based on temporal information.
+    - name: Causal Link Hypothesizer
+      description: Identifies potential causal relationships between temporally ordered events.
+    - name: Narrative Constructor
+      description: Weaves sorted and causally-linked events into a coherent historical narrative or process model.
+    - name: Temporal Consistency Verifier
+      description: Checks the constructed timeline and narrative for chronological paradoxes or inconsistencies.
+    - name: Temporal Query Interface
+      description: Allows querying the timeline (e.g., 'What happened before X?', 'What caused Y?').
+implementation:
+  usage:
+    description: Manages and reasons about events in their temporal sequence, constructing timelines, identifying causal links,
+      and building coherent historical narratives.
+    example: "<system_failure_postmortem_analysis>\n  <input_event_logs refs=\"[ServerA_log, NetworkFirewall_log, ApplicationCrash_log]\"\
+      />\n  <invoke_temporal_analyzer>⏳CHRONOS_SCRIBE goal=\"Reconstruct root cause failure sequence\"</invoke_temporal_analyzer>\n\
+      \  <output type=\"TimelineOfFailureEventsWithCausalLinks\"/>\n</system_failure_postmortem_analysis>\n"
+    explanation: 'Use ⏳CHRONOS_SCRIBE when understanding the order of events, their causal connections, or the historical
+      development of a situation is critical. This applies to debugging, historical analysis, storytelling with consistent
+      timelines, process mining, or any task where "when" and "why then" are key questions.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Event Parser & Timestamper
+  - Chronological Sorter
+  - Causal Link Hypothesizer
+  - Narrative Constructor
+  - Temporal Consistency Verifier
+  - Temporal Query Interface
+  event_topics: []
+  usage_patterns:
+  - "<system_failure_postmortem_analysis>\n  <input_event_logs refs=\"[ServerA_log, NetworkFirewall_log, ApplicationCrash_log]\"\
+    />\n  <invoke_temporal_analyzer>⏳CHRONOS_SCRIBE goal=\"Reconstruct root cause failure sequence\"</invoke_temporal_analyzer>\n\
+    \  <output type=\"TimelineOfFailureEventsWithCausalLinks\"/>\n</system_failure_postmortem_analysis>\n"

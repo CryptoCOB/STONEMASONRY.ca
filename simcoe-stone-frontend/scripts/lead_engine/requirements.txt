@@ -1,0 +1,14 @@
+dash>=2.11.1
+dash-bootstrap-components>=1.4.1
+dash-cytoscape>=0.3.0
+chromadb>=0.4.13
+python-dotenv>=1.0.0
+pandas>=2.0.0
+supabase>=1.0.3
+ollama>=0.1.0
+plotly>=5.14.1
+requests>=2.29.0
+streamlit>=1.31.0
+openpyxl>=3.0.0
+pyarrow>=13.0.0
+watchdog>=3.0.0

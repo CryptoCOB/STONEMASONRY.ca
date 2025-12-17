@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .section { margin-bottom: 50px; padding: 20px; background: #f5f5f5; }
+        .anchor { scroll-margin-top: 24px; }
+        nav { position: fixed; top: 0; left: 0; right: 0; background: white; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000; }
+        nav a { margin-right: 20px; text-decoration: none; color: #333; font-weight: bold; }
+        nav a:hover { color: #d32f2f; }
+        .content { margin-top: 80px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#fireplaces">Fireplaces</a>
+        <a href="#retaining-walls">Retaining Walls</a>
+        <a href="#patios">Patios</a>
+        <a href="#restoration">Restoration</a>
+        <a href="#commercial">Commercial</a>
+        <a href="#residential">Residential</a>
+    </nav>
+    
+    <div class="content">
+        <h1>Navigation Test - Simcoe Stone Masonry</h1>
+        <p>This tests the anchor navigation that we've implemented in the AllServices component.</p>
+        
+        <div id="fireplaces" class="section anchor">
+            <h2>Fireplaces & Chimneys</h2>
+            <p>Custom fireplaces and chimney restoration services. This section would contain fireplace-related services.</p>
+        </div>
+        
+        <div id="retaining-walls" class="section anchor">
+            <h2>Retaining Walls</h2>
+            <p>Engineered stone walls that provide both function and beauty. This section would contain retaining wall services.</p>
+        </div>
+        
+        <div id="patios" class="section anchor">
+            <h2>Stone Patios & Walkways</h2>
+            <p>Transform your backyard with custom stone patios and walkways. This section would contain patio-related services.</p>
+        </div>
+        
+        <div id="restoration" class="section anchor">
+            <h2>Heritage Restoration</h2>
+            <p>Restore historic stone facades to their original grandeur. This section would contain restoration services.</p>
+        </div>
+        
+        <div id="commercial" class="section anchor">
+            <h2>Commercial Projects</h2>
+            <p>Premium stonework for commercial buildings. This section would contain commercial services.</p>
+        </div>
+        
+        <div id="residential" class="section anchor">
+            <h2>Residential Landscaping</h2>
+            <p>Beautiful residential stone features for your home. This section would contain residential landscaping services.</p>
+        </div>
+    </div>
+</body>
+</html>

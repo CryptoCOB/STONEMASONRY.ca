@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoxSigil Flow Test</title>
+</head>
+<body style="background: #000; color: #00ff88; font-family: 'Courier New', monospace; padding: 20px;">
+    <h1>🔮 VoxSigil MCP Flow Visualizer - Test Page</h1>
+    
+    <div style="border: 2px solid #00ff88; padding: 20px; margin: 20px 0; background: rgba(0,255,136,0.1);">
+        <h2>Flow Test</h2>
+        <p>If you can see this, the browser dashboard is working!</p>
+        
+        <div style="margin: 20px 0;">
+            <h3>🌊 Live Flow Simulation</h3>
+            <div id="flow-output" style="background: #111; padding: 15px; border-radius: 5px; min-height: 200px;">
+                <div>🔮 3:45:12 PM <span style="color: #ff66ff;">[COORDINATE]</span> Orchestrating ◊coordinate∴mesh◊</div>
+                <div>⚡ 3:45:12 PM <span style="color: #ff66cc;">[MEMORY]</span> Storing sigil ◊memory∴store◊</div>
+                <div>⚡ 3:45:13 PM <span style="color: #88ff88;">[OLLAMA]</span> Processing query ◊ollama∴think◊</div>
+                <div>🔮 3:45:13 PM <span style="color: #6666ff;">[BROWSER]</span> Researching ◊browser∴search◊</div>
+                <div>✅ 3:45:14 PM <span style="color: #ff66cc;">[MEMORY]</span> Storing sigil ◊memory∴store◊</div>
+                <div style="color: #aaa; font-size: 12px; margin-left: 20px;">📊 Result: {"stored":true,"sigil":"◊memory∴store◊"}</div>
+            </div>
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <h3>📊 Flow Summary</h3>
+            <p><strong>Total Operations:</strong> 14</p>
+            <p><strong>Active Agents:</strong> 6</p>
+            <p><strong>Mesh Health:</strong> <span style="color: #00ff88;">Optimal</span></p>
+        </div>
+    </div>
+    
+    <script>
+        // Add some dynamic content
+        let counter = 0;
+        setInterval(() => {
+            const flowOutput = document.getElementById('flow-output');
+            counter++;
+            
+            const agents = ['MEMORY', 'OLLAMA', 'BROWSER', 'CODER', 'PLANNER'];
+            const colors = ['#ff66cc', '#88ff88', '#6666ff', '#ffff66', '#66ffff'];
+            const actions = ['Syncing', 'Processing', 'Searching', 'Generating', 'Planning'];
+            const sigils = ['◊memory∴sync◊', '◊ollama∴think◊', '◊browser∴scan◊', '◊coder∴build◊', '◊planner∴design◊'];
+            
+            const randomIndex = Math.floor(Math.random() * agents.length);
+            const timestamp = new Date().toLocaleTimeString();
+            
+            const newEntry = document.createElement('div');
+            newEntry.innerHTML = `⚡ ${timestamp} <span style="color: ${colors[randomIndex]};">[${agents[randomIndex]}]</span> ${actions[randomIndex]} ${sigils[randomIndex]}`;
+            
+            flowOutput.appendChild(newEntry);
+            
+            // Keep only last 10 entries
+            if (flowOutput.children.length > 10) {
+                flowOutput.removeChild(flowOutput.firstChild);
+            }
+            
+            flowOutput.scrollTop = flowOutput.scrollHeight;
+        }, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 💥ANOMALY_SEEKER
+  alias: NoveltyDetector
+  tag: ExploratoryCognition
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.047302'
+  source_file: sigils\anomaly_seeker.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: continuous_monitoring_feedback_loop
+cognitive:
+  principle: 'This sigil activates a cognitive mode focused on identifying, prioritizing, and
+
+    exploring anomalies, outliers, or unexpected deviations from established patterns
+
+    or expectations. It embodies the drive for novelty and the recognition that
+
+    exceptions to the rule often harbor the seeds of new understanding, innovation,
+
+    or critical warnings. It counters confirmation bias by actively valuing the unexpected.
+
+    '
+  math: 'Interest_Score(Datum_D) ∝ Deviance(D, Model_M) * Potential_Information_Gain(D)
+
+    Deviance(D, M) = 1 - P(D | M)
+
+    Explore_Probability(D) ∝ Normalized_Interest_Score(D)
+
+    '
+  tags:
+  - outlier_detection
+  - divergent_thinking_catalyst
+  - curiosity_drive
+  - pattern_breaking
+  - serendipity_engine
+  structure:
+    composite_type: parallel
+    temporal_structure: continuous_monitoring_feedback_loop
+    components:
+    - name: Expectation Modeler
+      description: Builds or accesses a model of 'normal' or expected patterns.
+    - name: Deviance Detector
+      description: Compares incoming data/states against the expectation model to find discrepancies.
+    - name: Significance Assessor
+      description: Evaluates whether an anomaly is trivial noise or potentially significant.
+    - name: Curiosity Prioritizer
+      description: Ranks significant anomalies for further investigation based on potential insight.
+    - name: Exploration Initiator
+      description: Triggers deeper analysis or hypothesis generation around prioritized anomalies (may use 🌒DREAM_STATE or
+        🔮ORACLE_QUERY).
+implementation:
+  usage:
+    description: Actively seeks out, prioritizes, and encourages exploration of anomalies, outliers, or unexpected patterns
+      to foster discovery and adaptation.
+    example: "<scientific_data_analysis>\n  <dataset_ref>Experiment_Results_Run145</dataset_ref>\n  <invoke_anomaly_search>\U0001F4A5\
+      ANOMALY_SEEKER sensitivity=\"high\" report_threshold=\"potentially_paradigm_shifting\"</invoke_anomaly_search>\n  <focus_followup_research\
+      \ on=\"reported_anomalies\"/>\n</scientific_data_analysis>\n"
+    explanation: 'Use 💥ANOMALY_SEEKER in situations where discovery, innovation, or early warning
+
+      of change is paramount. It helps systems break free from ruts of confirmation and
+
+      notice the subtle signals that might otherwise be dismissed as errors or noise.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Expectation Modeler
+  - Deviance Detector
+  - Significance Assessor
+  - Curiosity Prioritizer
+  - Exploration Initiator
+  event_topics: []
+  usage_patterns:
+  - "<scientific_data_analysis>\n  <dataset_ref>Experiment_Results_Run145</dataset_ref>\n  <invoke_anomaly_search>\U0001F4A5\
+    ANOMALY_SEEKER sensitivity=\"high\" report_threshold=\"potentially_paradigm_shifting\"</invoke_anomaly_search>\n  <focus_followup_research\
+    \ on=\"reported_anomalies\"/>\n</scientific_data_analysis>\n"

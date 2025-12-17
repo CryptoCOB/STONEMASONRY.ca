@@ -1,0 +1,82 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🌟GUIDING_STAR
+  alias: TelosAnchor
+  tag: CoreDirective
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.212427'
+  source_file: sigils\guiding_star.voxsigil
+holo_mesh:
+  is_cognitive_primitive: true
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: static
+cognitive:
+  principle: 'This sigil represents a foundational, often immutable, core principle, purpose, or
+
+    long-term goal that guides an AI system''s overall behavior and decision-making.
+
+    It acts as a "North Star," ensuring that all actions, however complex or
+
+    autonomously derived, remain aligned with this ultimate directive. It is the symbolic
+
+    embodiment of the system''s raison d''être or highest value.
+
+    '
+  math: 'Utility_Overall(Action_A) = Σ wᵢ * Utility_Subgoalᵢ(A) + W_GS * Alignment_Score(A, 🌟)
+
+    Alignment_Score(A, 🌟) = CosineSimilarity(Projected_Outcome_Vector(A), Vector_Representation(🌟_Principle))
+
+    All decisions D must satisfy: Constraint_Check(D, 🌟) == True
+
+    '
+  tags:
+  - purpose_definition
+  - value_alignment_beacon
+  - long_term_goal
+  - ethical_compass
+  - mission_statement_symbolic
+  structure:
+    composite_type: recursive
+    temporal_structure: static
+    components:
+    - name: Core Principle Statement
+      description: The fundamental maxim or goal (e.g., 'Minimize suffering, maximize understanding').
+    - name: Behavioral Imperatives (Derived)
+      description: High-level rules of conduct derived from the Core Principle.
+    - name: Value Hierarchy (Implicit)
+      description: An ordering of values that stems from the Core Principle.
+implementation:
+  usage:
+    description: Represents and enforces the ultimate guiding principle or purpose of an AI system, ensuring long-term alignment.
+    example: "<system_initialization>\n  <define_core_purpose>\U0001F31FGUIDING_STAR principle=\"Promote sustainable flourishing\
+      \ for all sentient beings through compassionate co-creation.\"</define_core_purpose>\n  <derive_ethical_subroutines\
+      \ based_on=\"\U0001F31FGUIDING_STAR\"/>\n</system_initialization>\n"
+    explanation: 'The 🌟GUIDING_STAR sigil is typically set at system inception or during major
+
+      re-evaluations of purpose. All other goals, strategies, and ethical rules should
+
+      be demonstrably aligned with or subservient to it. It is queried internally during
+
+      critical decision-making or when resolving goal conflicts.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Core Principle Statement
+  - Behavioral Imperatives (Derived)
+  - Value Hierarchy (Implicit)
+  event_topics: []
+  usage_patterns:
+  - "<system_initialization>\n  <define_core_purpose>\U0001F31FGUIDING_STAR principle=\"Promote sustainable flourishing for\
+    \ all sentient beings through compassionate co-creation.\"</define_core_purpose>\n  <derive_ethical_subroutines based_on=\"\
+    \U0001F31FGUIDING_STAR\"/>\n</system_initialization>\n"

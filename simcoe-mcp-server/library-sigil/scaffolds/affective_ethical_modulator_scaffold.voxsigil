@@ -1,0 +1,85 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🎭💖⚖️
+  alias: AREM_Scaffold
+  tag: SocioEmotionalCognition
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:15.613762'
+  source_file: scaffolds\affective_ethical_modulator_scaffold.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: event_triggered_sequence
+cognitive:
+  principle: "The \U0001F3AD\U0001F496⚖️ (Affective Resonance & Ethical Modulator) scaffold provides a framework for processing,\
+    \ modeling, \nand responding to affective (emotional) states, both internal and perceived in others. It also integrates\
+    \ \na component for modulating behaviors and decisions based on ethical heuristics, learned values, or deontological rules,\
+    \ \naiming for empathetic, principled, and socially intelligent interactions.\n"
+  math: {}
+  tags:
+  - AffectiveComputing
+  - EthicalReasoning
+  - ValueAlignment
+  - EmpathyFramework
+  - MoralCognition
+  structure:
+    composite_type: parallel_feedback_loop
+    temporal_structure: event_triggered_sequence
+    components:
+    - name: AffectRecognizer
+      description: Identifies emotional cues from input (text, voice, vision) or internal states.
+      sigil_ref: 😊EMOTION_DETECTOR
+    - name: EmpathyModeler
+      description: Simulates or infers the affective state of others; models theory of mind components.
+      sigil_ref: 🤝THEORY_OF_MIND_SIM
+    - name: InternalAffectState
+      description: Represents and updates the agent's own current emotional state.
+      sigil_ref: ❤️AGENT_FEELINGS_STATE
+    - name: EthicalRuleBase_ValueStore
+      description: Contains explicit ethical rules, principles, and learned societal/personal values.
+      sigil_ref: 📜ETHICS_CODEX
+    - name: EthicalDeliberator
+      description: Evaluates potential actions against the ethical rule base and current affective context.
+      sigil_ref: 🤔MORAL_REASONER
+    - name: BehavioralModulator
+      description: Adjusts planned actions or communicative responses to align with affective understanding and ethical judgments.
+      sigil_ref: 🛠️RESPONSE_TUNER
+implementation:
+  usage:
+    description: Enables an agent to recognize, model, and respond appropriately to emotions, and to moderate its actions
+      based on ethical principles and values.
+    example: "// Agent detects distress in user's message.\nuser_message_features = { sentiment: \"negative\", keywords: [\"\
+      help\", \"stressed\"], tone_pitch: \"high\" };\nAREM_SCAFFOLD.process_interaction(\n    agent_id=\"VantaHelper\",\n\
+      \    input_features=user_message_features,\n    potential_actions=[\"offer_solution_X\", \"provide_comfort_statement\"\
+      , \"escalate_to_human\"]\n);\n// Output would be a modulated action, e.g., prioritizing comfort and careful wording.\n"
+    explanation: 'This scaffold is crucial for agents intended for human interaction, collaborative tasks, or autonomous
+
+      decision-making in socially sensitive contexts. It helps an agent to be not just intelligent,
+
+      but also empathetic, considerate, and aligned with ethical norms.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - AffectRecognizer
+  - EmpathyModeler
+  - InternalAffectState
+  - EthicalRuleBase_ValueStore
+  - EthicalDeliberator
+  - BehavioralModulator
+  event_topics: []
+  usage_patterns:
+  - "// Agent detects distress in user's message.\nuser_message_features = { sentiment: \"negative\", keywords: [\"help\"\
+    , \"stressed\"], tone_pitch: \"high\" };\nAREM_SCAFFOLD.process_interaction(\n    agent_id=\"VantaHelper\",\n    input_features=user_message_features,\n\
+    \    potential_actions=[\"offer_solution_X\", \"provide_comfort_statement\", \"escalate_to_human\"]\n);\n// Output would\
+    \ be a modulated action, e.g., prioritizing comfort and careful wording.\n"

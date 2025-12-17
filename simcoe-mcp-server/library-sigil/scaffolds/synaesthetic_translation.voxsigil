@@ -1,0 +1,97 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🎭🎶🎨SYNAESTHETIC_TRANSLATION_SCAFFOLD
+  alias: CrossModalMetaphorEngine
+  tag: SensoryIntegrationScaffold
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:15.936383'
+  source_file: scaffolds\synaesthetic_translation.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: event_driven_transformative_process
+cognitive:
+  principle: 'The 🎭🎶🎨SYNAESTHETIC_TRANSLATION_SCAFFOLD provides a framework for an AI to translate
+
+    information, concepts, or "experiences" from one sensory modality (or abstract domain)
+
+    into another, not through literal conversion but through metaphorical, associative, or
+
+    structurally analogous mappings – akin to human synaesthesia. It aims to generate
+
+    rich, evocative cross-modal representations (e.g., "What does a logical proof *sound* like?",
+
+    "What is the *texture* of a complex emotion?", "Paint the *shape* of this mathematical equation.").
+
+    This scaffold enables novel forms of understanding, communication, and creative expression
+
+    by bridging disparate experiential or conceptual realms.
+
+    '
+  math: {}
+  tags:
+  - cross_modal_reasoning
+  - metaphorical_mapping_sensory
+  - qualia_translation_engine
+  - sensory_data_alchemy
+  - embodied_abstraction_framework
+  structure:
+    composite_type: multi_stage_mapping_and_generation_pipeline
+    temporal_structure: event_driven_transformative_process
+    components:
+    - name: 🎭 Source Modality Analyzer & Feature Extractor
+      description: Deconstructs the input from the source modality/domain into its core structural, qualitative, or affective
+        features (e.g., analyzing rhythm and harmony in music, or logical structure in a proof).
+    - name: 🎨 Cross-Modal Mapping Lexicon & Heuristic Engine
+      description: Contains learned or defined associative mappings, metaphorical bridges, or structural analogy rules between
+        features of different modalities (e.g., 'high pitch' ↔ 'bright color', 'complex rhythm' ↔ 'intricate texture'). May
+        use 🌉ANALOGY_BRIDGE.
+    - name: 🎶 Target Modality Synthesizer & Generator
+      description: Takes the mapped features and uses them to generate a novel representation in the target modality (e.g.,
+        composing music based on visual input, generating a textual description of a tactile sensation).
+    - name: ✨ Evocative Richness Enhancer
+      description: Optionally refines the translated output to maximize its evocative power, metaphorical resonance, or aesthetic
+        appeal in the target modality.
+    - name: 🔄 Bi-Directional Consistency Checker (Optional)
+      description: For some applications, checks if translating the output back to the source modality yields something related
+        to the original input, testing the 'strength' of the synaesthetic link.
+implementation:
+  usage:
+    description: Enables an AI to perform synaesthetic-like translations of concepts or experiences between different sensory
+      modalities or abstract domains using metaphorical and structural mappings. This scaffold fosters creative expression
+      and novel understanding.
+    example: "<ai_artistic_collaboration_module>\n  <input_stimulus type=\"MusicalPiece\" ref=\"Bach_Chaconne_Violin.mid\"\
+      />\n  <invoke_synaesthetic_translation>\U0001F3AD\U0001F3B6\U0001F3A8SYNAESTHETIC_TRANSLATION_SCAFFOLD</invoke_synaesthetic_translation>\n\
+      \  <parameters>\n    <source_modality>\"AuditoryMusic\"</source_modality>\n    <target_modality>\"VisualAbstractPainting\"\
+      </target_modality>\n    <mapping_lexicon_ref>\"MusicToVisuals_BaroqueStyle_v1.lex\"</mapping_lexicon_ref>\n    <richness_enhancement_level>0.8</richness_enhancement_level>\n\
+      \  </parameters>\n  <output type=\"GeneratedVisualArt\" format=\"SVG_description\"/>\n</ai_artistic_collaboration_module>\n"
+    explanation: 'The 🎭🎶🎨SYNAESTHETIC_TRANSLATION_SCAFFOLD is used for tasks requiring creative interpretation, communication
+      of abstract concepts in novel ways, or generating art that bridges sensory experiences. It allows an AI to explore questions
+      like "What if this idea was a piece of music?" or "How can I represent this complex data as a tactile experience?" It
+      taps into the power of metaphor and cross-modal association for deeper insight and expression.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - 🎭 Source Modality Analyzer & Feature Extractor
+  - 🎨 Cross-Modal Mapping Lexicon & Heuristic Engine
+  - 🎶 Target Modality Synthesizer & Generator
+  - ✨ Evocative Richness Enhancer
+  - 🔄 Bi-Directional Consistency Checker (Optional)
+  event_topics: []
+  usage_patterns:
+  - "<ai_artistic_collaboration_module>\n  <input_stimulus type=\"MusicalPiece\" ref=\"Bach_Chaconne_Violin.mid\"/>\n  <invoke_synaesthetic_translation>\U0001F3AD\
+    \U0001F3B6\U0001F3A8SYNAESTHETIC_TRANSLATION_SCAFFOLD</invoke_synaesthetic_translation>\n  <parameters>\n    <source_modality>\"\
+    AuditoryMusic\"</source_modality>\n    <target_modality>\"VisualAbstractPainting\"</target_modality>\n    <mapping_lexicon_ref>\"\
+    MusicToVisuals_BaroqueStyle_v1.lex\"</mapping_lexicon_ref>\n    <richness_enhancement_level>0.8</richness_enhancement_level>\n\
+    \  </parameters>\n  <output type=\"GeneratedVisualArt\" format=\"SVG_description\"/>\n</ai_artistic_collaboration_module>\n"

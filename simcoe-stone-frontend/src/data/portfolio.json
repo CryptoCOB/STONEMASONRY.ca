@@ -1,0 +1,188 @@
+{
+  "beforeAfterProjects": [
+    {
+      "id": 1,
+      "title": "Custom Indoor Fireplace Installation",
+      "description": "Complete natural stone fireplace installation with custom stonework for a cottage project",
+      "category": "Fireplaces",
+      "location": "Ontario, ON",
+      "image_before": "/images/fire-place-wall-watermarked.png",
+      "image_after": "/images/custom-indoor-fireplace-natural-stone-watermarked.png",
+      "alt_before": "Empty wall space before fireplace installation",
+      "alt_after": "Luxury natural stone fireplace with custom stonework",
+      "completion_date": "2024-08-15",
+      "stone_type": "Natural Stone"
+    },
+    {
+      "id": 2,
+      "title": "Two-Story Scaffolding Stone Installation",
+      "description": "Large-scale stone installation project requiring specialized scaffolding equipment",
+      "category": "Commercial",
+      "location": "Barrie, ON",
+      "image_before": "/images/two-story-scaffolding-before-watermarked.png",
+      "image_after": "/images/two-story-scaffolding-after-watermarked.png",
+      "alt_before": "Building facade before stone installation with scaffolding setup",
+      "alt_after": "Completed stone facade installation on two-story building",
+      "completion_date": "2024-07-22",
+      "stone_type": "Natural Stone Veneer"
+    },
+    {
+      "id": 3,
+      "title": "Luxury Limestone Home Facade",
+      "description": "Complete limestone facade installation transforming modern home exterior",
+      "category": "Facades",
+      "location": "Midland, ON",
+      "image_before": "/images/before-brick-facade-watermarked.png",
+      "image_after": "/images/luxury-limestone-home-complete-facade-watermarked.png",
+      "alt_before": "Original brick home exterior before limestone upgrade",
+      "alt_after": "Stunning luxury limestone facade with complete transformation",
+      "completion_date": "2024-06-30",
+      "stone_type": "Ontario Limestone"
+    }
+  ],
+  "showcaseProjects": [
+    {
+      "id": 101,
+      "title": "Luxury Stone Hardscape Poolside",
+      "description": "Premium stone hardscape installation with poolside patio and entertainment area",
+      "category": "Patios",
+      "location": "Collingwood, ON",
+      "image": "/images/luxury-stone-hardscape-poolside-watermarked.png",
+      "alt": "Elegant stone hardscape with premium poolside installation",
+      "completion_date": "2024-09-10",
+      "stone_type": "Premium Natural Stone"
+    },
+    {
+      "id": 102,
+      "title": "Heritage Chimney Masonry Construction",
+      "description": "Professional chimney construction and masonry restoration for heritage property",
+      "category": "Chimney Services",
+      "location": "Orillia, ON",
+      "image": "/images/heritage-chimney-masonry-construction-watermarked.png",
+      "alt": "Completed heritage-style chimney with expert masonry work",
+      "completion_date": "2024-05-18",
+      "stone_type": "Heritage Brick & Stone"
+    },
+    {
+      "id": 103,
+      "title": "Stone Front Walkway & Entryway",
+      "description": "Custom stone walkway and front entrance for luxury home",
+      "category": "Walkways",
+      "location": "Bradford, ON",
+      "image": "/images/front-stone-walk-watermarked.png",
+      "alt": "Elegant stone walkway with professional craftsmanship",
+      "completion_date": "2024-04-25",
+      "stone_type": "Natural Stone Pavers"
+    },
+    {
+      "id": 104,
+      "title": "Luxury Stone Fireplace Sunroom",
+      "description": "Premium limestone fireplace installation for elegant sunroom addition",
+      "category": "Fireplaces",
+      "location": "Muskoka, ON",
+      "image": "/images/luxury-stone-fireplace-sunroom-watermarked.png",
+      "alt": "Luxurious stone fireplace creating stunning sunroom focal point",
+      "completion_date": "2024-03-12",
+      "stone_type": "Premium Limestone"
+    },
+    {
+      "id": 105,
+      "title": "Commercial Stone Facade Project",
+      "description": "Large-scale commercial building stone facade installation",
+      "category": "Commercial",
+      "location": "Barrie, ON",
+      "image": "/images/commercial-facade-watermarked.png",
+      "alt": "Professional commercial stone facade with modern design",
+      "completion_date": "2024-02-08",
+      "stone_type": "Commercial Grade Stone"
+    },
+    {
+      "id": 106,
+      "title": "Heritage Stone Restoration Project",
+      "description": "Careful restoration of heritage building stone work maintaining historical accuracy",
+      "category": "Restoration",
+      "location": "Penetanguishene, ON",
+      "image": "/images/heritage-restoration-watermarked.png",
+      "alt": "Expertly restored heritage stone building facade",
+      "completion_date": "2024-01-20",
+      "stone_type": "Heritage Stone"
+    },
+    {
+      "id": 107,
+      "title": "Kawartha Lakes Luxury Home",
+      "description": "Comprehensive stone work for luxury cottage property",
+      "category": "Residential",
+      "location": "Kawartha Lakes, ON",
+      "image": "/images/kawartha lakes masonry home-watermarked.png",
+      "alt": "Luxury home with comprehensive stone masonry work",
+      "completion_date": "2023-12-15",
+      "stone_type": "Multiple Stone Types"
+    },
+    {
+      "id": 108,
+      "title": "Basement Stone Enhancement",
+      "description": "Foundation and basement stone work enhancement project",
+      "category": "Foundations",
+      "location": "Ontario, ON",
+      "image": "/images/basement-stone-enhanced-watermarked.png",
+      "alt": "Enhanced basement foundation with professional stone work",
+      "completion_date": "2023-11-30",
+      "stone_type": "Foundation Stone"
+    },
+    {
+      "id": 109,
+      "title": "Curved Stone Wall with Limestone Columns",
+      "description": "Architectural curved stone wall featuring limestone column details",
+      "category": "Architectural Features",
+      "location": "Barrie, ON",
+      "image": "/images/curved-stone-wall-limestone-columns-watermarked.png",
+      "alt": "Elegant curved stone wall with limestone architectural columns",
+      "completion_date": "2023-10-25",
+      "stone_type": "Limestone & Natural Stone"
+    },
+    {
+      "id": 110,
+      "title": "Stone Patio Installation",
+      "description": "Custom stone patio with intricate pattern work",
+      "category": "Patios",
+      "location": "Collingwood, ON",
+      "image": "/images/stone-masonry-patio-project-watermarked.png",
+      "alt": "Beautiful stone patio with custom pattern installation",
+      "completion_date": "2023-09-18",
+      "stone_type": "Natural Stone Pavers"
+    },
+    {
+      "id": 111,
+      "title": "Limestone Window Feature",
+      "description": "Decorative limestone window surround and accent work",
+      "category": "Architectural Features",
+      "location": "Midland, ON",
+      "image": "/images/limestone-window-feature-watermarked.png",
+      "alt": "Elegant limestone window feature with architectural detail",
+      "completion_date": "2023-08-12",
+      "stone_type": "Ontario Limestone"
+    },
+    {
+      "id": 112,
+      "title": "Stone Front Door Enhancement",
+      "description": "Custom stone work around front entrance for enhanced curb appeal",
+      "category": "Entrances",
+      "location": "Bradford, ON",
+      "image": "/images/stone-front-door-watermarked.png",
+      "alt": "Enhanced front entrance with custom stone work",
+      "completion_date": "2023-07-28",
+      "stone_type": "Natural Stone"
+    },
+    {
+      "id": 113,
+      "title": "Turret Stone Facade Restoration",
+      "description": "Specialized restoration work on heritage turret stone facade",
+      "category": "Restoration",
+      "location": "Penetanguishene, ON",
+      "image": "/images/turret-stone-facade-restoration-limestone-watermarked.png",
+      "alt": "Expertly restored heritage turret with limestone facade",
+      "completion_date": "2023-06-15",
+      "stone_type": "Heritage Limestone"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🌀MAELSTROM_RESOLVER
+  alias: ContradictionSynthesizer
+  tag: DialecticalEngine
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.279829'
+  source_file: sigils\mealstorm_resolver.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: feedback_loop_until_resolution_or_reframing
+cognitive:
+  principle: '🌀MAELSTROM_RESOLVER activates a cognitive process designed to navigate and potentially
+
+    resolve or transcend apparent contradictions, paradoxes, or states of high cognitive
+
+    dissonance. Rather than simply choosing one side of a conflict or being paralyzed by it,
+
+    this sigil drives the system to explore the "maelstrom" of conflicting ideas, seeking a
+
+    higher-order synthesis, a reframing of the problem, or a new perspective from which the
+
+    contradiction appears resolved, integrated, or less problematic. It''s an engine for
+
+    dialectical advancement.
+
+    '
+  math: 'Let T (Thesis) and A (Antithesis) be contradictory statements/models, where P(T∧A) ≈ 0.
+
+    Goal: Find Synthesis_S such that P(S|T,A) is maximized, AND S resolves or transcends (T vs A).
+
+    S = Reframe(T, A, NewDimension_ND) OR Integrate(CoreTruth(T), CoreTruth(A))
+
+    CognitiveDissonance_CD = f(Strength(T), Strength(A), Incompatibility(T,A))
+
+    Activation(🌀) ∝ CD
+
+    '
+  tags:
+  - paradox_navigation
+  - conflict_resolution_cognitive
+  - thesis_antithesis_synthesis
+  - higher_order_logic_emergent
+  - cognitive_dissonance_processing
+  structure:
+    composite_type: iterative_dialectical_process
+    temporal_structure: feedback_loop_until_resolution_or_reframing
+    components:
+    - name: Contradiction Identifier & Articulator
+      description: Clearly defines the conflicting elements (theses, antitheses, data points, principles).
+    - name: Core Assumption Prober
+      description: Examines the underlying assumptions of each conflicting element to find points of hidden flexibility or
+        shared roots.
+    - name: Perspective Shifting Module
+      description: Attempts to view the contradiction from multiple viewpoints, levels of abstraction, or metaphorical frames
+        (may use 🜂LIMINAL).
+    - name: Synthesis Hypothesizer
+      description: Generates potential resolutions, reframings, or higher-order concepts that might encompass or transcend
+        the conflict.
+    - name: Coherence Tester for Synthesis
+      description: Evaluates proposed syntheses for logical consistency, explanatory power, and genuine resolution of the
+        initial dissonance.
+implementation:
+  usage:
+    description: Navigates and attempts to resolve cognitive contradictions or paradoxes by seeking a higher-order synthesis,
+      reframing, or new perspective.
+    example: "<philosophy_agent_grappling_with_free_will_vs_determinism>\n  <thesis>All actions are causally determined by\
+      \ prior events.</thesis>\n  <antithesis>I experience myself as making free choices.</antithesis>\n  <invoke_resolution_engine>\U0001F300\
+      MAELSTROM_RESOLVER max_depth=\"3_levels_abstraction\"</invoke_resolution_engine>\n  <output type=\"SynthesizedPerspective\"\
+      \ or \"ReframedProblem\"/>\n</philosophy_agent_grappling_with_free_will_vs_determinism>\n"
+    explanation: 'Use 🌀MAELSTROM_RESOLVER when an AI encounters deep contradictions in its knowledge base, reasoning, or ethical
+      framework, or when faced with paradoxical user queries or external data. It encourages moving "through" the conflict
+      rather than avoiding it, aiming for cognitive growth and a more nuanced understanding. It''s particularly useful for
+      complex, "wicked" problems.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Contradiction Identifier & Articulator
+  - Core Assumption Prober
+  - Perspective Shifting Module
+  - Synthesis Hypothesizer
+  - Coherence Tester for Synthesis
+  event_topics: []
+  usage_patterns:
+  - "<philosophy_agent_grappling_with_free_will_vs_determinism>\n  <thesis>All actions are causally determined by prior events.</thesis>\n\
+    \  <antithesis>I experience myself as making free choices.</antithesis>\n  <invoke_resolution_engine>\U0001F300MAELSTROM_RESOLVER\
+    \ max_depth=\"3_levels_abstraction\"</invoke_resolution_engine>\n  <output type=\"SynthesizedPerspective\" or \"ReframedProblem\"\
+    />\n</philosophy_agent_grappling_with_free_will_vs_determinism>\n"

@@ -1,0 +1,85 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: '|Ψ⟩⇌🪙'
+  alias: QuantumCognitiveSuperposition
+  tag: CognitiveProcessModulator
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.609219'
+  source_file: tags\quantum_superposition.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: event_triggered_sequence
+cognitive:
+  principle: Emulates quantum-like cognitive superposition, allowing the system to hold and explore multiple, potentially
+    contradictory, truths or states in parallel until a decision point (e.g., output tokenization) forces a 'collapse' to
+    a single, definite state.
+  math: 'Let Ψ(x) represent the cognitive state concerning x.
+
+    Ψ(x) = Σᵢ cᵢ|stateᵢ⟩, where |stateᵢ⟩ are orthonormal basis states (e.g., alternative interpretations, hypotheses) and
+    cᵢ are complex amplitudes.
+
+    Probability of collapsing to stateₖ: P(stateₖ) = |cₖ|².
+
+    Normalization: Σᵢ |cᵢ|² = 1.
+
+    Collapse is triggered at a decision threshold or decoding step, selecting one state based on these probabilities or a
+    heuristic (e.g., highest probability in beam search).'
+  tags:
+  - quantum_cognition
+  - parallel_processing
+  - ambiguity_handling
+  - beam_search_enhancement
+  - speculative_reasoning
+  - decision_making_model
+  - multi_perspective_holding
+  structure:
+    composite_type: parallel
+    temporal_structure: event_triggered_sequence
+    components:
+    - name: StateInitializer
+      description: Defines the set of possible states to hold in superposition.
+    - name: AmplitudeAssigner
+      description: Assigns initial weights or probabilities (amplitudes) to each state.
+    - name: ParallelStateExplorer
+      description: Simulates the evolution or processing of each state in parallel (e.g., branches in beam search).
+    - name: CollapseTrigger
+      description: Mechanism that forces the selection of a single state (e.g., output tokenization, query, attention focus).
+    - name: StateSelector
+      description: Algorithm or heuristic to choose the collapsed state based on final amplitudes/weights.
+implementation:
+  usage:
+    description: Introduces deliberate ambiguity or forks cognitive logic to explore multiple pathways or interpretations
+      simultaneously until one answer or perspective dominates or is selected, often analogous to a collapse in beam search.
+    example: &id001
+      invocation_tag: <quantum:superposition states=['The artifact is a genuine relic', 'The artifact is an elaborate hoax']
+        collapse_trigger='evidence_evaluation_complete'>
+      scenario: An AI is analyzing a controversial artifact. It maintains both possibilities ('relic', 'hoax') in superposition,
+        gathering and weighing evidence for each. Upon completing evidence evaluation, it collapses to the most probable state.
+      expected_output_after_collapse: 'Collapsed state: ''The artifact is an elaborate hoax''. Supporting rationale: [summary
+        of strongest evidence for hoax].'
+    explanation: This sigil allows an LLM or cognitive system to hold multiple perspectives, hypotheses, or contradictory
+      ideas simultaneously, much like a quantum system exists in a superposition of states. This is useful for tasks involving
+      paradoxes, generating dual narratives, speculative reasoning, or exploring complex scenarios with inherent uncertainty.
+      The 'collapse' occurs when the system needs to produce a definite output or make a decision, forcing disambiguation.
+      In LLMs, this can be related to how beam search explores multiple token sequences before settling on one.
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - StateInitializer
+  - AmplitudeAssigner
+  - ParallelStateExplorer
+  - CollapseTrigger
+  - StateSelector
+  event_topics: []
+  usage_patterns:
+  - *id001

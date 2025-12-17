@@ -1,0 +1,33 @@
+@startuml
+title Sequence — Ad Campaign → Lead Capture → Contractor Outreach
+
+actor Visitor
+participant "Google/Instagram/TikTok Ad" as AD
+participant "Landing Page\n(Next.js on Netlify)" as LP
+participant "Make.com\nCampaign Manager" as MAKE
+participant "Airtable CRM" as AIR
+participant "HubSpot CRM" as HUB
+participant "Contractor Outreach\n(GMass/SendGrid)" as OUT
+
+== Ad Click ==
+Visitor -> AD: sees ad “Get masonry quotes now”
+AD -> LP: redirect with UTM params
+
+== Landing Page ==
+Visitor -> LP: fills lead form {name, email, job_type, location}
+LP -> MAKE: webhook POST new_lead + UTM params
+
+== CRM Update ==
+MAKE -> AIR: insert new record
+MAKE -> HUB: create contact + deal (stage=Marketing Qualified)
+MAKE -> AIR: tag source = ad_channel, location = GTA
+
+== Outreach ==
+MAKE -> OUT: auto-send contractor blast email
+OUT -> Contractor: “New lead available in your area”
+
+== Admin Visibility ==
+MAKE -> HUB: log marketing campaign performance
+MAKE -> AIR: update lead dashboard
+
+@enduml

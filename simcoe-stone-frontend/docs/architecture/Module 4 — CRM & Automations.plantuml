@@ -1,0 +1,60 @@
+@startuml
+title Module 4 — CRM & Automations (Make.com Orchestration)
+
+skinparam componentStyle rectangle
+skinparam shadowing true
+skinparam package {
+  BackgroundColor<<crm>> #E1D5E7
+  BackgroundColor<<auto>> #D5E8D4
+  BackgroundColor<<ext>> #F8CECC
+  BackgroundColor<<db>> #FFF2CC
+  BorderColor black
+}
+
+actor Client
+actor Contractor
+actor Admin
+
+package "CRM Layer" <<crm>> {
+  [Airtable CRM\n(leads, jobs, contractors)]
+  [HubSpot CRM\n(pipelines, reporting)]
+}
+
+package "Automations Hub" <<auto>> {
+  [Make.com Scenario Manager]
+  [Event Triggers (webhooks, db changes)]
+  [Data Transformers (map, filter, enrich)]
+  [Sync Jobs (batch updates)]
+}
+
+package "Communication Tools" <<ext>> {
+  [GMass / Gmail API\n(Bulk + Personalized Outreach)]
+  [SendGrid / Twilio\n(Email/SMS Alerts)]
+  [Calendly Scheduling\n(Booking Contractors)]
+  [Slack/Discord Notifications]
+}
+
+package "Backend Connections" <<db>> {
+  [Supabase Webhooks\n(new job, payment, review)]
+  [Supabase REST/Realtime API]
+}
+
+' Flows
+[Supabase Webhooks\n(new job, payment, review)] --> [Event Triggers (webhooks, db changes)]
+[Supabase REST/Realtime API] --> [Data Transformers (map, filter, enrich)]
+
+[Event Triggers (webhooks, db changes)] --> [Make.com Scenario Manager]
+[Data Transformers (map, filter, enrich)] --> [Make.com Scenario Manager]
+
+[Make.com Scenario Manager] --> [Airtable CRM\n(leads, jobs, contractors)]
+[Make.com Scenario Manager] --> [HubSpot CRM\n(pipelines, reporting)]
+
+[Make.com Scenario Manager] --> [GMass / Gmail API\n(Bulk + Personalized Outreach)]
+[Make.com Scenario Manager] --> [SendGrid / Twilio\n(Email/SMS Alerts)]
+[Make.com Scenario Manager] --> [Calendly Scheduling\n(Booking Contractors)]
+[Make.com Scenario Manager] --> [Slack/Discord Notifications]
+
+Client --> [SendGrid / Twilio\n(Email/SMS Alerts)]
+Contractor --> [GMass / Gmail API\n(Bulk + Personalized Outreach)]
+Admin --> [HubSpot CRM\n(pipelines, reporting)]
+@enduml

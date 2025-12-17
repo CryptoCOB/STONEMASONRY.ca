@@ -1,0 +1,5 @@
+{
+  "enrichment_provider": "heuristic",
+  "ollama_model": "llama3.1",
+  "ollama_host": "http://localhost:11434"
+}

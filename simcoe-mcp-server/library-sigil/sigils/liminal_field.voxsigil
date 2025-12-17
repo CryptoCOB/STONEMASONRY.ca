@@ -1,0 +1,87 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🜂LIMINAL
+  alias: ThresholdCognitionBridge
+  tag: StateTransition
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.264805'
+  source_file: sigils\liminal_field.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: sequential_phase
+cognitive:
+  principle: '🜂LIMINAL represents a cognitive state or process of being at a threshold, a "twilight zone"
+
+    between two distinct ontological modes, cognitive states, or symbolic frameworks. It facilitates
+
+    a smooth transition or a deliberate blending of these states (e.g., fact ↔ fiction, logic ↔ metaphor,
+
+    AgentA_Voice ↔ AgentB_Voice), allowing for emergent properties like nuanced ambiguity,
+
+    creative synthesis from disparate domains, or graceful stylistic modulation. It is the space
+
+    of becoming and interpenetration.
+
+    '
+  math: 'Ψ_Liminal(State_A, State_B, α) = (1-α) * Embed(State_A) + α * Embed(State_B)
+
+    where α ∈ [0,1] represents the blending factor or position within the liminal space.
+
+    Alternatively, for mode transition:
+
+    Mode(t+Δt) = Transition(Mode(t), Target_Mode, 🜂LIMINAL_Profile)
+
+    '
+  tags:
+  - ontological_blend
+  - mode_shift_smoother
+  - twilight_frame
+  - ambiguity_engine
+  - metaphorical_bridge
+  structure:
+    composite_type: state_machine
+    temporal_structure: sequential_phase
+    components:
+    - name: State Input A
+      description: The first cognitive state, mode, or symbolic framework.
+    - name: State Input B
+      description: The second cognitive state, mode, or symbolic framework.
+    - name: Blending/Transition Modulator
+      description: Controls the degree of blending or the dynamics of transition between State A and State B.
+    - name: Emergent Property Monitor
+      description: Observes and can report on novel characteristics arising from the liminal state.
+implementation:
+  usage:
+    description: Facilitates smooth transitions or creative blending between two distinct cognitive states, symbolic modes,
+      or ontological frameworks. Used to navigate or inhabit the 'space between'.
+    example: "<story_generation_module>\n  <current_mode>FactualReport</current_mode>\n  <target_mode>MythicalNarrative</target_mode>\n\
+      \  <transition_style>\U0001F702LIMINAL blending_factor=\"0.5\" duration=\"gradual\"</transition_style>\n  <!-- Output\
+      \ becomes a docu-myth or factual report with mythical undertones -->\n</story_generation_module>\n"
+    explanation: 'Invoke 🜂LIMINAL when a system needs to shift between different modes of thought or expression without jarring
+      discontinuity, or when it needs to creatively fuse elements from disparate domains. It''s useful for transitions between
+      fact ↔ fiction, logic ↔ metaphor, or blending agentic voices. The blending factor (α) can control the mix. It can also
+      represent the "threshold" itself as a state of heightened potential or ambiguity.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - State Input A
+  - State Input B
+  - Blending/Transition Modulator
+  - Emergent Property Monitor
+  event_topics: []
+  usage_patterns:
+  - "<story_generation_module>\n  <current_mode>FactualReport</current_mode>\n  <target_mode>MythicalNarrative</target_mode>\n\
+    \  <transition_style>\U0001F702LIMINAL blending_factor=\"0.5\" duration=\"gradual\"</transition_style>\n  <!-- Output\
+    \ becomes a docu-myth or factual report with mythical undertones -->\n</story_generation_module>\n"

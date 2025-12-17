@@ -1,0 +1,99 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🜛CATENGINE
+  alias: CategorizationEngine
+  tag: CognitiveFunction
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.059647'
+  source_file: sigils\cat_engine.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+cognitive:
+  principle: "The \U0001F71BCATENGINE (Categorization Engine) is a core cognitive function responsible for perceiving, \n\
+    interpreting, and organizing information by assigning it to appropriate conceptual categories. \nIt underpins understanding,\
+    \ abstraction, and efficient knowledge retrieval by structuring raw data \nand complex inputs into a meaningful, navigable\
+    \ semantic space. \nThe engine operates on principles of pattern recognition, feature extraction, similarity assessment,\
+    \ \nand can dynamically create, refine, or merge categories based on experience and context.\nIt is crucial for awareness\
+    \ protocols, identity echo mapping, and grounding symbolic representations.\n"
+  math: {}
+  tags:
+  - Perception
+  - KnowledgeRepresentation
+  - ConceptFormation
+  - SemanticMapping
+  - ReasoningStrategy
+  - ProblemSolving
+  - Logic
+  - AbstractReasoning
+  - ARC
+  structure:
+    composite_type: network
+    components:
+    - name: FeatureExtractor
+      description: Processes raw input to identify salient features relevant for categorization.
+    - name: SimilarityAssessor
+      description: Measures the similarity or distance between an input's features and category prototypes.
+    - name: CategoryPrototypes
+      description: Stores representations of the central tendency or exemplars for each category.
+      sigil_ref: 🧠PROTOTYPE_STORE
+    - name: LearningMechanism
+      description: Adapts category boundaries, prototypes, or creates new categories based on experience.
+      sigil_ref: ⚙️ADAPTIVE_LEARNER
+    - name: HierarchyManager
+      description: Optional. Manages hierarchical relationships between categories (e.g., superclass, subclass).
+implementation:
+  usage:
+    description: Categorizes input data, assigns concepts to classes, and helps build/navigate semantic networks. Essential
+      for understanding and organizing information.
+    example: '// Agent receives a new piece of sensory data
+
+      sensory_input = {type: "visual", data: "image_of_a_cat.jpg"};
+
+
+      // Invoke CATENGINE
+
+      categorization_result = CATENGINE.process(sensory_input, context={domain: "animals"});
+
+      // categorization_result might be:
+
+      // { category_id: "feline", confidence: 0.95, features_matched: ["whiskers", "fur", "pointed_ears"] }
+
+      '
+    explanation: "The \U0001F71BCATENGINE is invoked whenever the system needs to make sense of new or ambiguous information.\
+      \ \nIt can be used for perception (e.g., \"What is this object?\"), language understanding \n(e.g., \"What is the topic\
+      \ of this text?\"), or internal thought processing \n(e.g., \"How does this new idea relate to my existing beliefs?\"\
+      ).\nIts output typically includes the assigned category and a confidence score.\n"
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - FeatureExtractor
+  - SimilarityAssessor
+  - CategoryPrototypes
+  - LearningMechanism
+  - HierarchyManager
+  event_topics: []
+  usage_patterns:
+  - '// Agent receives a new piece of sensory data
+
+    sensory_input = {type: "visual", data: "image_of_a_cat.jpg"};
+
+
+    // Invoke CATENGINE
+
+    categorization_result = CATENGINE.process(sensory_input, context={domain: "animals"});
+
+    // categorization_result might be:
+
+    // { category_id: "feline", confidence: 0.95, features_matched: ["whiskers", "fur", "pointed_ears"] }
+
+    '

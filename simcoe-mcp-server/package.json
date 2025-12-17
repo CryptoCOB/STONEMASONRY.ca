@@ -1,0 +1,71 @@
+{
+  "name": "voxsigil-consciousness-mcp-server",
+  "version": "1.0.0",
+  "description": "VoxSigil Consciousness Framework - Advanced Model Context Protocol server with 1.8 Holo-Omega schema, BLT Hybrid RAG, and multi-agent cognitive capabilities",
+  "main": "build/index.js",
+  "type": "module",
+  "bin": {
+    "voxsigil-mcp-server": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "tsc && node build/index.js",
+    "agents:start": "npm run build && npm run start",
+    "voxsigil:bridge": "npm run build && node build/voxsigil-bridge.js",
+    "copilot:context": "npm run voxsigil:bridge",
+    "setup:browser": "npx playwright install",
+    "setup:ollama": "echo 'Please ensure Ollama is running with: ollama serve'",
+    "setup:rag": "node scripts/setup-rag.js",
+    "setup:vanta": "node scripts/setup-vanta.js",
+    "setup:voxsigil": "node scripts/setup-voxsigil.js",
+    "setup:python": "python setup-python-tools.py setup",
+    "python:check": "python setup-python-tools.py check",
+    "python:format": "python setup-python-tools.py format",
+    "uv:install": "python -m pip install uv",
+    "uv:sync": "uv sync",
+    "ruff:check": "ruff check .",
+    "ruff:format": "ruff format .",
+    "ruff:fix": "ruff check . --fix",
+    "train:knowledge": "node scripts/train-knowledge.js",
+    "agents:mesh": "node build/agent-mesh.js",
+    "research:auto": "node build/research-agent.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "voxsigil",
+    "consciousness-framework", 
+    "mcp",
+    "model-context-protocol",
+    "artificial-consciousness",
+    "cognitive-architecture",
+    "blt-hybrid-rag",
+    "holo-omega-schema",
+    "multi-agent-system",
+    "ai-orchestration",
+    "symbolic-reasoning",
+    "llm-coordination"
+  ],
+  "author": "VoxSigil Consciousness Project",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.19.6",
+    "json-schema-to-typescript": "^15.0.4",
+    "quicktype": "^23.2.6",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.15.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "js-yaml": "^4.1.0",
+    "node-cron": "^3.0.3",
+    "ollama": "^0.5.9",
+    "playwright": "^1.48.2",
+    "ws": "^8.18.0",
+    "zod": "^3.25.75"
+  }
+}

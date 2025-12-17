@@ -1,0 +1,101 @@
+@startuml
+title STONEMASONRY.ca – Full System Architecture (Updated)
+
+skinparam rectangle {
+  BackgroundColor<<user>> #D5E8D4
+  BackgroundColor<<frontend>> #DAE8FC
+  BackgroundColor<<backend>> #FFE6CC
+  BackgroundColor<<crm>> #E1D5E7
+  BackgroundColor<<marketing>> #F8CECC
+  BackgroundColor<<money>> #FFF2CC
+  BackgroundColor<<growth>> #D0ECE7
+  BorderColor black
+  Shadowing true
+}
+
+rectangle "Clients (Homeowners)" <<user>> as CLIENTS {
+  [Visits Website (Netlify)]
+  [Posts Job + Upload Photos]
+  [Lead Captured -> CRM]
+}
+
+rectangle "Contractors (Masons)" <<user>> as CONTRACTORS {
+  [Signup + Profile Creation]
+  [Pay Subscription (Stripe/Crypto)]
+  [Upload Portfolio + Verification]
+  [Opt-in Growth Services]
+}
+
+rectangle "Frontend (Netlify + Next.js)" <<frontend>> as FRONTEND {
+  [Landing Pages (SEO/Ads)]
+  [Job Posting Form]
+  [Contractor Portal]
+  [Bidding Dashboard]
+}
+
+rectangle "Backend (Supabase/Firebase + Stripe)" <<backend>> as BACKEND {
+  [Database: Profiles, Jobs, Reviews]
+  [File Storage: Photos, Docs]
+  [Authentication]
+  [Stripe Subscriptions + Lead Payments]
+  [Crypto.com Payments]
+}
+
+rectangle "Bidding & Reviews" <<backend>> as BIDDING {
+  [Contractors Bid on Jobs]
+  [Client Selects Mason]
+  [10% Commission on Completion]
+  [Verified Reviews Posted]
+}
+
+rectangle "CRM & Automations" <<crm>> as CRM {
+  [Airtable/HubSpot CRM]
+  [Zapier Automations]
+  [Calendly Scheduling]
+  [GMass/Email Outreach]
+  [Review Request Automation]
+}
+
+rectangle "Marketing / Lead Gen" <<marketing>> as MARKETING {
+  [Google Ads + SEO Landing Pages]
+  [Instagram/TikTok Ads]
+  [Blog Posts & Guides]
+  [Dropbox → Gemini Auto-Posts]
+}
+
+rectangle "Monetization Streams" <<money>> as MONETIZATION {
+  [$250/mo Contractor Subscription]
+  [$75–$100 Per Lead Fee]
+  [10% Job Commission]
+  [Ad Boosts / Featured Listings]
+  [E-Commerce: Tools & Sealants (Future)]
+}
+
+rectangle "Contractor Growth Services" <<growth>> as GROWTH {
+  [Website Servicing (Landing Pages)]
+  [Portfolio Gallery]
+  [Social Media Mgmt (IG/TikTok)]
+  [Ads Management]
+}
+
+' Connections
+CLIENTS -down-> FRONTEND
+CLIENTS -right-> CRM
+
+CONTRACTORS -down-> FRONTEND
+CONTRACTORS -down-> BACKEND
+CONTRACTORS -right-> GROWTH
+
+FRONTEND -down-> BACKEND
+FRONTEND -right-> BIDDING
+
+BIDDING -down-> MONETIZATION
+
+BACKEND -down-> CRM
+CRM -down-> MARKETING
+MARKETING -up-> CRM
+
+MONETIZATION -up-> BACKEND
+MONETIZATION -up-> CRM
+GROWTH -down-> MONETIZATION
+@enduml

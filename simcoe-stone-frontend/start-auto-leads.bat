@@ -1,0 +1,3 @@
+@echo off
+echo Starting background lead generation (50/hour)...
+powershell -ExecutionPolicy Bypass -File "scripts\lead_engine\auto_run_leads.ps1" -IntervalMinutes 60 -PerHourCap 50

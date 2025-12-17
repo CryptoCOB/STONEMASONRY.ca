@@ -1,0 +1,31 @@
+@startuml
+title High-Level System Architecture
+
+skinparam componentStyle rectangle
+skinparam shadowing true
+skinparam rectangle {
+  BackgroundColor<<frontend>> #D5E8D4
+  BackgroundColor<<backend>> #DDEBF7
+  BackgroundColor<<db>> #FFF2CC
+  BackgroundColor<<service>> #F8CECC
+}
+
+actor Client
+actor Contractor
+actor Admin
+
+rectangle "Netlify Frontend\n(React / Next.js)" <<frontend>> as Frontend
+rectangle "Backend\n(Supabase / Firebase)" <<backend>> as Backend
+rectangle "Database\n(Postgres / Firestore)" <<db>> as Database
+rectangle "Payments\n(Stripe + Crypto.com)" <<service>> as Payments
+rectangle "Email/SMS\n(SendGrid / Twilio)" <<service>> as Notifications
+
+Client --> Frontend
+Contractor --> Frontend
+Admin --> Frontend
+
+Frontend --> Backend
+Backend --> Database
+Backend --> Payments
+Backend --> Notifications
+@enduml

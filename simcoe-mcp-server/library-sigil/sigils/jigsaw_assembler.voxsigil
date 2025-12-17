@@ -1,0 +1,93 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🧩JIGSAW_ASSEMBLER
+  alias: FragmentIntegrator
+  tag: Sensemaking
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.245403'
+  source_file: sigils\jigsaw_assembler.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: feedback_loop_convergent
+cognitive:
+  principle: '🧩JIGSAW_ASSEMBLER represents a cognitive process for constructing a coherent whole (e.g.,
+
+    an explanation, a narrative, a model, a hypothesis) from fragmented, disparate, or
+
+    incomplete pieces of information. Like assembling a jigsaw puzzle, it involves
+
+    identifying potential connections between pieces, testing fits, iteratively building
+
+    larger coherent chunks, and inferring missing pieces based on emerging patterns.
+
+    It''s a bottom-up sensemaking engine driven by the pursuit of overall coherence.
+
+    '
+  math: 'Let F = {f₁, f₂, ..., fₙ} be a set of information fragments.
+
+    Goal: Find Configuration_C(F) that maximizes CoherenceScore(C(F)).
+
+    CoherenceScore(C(F)) = Σ LinkStrength(fᵢ, fⱼ)_in_C - Penalty(UnexplainedFragments) - Penalty(InternalContradictions)
+
+    IterativeStep: C_k+1 = AddBestFitFragment(C_k, F \ C_k) OR Restructure(C_k, AlternativeLink)
+
+    '
+  tags:
+  - information_synthesis_disparate
+  - pattern_completion_evidential
+  - hypothesis_construction_bottom_up
+  - narrative_reconstruction_from_clues
+  - data_fusion_incomplete
+  structure:
+    composite_type: iterative_constructive_algorithm
+    temporal_structure: feedback_loop_convergent
+    components:
+    - name: Fragment Feature Extractor
+      description: Identifies key characteristics, edges, or potential connection points for each information fragment.
+    - name: Connection Hypothesizer
+      description: Proposes potential links between fragments based on similarity, complementarity, or causal/logical relations.
+    - name: Fit Evaluator
+      description: Assesses the strength and coherence of hypothesized connections or partial assemblies.
+    - name: Iterative Assembler
+      description: Incrementally builds up the larger structure by adding fragments or merging coherent sub-assemblies.
+    - name: Gap Inferencer & Missing Piece Predictor
+      description: Identifies gaps in the emerging structure and may predict characteristics of missing information.
+    - name: Global Coherence Assessor
+      description: Evaluates the overall consistency, completeness, and explanatory power of the assembled whole.
+implementation:
+  usage:
+    description: Constructs a coherent understanding or model from fragmented, disparate, or incomplete pieces of information
+      by iteratively identifying connections and building larger structures.
+    example: "<intelligence_analysis_task>\n  <input_data_fragments refs=\"[Report_A, Intercept_B, Image_C, Rumor_D]\"/>\n\
+      \  <invoke_sensemaking_engine>\U0001F9E9JIGSAW_ASSEMBLER target_goal=\"Identify impending threat scenario\"</invoke_sensemaking_engine>\n\
+      \  <output type=\"CoherentThreatAssessmentNarrative\" confidence_level=\"calculated\"/>\n</intelligence_analysis_task>\n"
+    explanation: 'Use 🧩JIGSAW_ASSEMBLER when faced with a collection of seemingly disconnected clues, data points, or observations
+      that need to be woven into a meaningful picture. It''s valuable in intelligence analysis, scientific discovery (from
+      experimental data), historical reconstruction, debugging complex systems from error logs, or any task requiring abduction
+      (inference to the best explanation).
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Fragment Feature Extractor
+  - Connection Hypothesizer
+  - Fit Evaluator
+  - Iterative Assembler
+  - Gap Inferencer & Missing Piece Predictor
+  - Global Coherence Assessor
+  event_topics: []
+  usage_patterns:
+  - "<intelligence_analysis_task>\n  <input_data_fragments refs=\"[Report_A, Intercept_B, Image_C, Rumor_D]\"/>\n  <invoke_sensemaking_engine>\U0001F9E9\
+    JIGSAW_ASSEMBLER target_goal=\"Identify impending threat scenario\"</invoke_sensemaking_engine>\n  <output type=\"CoherentThreatAssessmentNarrative\"\
+    \ confidence_level=\"calculated\"/>\n</intelligence_analysis_task>\n"

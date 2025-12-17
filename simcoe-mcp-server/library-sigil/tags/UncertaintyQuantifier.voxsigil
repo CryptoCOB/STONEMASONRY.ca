@@ -1,0 +1,75 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🎯🗺️🧩
+  alias: GoalDecompositionPlanner
+  tag: PlanningAndReasoning
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.674803'
+  source_file: tags\UncertaintyQuantifier.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: sequential_phase
+cognitive:
+  principle: Breaks down complex, high-level goals into a manageable hierarchy of simpler subgoals and actionable steps, creating
+    a structured plan for achieving the overall objective.
+  math:
+    ? Given Goal G, produce Plan P = { (sg₁, A₁), (sg₂, A₂), ..., (sgₙ, Aₙ) } where sgᵢ are subgoals and Aᵢ are sequences
+      of actions to achieve sgᵢ. Subgoals can be recursive
+    : sgᵢ → Pᵢ'. Minimize PlanCost(P) subject to G being achieved. Cost can be
+  tags:
+  - task_decomposition
+  - hierarchical_planning
+  - subgoal_generation
+  - problem_solving_strategy
+  - action_sequencing
+  structure:
+    composite_type: hierarchical
+    temporal_structure: sequential_phase
+    components:
+    - name: GoalClarifier
+      description: Ensures the main goal is well-defined and understood.
+    - name: SubgoalIdentifier
+      description: Identifies necessary intermediate states or sub-objectives.
+    - name: ActionGenerator
+      description: Proposes actions to achieve each subgoal.
+    - name: DependencyAnalyzer
+      description: Determines prerequisite relationships between subgoals and actions.
+    - name: PlanOptimizer
+      description: Refines the plan for efficiency or robustness (optional).
+implementation:
+  usage:
+    description: Takes a high-level goal and breaks it into a structured plan of subgoals and specific actions. Can be iterative,
+      refining the plan as new information becomes available.
+    example: &id001
+      high_level_goal: Write a research paper on climate change impact on agriculture.
+      GoalDecompositionPlanner_output: "<GoalDecompositionPlanner goal='Write research paper...'>\n  Plan:\n  1. Subgoal:\
+        \ Conduct Literature Review\n     - Action: Search academic databases (keywords: climate change, agriculture, impact)\n\
+        \     - Action: Read and synthesize 20 relevant papers\n     - Action: Identify key themes and gaps\n  2. Subgoal:\
+        \ Formulate Research Question & Hypothesis\n     - Action: Refine scope based on literature review\n     - Action:\
+        \ Draft specific research question\n  3. Subgoal: Outline Paper Structure\n     - Action: Create section headings\
+        \ (Intro, Methods, Results, Discussion, Conclusion)\n  4. Subgoal: Draft Paper Sections\n     - ... (further decomposition)\n\
+        \  5. Subgoal: Revise and Edit\n     - ...\n</GoalDecompositionPlanner>"
+    explanation: This sigil enables systematic problem-solving. Instead of attempting a complex goal monolithically, it breaks
+      it into smaller, more achievable parts. This is fundamental for any sophisticated task execution, from writing code
+      to planning a project.
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - GoalClarifier
+  - SubgoalIdentifier
+  - ActionGenerator
+  - DependencyAnalyzer
+  - PlanOptimizer
+  event_topics: []
+  usage_patterns:
+  - *id001

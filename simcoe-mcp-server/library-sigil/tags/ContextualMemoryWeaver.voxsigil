@@ -1,0 +1,71 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🧵🧠🔗
+  alias: ContextualMemoryWeaver
+  tag: MemoryManagement
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.476434'
+  source_file: tags\ContextualMemoryWeaver.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: feedback_loop
+cognitive:
+  principle: Dynamically retrieves, integrates, and synthesizes relevant memories (episodic, semantic, procedural) into the
+    current cognitive context, ensuring that reasoning and responses are well-grounded and coherent with past interactions
+    and knowledge.
+  math: {}
+  tags:
+  - context_retrieval
+  - episodic_memory
+  - semantic_memory_integration
+  - working_memory_enhancement
+  - narrative_coherence
+  structure:
+    composite_type: network
+    temporal_structure: feedback_loop
+    components:
+    - name: QueryContextAnalyzer
+      description: Analyzes current input/task to identify memory retrieval cues.
+    - name: EpisodicMemoryRetriever
+      description: Fetches relevant past interactions or experiences.
+    - name: SemanticMemoryRetriever
+      description: Accesses relevant factual knowledge and concepts.
+    - name: RelevanceFilter
+      description: Filters and ranks retrieved memories based on contextual relevance.
+    - name: MemorySynthesizer
+      description: Integrates selected memories into a coherent contextual understanding for the current task.
+implementation:
+  usage:
+    description: Actively pulls relevant information from various memory stores and 'weaves' it into the current working context
+      to inform ongoing processing, improve recall, and maintain conversational or narrative continuity.
+    example: &id001
+      scenario: 'User asks: ''You mentioned a blue car earlier, what was that about?'''
+      ContextualMemoryWeaver_action: '<ContextualMemoryWeaver query_cues=[''blue car'', ''earlier mention''] current_conversation_id=''conv_123''>
+        Retrieved_Episodic: [Timestamp: T-5, Utterance: ''I saw a blue car speed past.'']. Retrieved_Semantic: [Concept: ''blue
+        car'', Properties: color, vehicle_type]. SynthesizedContext: ''Previously in this conversation (at T-5), I mentioned
+        seeing a blue car speeding. This refers to a vehicle characterized by its blue color.'' Response: ''Ah yes, earlier
+        I said I saw a blue car speeding by. Were you curious about that?'' </ContextualMemoryWeaver>'
+    explanation: This sigil goes beyond simple keyword-based retrieval. It aims to understand the nuances of the current context
+      to fetch not just facts, but relevant episodes and related concepts, then synthesizes them to provide a richer foundation
+      for the AI's next action. This is key for long-term memory and coherent, context-aware interactions.
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - QueryContextAnalyzer
+  - EpisodicMemoryRetriever
+  - SemanticMemoryRetriever
+  - RelevanceFilter
+  - MemorySynthesizer
+  event_topics: []
+  usage_patterns:
+  - *id001

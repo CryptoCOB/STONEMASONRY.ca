@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+  http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Homepage - Highest Priority -->
+  <url>
+  <loc>https://stonemasonry.ca/</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+    <image:loc>https://stonemasonry.ca/images/og-stonemasonry.jpg</image:loc>
+    <image:title>Stone Masonry - Expert Stone Work Ontario</image:title>
+      <image:caption>Professional stone masonry services across Ontario including emergency repairs, custom stonework, and heritage restoration.</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Emergency Services - Critical for Rankings -->
+  <url>
+  <loc>https://stonemasonry.ca/emergency-repair</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+  <image:loc>https://stonemasonry.ca/images/emergency-stone-repair.jpg</image:loc>
+      <image:title>24/7 Emergency Stone Repair Services Ontario</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Core Service Pages -->
+  <url>
+  <loc>https://stonemasonry.ca/portfolio</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+    <image:loc>https://stonemasonry.ca/images/portfolio/featured-stonework.jpg</image:loc>
+      <image:title>Stone Masonry Portfolio - Custom Stonework Examples</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/about</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/contact</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- High-Value Service Landing Pages -->
+  <url>
+  <loc>https://stonemasonry.ca/services/fireplace-installation</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+  <image:loc>https://stonemasonry.ca/images/services/custom-fireplace-installation.jpg</image:loc>
+      <image:title>Custom Stone Fireplace Installation Ontario</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/services/retaining-walls</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+  <image:loc>https://stonemasonry.ca/images/services/retaining-wall-construction.jpg</image:loc>
+      <image:title>Professional Retaining Wall Construction Ontario</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/services/heritage-restoration</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+  <image:loc>https://stonemasonry.ca/images/services/heritage-stone-restoration.jpg</image:loc>
+      <image:title>Heritage Stone Restoration Specialists Ontario</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/services/patio-construction</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/services/walkway-installation</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/services/chimney-repair</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/services/brick-repair</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Geographic Service Areas - Critical for Local SEO -->
+  <url>
+  <loc>https://stonemasonry.ca/service-areas/barrie-stone-masonry</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/service-areas/midland-stone-masonry</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/service-areas/orillia-stone-masonry</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/service-areas/collingwood-stone-masonry</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/service-areas/muskoka-stone-masonry</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Long-tail SEO Pages -->
+  <url>
+  <loc>https://stonemasonry.ca/stone-fireplace-cost-ontario</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/emergency-stone-repair-near-me</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/best-stone-mason-ontario</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- FAQ and Resource Pages -->
+  <url>
+  <loc>https://stonemasonry.ca/faq</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/stone-care-guide</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+  <loc>https://stonemasonry.ca/consultation</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

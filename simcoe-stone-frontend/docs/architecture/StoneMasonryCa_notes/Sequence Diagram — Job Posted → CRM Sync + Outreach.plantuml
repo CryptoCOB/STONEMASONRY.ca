@@ -1,0 +1,33 @@
+@startuml
+title Sequence — New Job → CRM + Automation Flow
+
+actor Client
+participant "Frontend\n(JobPostingPage)" as FE
+participant "Supabase DB\n(JOBS)" as DB
+participant "Supabase Webhook\n(job_insert)" as HOOK
+participant "Make.com Scenario\n(new_job_flow)" as MAKE
+participant "Airtable CRM" as AIR
+participant "HubSpot CRM" as HUB
+participant "SendGrid/Twilio" as COMMS
+participant "GMass Outreach" as GMASS
+participant "Calendly" as CAL
+
+== Job Creation ==
+Client -> FE: Submit new job
+FE -> DB: INSERT JOB {title, desc, location, budget}
+
+== Trigger Automation ==
+DB -> HOOK: new_job event
+HOOK -> MAKE: POST {job_id, client_id, location, budget}
+
+== CRM Sync ==
+MAKE -> AIR: Create Lead Record
+MAKE -> HUB: Update pipeline (stage=New Job)
+
+== Notifications ==
+MAKE -> COMMS: send “Job received” email/SMS to client
+MAKE -> GMASS: queue outreach email to contractors\n(“New project in your area”)
+MAKE -> CAL: generate booking link for job consult
+MAKE -> HUB: log activities (emails, SMS, booking)
+
+@enduml

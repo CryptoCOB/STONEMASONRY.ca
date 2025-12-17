@@ -1,0 +1,68 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🌉💡🔗
+  alias: AnalogicalLeapInducer
+  tag: CreativityEnhancement
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.452705'
+  source_file: tags\AnalogicalLeapInducer.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+cognitive:
+  principle: Facilitates the generation of novel and insightful analogies by bridging semantically distant conceptual domains,
+    encouraging non-obvious connections and fostering creative problem-solving.
+  math: 'Given source concept S and target domain D_T. Maximize Novelty(A) * Usefulness(A) for analogy A: S → T'', where T''
+    ∈ D_T. Novelty may be inverse of semantic similarity(S, T'') within D_T, constrained by structural mapping consistency.
+    Usefulness relates to explanatory power or problem-solving applicability.'
+  tags:
+  - analogy_generation
+  - creative_reasoning
+  - conceptual_blending
+  - lateral_thinking
+  - insight_facilitation
+  structure:
+    composite_type: sequential
+    components:
+    - name: SourceConceptAnalyzer
+      description: Deconstructs the source concept into key attributes and relations.
+    - name: TargetDomainSampler
+      description: Selects candidate target domains, potentially biased towards novelty.
+    - name: CrossDomainMapper
+      description: Attempts to find structural or functional isomorphisms between source attributes and target domain elements.
+    - name: AnalogyCandidateGenerator
+      description: Constructs potential analogies based on mappings.
+    - name: AnalogyEvaluator
+      description: Scores analogies based on novelty, coherence, and potential usefulness.
+implementation:
+  usage:
+    description: Prompts the system to make a 'leap' by finding an analogy from a specified source concept to a potentially
+      unrelated target domain, or to find a surprising yet insightful analogy for a given concept.
+    example: &id001
+      invocation: <AnalogicalLeapInducer source_concept='data_compression' target_domain_hint='biology' novelty_bias=0.8>
+      potential_output: 'Analogy: Data compression is like DNA. Just as DNA compactly encodes vast biological information
+        using a limited set of base pairs and structures, data compression uses algorithms to represent information efficiently
+        with fewer bits, allowing for compact storage and transmission.'
+    explanation: This sigil encourages 'thinking outside the box'. Instead of just finding close semantic neighbors, it pushes
+      the system to explore more distant conceptual territories for analogical inspiration. This can be useful for brainstorming,
+      explaining complex ideas in new ways, or sparking innovative solutions.
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - SourceConceptAnalyzer
+  - TargetDomainSampler
+  - CrossDomainMapper
+  - AnalogyCandidateGenerator
+  - AnalogyEvaluator
+  event_topics: []
+  usage_patterns:
+  - *id001

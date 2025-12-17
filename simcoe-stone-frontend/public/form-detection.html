@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Netlify Forms Detection</title>
+</head>
+
+<body>
+  <!-- Netlify Forms Detection - This ensures Netlify parses the form structure -->
+  <form name="contact-form" netlify netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="contact-form" />
+    <input type="hidden" name="form-type" value="quote-request" />
+    <input type="hidden" name="subject" value="New Quote Request - Stone Masonry" />
+    <input name="bot-field" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <select name="projectType">
+      <option value="Stone Patios & Walkways">Stone Patios & Walkways</option>
+      <option value="Retaining Walls">Retaining Walls</option>
+      <option value="Fireplaces & Chimneys">Fireplaces & Chimneys</option>
+      <option value="Heritage Restoration">Heritage Restoration</option>
+      <option value="Commercial Projects">Commercial Projects</option>
+      <option value="Residential Landscaping">Residential Landscaping</option>
+      <option value="Other">Other</option>
+    </select>
+    <textarea name="message"></textarea>
+  </form>
+</body>
+
+</html>

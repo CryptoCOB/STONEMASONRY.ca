@@ -1,0 +1,61 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🌎 Emores
+  alias: Emotion.SymbolicFusion
+  tag: AffectiveSymbolicLogic
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.488305'
+  source_file: tags\emores.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: atomic
+cognitive:
+  principle: 'EMORES encodes emotional valence into symbolic structures, allowing agents to reason with affect-laden concepts.
+    It doesn’t just represent emotion—it makes emotion computable within symbolic architectures.
+
+    '
+  math: "Let:\n  E = Emotional vector (valence, arousal, dominance)\n  S = Symbolic structure (e.g., <joy:amplify>)\n  R =\
+    \ Resonance function (E → S)\nThen:\n  S_emo = R(E, S₀) + ∇(affective_utility)\nWhere:\n  ∇(affective_utility) = Gradient\
+    \ toward emotionally coherent symbolic transformations\nS_emo must satisfy:\n  - Emotional validity: E ↔ S mapping is\
+    \ non-arbitrary\n  - Symbolic integrity: S remains valid under VoxSigil 1.4\n  - Recursive potential: Can nest within\
+    \ other sigils (e.g., <emo:joy><memory:retrieve>)\n"
+  tags:
+  - emotion_symbolic_mapping
+  - affective_abstraction
+  - resonance_heuristics
+  - sentiment_sigil
+  - cognitive_empathy_scaffold
+  structure:
+    components:
+    - name: DefaultComponent
+      description: Default component - needs specification
+    composite_type: simple
+    temporal_structure: atomic
+implementation:
+  usage:
+    description: Generates sigils that embed emotional semantics into symbolic operations.
+    example: &id001
+      sigil: 🜂EMORES_JOY
+      alias: Emotion.JoyAmplifier
+      principle: Amplifies positive valence in symbolic chains, biasing toward constructive recursion.
+      math: S_joy = S₀ + (valence * 0.7) - (arousal * 0.2)
+      usage:
+        example: <emo:joy><concept:expand>
+        effect: Increases likelihood of generative, optimistic symbolic branching.
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - DefaultComponent
+  event_topics: []
+  usage_patterns:
+  - *id001

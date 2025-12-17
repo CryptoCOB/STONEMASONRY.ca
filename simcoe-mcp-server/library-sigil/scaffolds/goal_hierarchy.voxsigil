@@ -1,0 +1,94 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🎯GOAL_HIERARCHY_SCAFFOLD
+  alias: PurposeDrivenFramework
+  tag: MotivationalScaffold
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:15.764089'
+  source_file: scaffolds\goal_hierarchy.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: dynamic_graph_evolving_with_task_execution
+cognitive:
+  principle: 'The 🎯GOAL_HIERARCHY_SCAFFOLD provides the structural framework for defining, organizing,
+
+    prioritizing, and pursuing goals within an AI system. It links high-level purposes (often
+
+    from a 🌟GUIDING_STAR or ⚖️ETHOS_ALIGNER) to progressively more concrete sub-goals, tasks,
+
+    and actions. This scaffold enables strategic, purposeful behavior by allowing the AI to
+
+    decompose complex objectives, manage dependencies, track progress, and adapt its focus
+
+    based on success, failure, or changing priorities. It''s the AI''s "to-do list" organizer
+
+    and "strategic planner" rolled into one structure.
+
+    '
+  math: {}
+  tags:
+  - goal_management_system
+  - task_decomposition_framework
+  - strategic_planning_structure
+  - value_to_action_bridge
+  - motivation_engine_core
+  structure:
+    composite_type: hierarchical_network_or_tree
+    temporal_structure: dynamic_graph_evolving_with_task_execution
+    components:
+    - name: 🌟 Root Goal Anchor(s)
+      description: Top-level goals or purposes, often derived from or aligned with 🌟GUIDING_STAR or core directives.
+    - name: 🧩 Goal Decomposer
+      description: Breaks down high-level goals into smaller, more manageable sub-goals or tasks.
+    - name: 🔗 Dependency Manager
+      description: Tracks prerequisites and dependencies between goals and sub-goals (e.g., SubGoal_A must be complete before
+        SubGoal_B can start).
+    - name: ⚖️ Prioritization Engine
+      description: Assigns priorities to active goals/sub-goals based on urgency, importance, resource availability, or strategic
+        value.
+    - name: 📊 Progress Tracker & Status Monitor
+      description: Monitors the status (e.g., pending, active, completed, failed, blocked) of each goal and sub-goal.
+    - name: ♻️ Goal Adaptation & Replanning Unit
+      description: Handles goal failure, revision of goals based on new information, or dynamic re-prioritization. May trigger
+        🜔PHOENIX for failed goal lines.
+implementation:
+  usage:
+    description: Manages the definition, decomposition, prioritization, pursuit, and adaptation of goals within an AI, enabling
+      strategic and purposeful action. This scaffold links high-level values to concrete tasks.
+    example: "<ai_project_manager_agent>\n  <core_mission_ref>\U0001F31FGUIDING_STAR principle=\"Deliver Project Alpha successfully.\"\
+      </core_mission_ref>\n  <goal_management_system>\n    <apply_scaffold>\U0001F3AFGOAL_HIERARCHY_SCAFFOLD</apply_scaffold>\n\
+      \    <parameters>\n      <root_goal_decomposition_strategy>WaterfallPlusAgileSprints</root_goal_decomposition_strategy>\n\
+      \      <prioritization_algorithm>WeightedShortestJobFirst_AdjustedForDependencies</prioritization_algorithm>\n    </parameters>\n\
+      \  </goal_management_system>\n  <!-- Agent would then populate this scaffold with project phases, tasks, etc. -->\n\
+      </ai_project_manager_agent>\n"
+    explanation: 'The 🎯GOAL_HIERARCHY_SCAFFOLD is critical for any AI that needs to perform more than simple reactive tasks.
+      It provides the architecture for long-term planning, strategic execution, and adaptive pursuit of objectives. The ✧👁️‍🗨️☞PAC_Loop''s
+      "Decide" phase often consults this scaffold to select current actions aligned with the active part of the goal hierarchy.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - 🌟 Root Goal Anchor(s)
+  - 🧩 Goal Decomposer
+  - 🔗 Dependency Manager
+  - ⚖️ Prioritization Engine
+  - 📊 Progress Tracker & Status Monitor
+  - ♻️ Goal Adaptation & Replanning Unit
+  event_topics: []
+  usage_patterns:
+  - "<ai_project_manager_agent>\n  <core_mission_ref>\U0001F31FGUIDING_STAR principle=\"Deliver Project Alpha successfully.\"\
+    </core_mission_ref>\n  <goal_management_system>\n    <apply_scaffold>\U0001F3AFGOAL_HIERARCHY_SCAFFOLD</apply_scaffold>\n\
+    \    <parameters>\n      <root_goal_decomposition_strategy>WaterfallPlusAgileSprints</root_goal_decomposition_strategy>\n\
+    \      <prioritization_algorithm>WeightedShortestJobFirst_AdjustedForDependencies</prioritization_algorithm>\n    </parameters>\n\
+    \  </goal_management_system>\n  <!-- Agent would then populate this scaffold with project phases, tasks, etc. -->\n</ai_project_manager_agent>\n"

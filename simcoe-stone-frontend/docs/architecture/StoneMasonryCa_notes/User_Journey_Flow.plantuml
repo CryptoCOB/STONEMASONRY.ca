@@ -1,0 +1,26 @@
+@startuml
+title User Journey Flow - From Job Posting to Review
+
+skinparam activity {
+  BackgroundColor #DAE8FC
+  DiamondBackgroundColor #FFF2CC
+  Shadowing true
+  ArrowColor #2E86C1
+}
+
+(*) --> "Client posts Job\n(details, images, location)"
+--> "System saves Job\n(Database)"
+--> "Contractors notified\n(Email/SMS)"
+
+if "Contractor purchases Lead?" then
+  -->[Yes] "Payment processed\n(Stripe/Crypto)"
+  --> "Contractor contacts Client"
+else
+  -->[No] "Notification ends"
+endif
+
+--> "Job Completed"
+--> "Client leaves Review"
+--> "Admin monitors\n(disputes, reports)"
+--> (*)
+@enduml

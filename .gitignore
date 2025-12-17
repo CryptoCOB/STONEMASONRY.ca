@@ -1,0 +1,64 @@
+# Root .gitignore for STONEMASONRY.ca
+
+# Node
+node_modules/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+build/
+dist/
+.cache/
+.tmp/
+coverage/
+
+# Lock files (keep these tracked) – do not ignore
+# package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Editors/IDE
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Framework caches
+.next/
+.nuxt/
+.svelte-kit/
+
+# Static hosts/build helpers
+.netlify/
+.vercel/
+
+# Azure/Cloud local state
+.azure/
+
+# Misc
+*.local
+.sass-cache/

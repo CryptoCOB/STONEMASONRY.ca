@@ -1,0 +1,98 @@
+@startuml
+title STONEMASONRY.ca – Complete System Architecture (7 Modules)
+
+skinparam rectangle {
+  BackgroundColor<<user>> #D5E8D4
+  BackgroundColor<<frontend>> #DAE8FC
+  BackgroundColor<<backend>> #FFE6CC
+  BackgroundColor<<bidding>> #FFF2CC
+  BackgroundColor<<crm>> #E1D5E7
+  BackgroundColor<<marketing>> #F8CECC
+  BackgroundColor<<money>> #FFF2CC
+  BackgroundColor<<growth>> #D0ECE7
+  BorderColor black
+  Shadowing true
+}
+
+actor Client
+actor Contractor
+actor Admin
+
+rectangle "Clients (Homeowners)" <<user>> as CLIENTS {
+  [Visits Website]
+  [Posts Job + Upload Photos]
+  [Leaves Reviews]
+}
+
+rectangle "Contractors (Masons)" <<user>> as CONTRACTORS {
+  [Signup + Profile Creation]
+  [Pay Subscription]
+  [Bid on Jobs]
+  [Opt-in Growth Services]
+}
+
+rectangle "Frontend (Netlify + Next.js)" <<frontend>> as FRONTEND {
+  [Landing Pages]
+  [Job Posting Form]
+  [Contractor Portal]
+  [Bidding Dashboard]
+}
+
+rectangle "Backend (Supabase/Firebase + Stripe)" <<backend>> as BACKEND {
+  [Database: Users, Jobs, Payments]
+  [Storage: Photos/Docs]
+  [Auth + Roles]
+  [Stripe/Crypto Payments]
+}
+
+rectangle "Bidding & Reviews" <<bidding>> as BIDDING {
+  [Contractors Bid on Jobs]
+  [Job Awarding + Lead Unlock]
+  [11.5% Commission]
+  [Verified Reviews]
+}
+
+rectangle "CRM & Automations" <<crm>> as CRM {
+  [Airtable/HubSpot CRM]
+  [Make.com Scenarios]
+  [Zapier/GMass/Calendly]
+  [Review Request Automations]
+}
+
+rectangle "Marketing / Lead Gen" <<marketing>> as MARKETING {
+  [SEO Pages + Blog]
+  [Google/IG/TikTok Ads]
+  [Dropbox → Gemini Auto-Posts]
+  [Analytics Dashboard]
+}
+
+rectangle "Monetization Streams" <<money>> as MONETIZATION {
+  [$288/mo Subscription]
+  [$86–$115 Per Lead]
+  [11.5% Commission]
+  [Ad Boosts]
+  [E-Commerce Store]
+}
+
+rectangle "Contractor Growth Services" <<growth>> as GROWTH {
+  [Website Servicing]
+  [Portfolio Gallery]
+  [Social Media Management]
+  [Ad Campaign Management]
+}
+
+' Connections
+CLIENTS -down-> FRONTEND
+CLIENTS -right-> CRM
+CONTRACTORS -down-> FRONTEND
+CONTRACTORS -down-> BACKEND
+CONTRACTORS -right-> GROWTH
+FRONTEND -down-> BACKEND
+FRONTEND -right-> BIDDING
+BIDDING -down-> MONETIZATION
+BACKEND -down-> CRM
+CRM -down-> MARKETING
+MONETIZATION -up-> BACKEND
+MONETIZATION -up-> CRM
+GROWTH -down-> MONETIZATION
+@enduml

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  <g fill="none" stroke="#111827" stroke-width="8">
+    <path d="M40 160 L128 48 L216 160" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M64 160 L64 200 L192 200 L192 160" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="128" y="232" font-family="Inter, Arial, sans-serif" font-size="22" text-anchor="middle" fill="#0f172a">Stone Masonry</text>
+</svg>

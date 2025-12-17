@@ -1,0 +1,91 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🧐CRITICAL_LENS
+  alias: EvaluativeFilter
+  tag: CognitiveRefinement
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.121766'
+  source_file: sigils\critical_lens.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: event_triggered_sequence
+cognitive:
+  principle: 'This sigil activates a rigorous evaluative process, applying logical scrutiny, bias
+
+    detection, and coherence checking to a piece of information, a hypothesis, a plan, or
+
+    an agent''s own reasoning. It serves as an internal ''devil''s advocate'' or quality
+
+    control mechanism, aiming to identify flaws, inconsistencies, unstated assumptions,
+
+    and potential weaknesses before conclusions are finalized or actions are taken.
+
+    '
+  math: 'Belief_Strength_Post_Critique(H) = Belief_Strength_Pre_Critique(H) * (1 - Σ wᵢ * Flaw_Severityᵢ(H))
+
+    Flaw_Severity = f(Logical_Fallacy_Score, Evidence_Contradiction_Score, Bias_Indicator_Score)
+
+    '
+  tags:
+  - critique
+  - validation
+  - bias_detection
+  - logical_scrutiny
+  - quality_assurance
+  - fallacy_checking
+  structure:
+    composite_type: sequential_phase
+    temporal_structure: event_triggered_sequence
+    components:
+    - name: Target Analyzer
+      description: Parses and structures the input for critique (e.g., argument mapping).
+    - name: Logical Fallacy Detector
+      description: Scans for common logical fallacies.
+    - name: Evidential Scrutinizer
+      description: Checks claims against known evidence or seeks counter-evidence (may use 🧬NEXUS).
+    - name: Bias & Assumption Identifier
+      description: Looks for potential cognitive biases or unstated assumptions.
+    - name: Coherence & Consistency Checker
+      description: Evaluates internal consistency and coherence with established knowledge.
+    - name: Critique Synthesizer & Reporter
+      description: Generates a structured report of findings.
+implementation:
+  usage:
+    description: Applies rigorous critical evaluation to an input (hypothesis, text, plan) to identify flaws, biases, and
+      inconsistencies.
+    example: "<proposal_review>\n  <document_to_assess>Proposal_XYZ.doc</document_to_assess>\n  <invoke_critique>\U0001F9D0\
+      CRITICAL_LENS rigor=\"high\" focus_areas=\"[\"logical_soundness\", \"feasibility_claims\"]\"</invoke_critique>\n  <output_report\
+      \ type=\"CritiqueSummary\"/>\n</proposal_review>\n"
+    explanation: 'Use 🧐CRITICAL_LENS to improve the quality and robustness of an agent''s outputs or
+
+      internal states. It is essential for tasks requiring high accuracy, avoiding errors in
+
+      reasoning, and ensuring responsible AI behavior. It can be applied to self-generated
+
+      content or external information.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Target Analyzer
+  - Logical Fallacy Detector
+  - Evidential Scrutinizer
+  - Bias & Assumption Identifier
+  - Coherence & Consistency Checker
+  - Critique Synthesizer & Reporter
+  event_topics: []
+  usage_patterns:
+  - "<proposal_review>\n  <document_to_assess>Proposal_XYZ.doc</document_to_assess>\n  <invoke_critique>\U0001F9D0CRITICAL_LENS\
+    \ rigor=\"high\" focus_areas=\"[\"logical_soundness\", \"feasibility_claims\"]\"</invoke_critique>\n  <output_report type=\"\
+    CritiqueSummary\"/>\n</proposal_review>\n"

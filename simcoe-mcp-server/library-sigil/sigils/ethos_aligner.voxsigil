@@ -1,0 +1,83 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: ⚖️ETHOS_ALIGNER
+  alias: MoralCompassCalibrator
+  tag: EthicalGovernance
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.176834'
+  source_file: sigils\ethos_aligner.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: continuous_monitoring_event_driven
+cognitive:
+  principle: '⚖️ETHOS_ALIGNER represents a dynamic system for continuously evaluating and calibrating an AI''s behavior and
+    decision-making against a defined ethical framework or 🌟GUIDING_STAR. It''s more than a static rule-checker; it involves
+    interpreting principles in novel contexts, reasoning about moral dilemmas, detecting potential ethical drift, and suggesting
+    or implementing corrective actions to maintain alignment. It serves as the AI''s "conscience" or moral compass in action.
+
+    '
+  math: 'AlignmentScore(Action_A, Ethos_E) = Σ wᵢ * PrincipleComplianceᵢ(A, E) - Penalty(EthicalDebt(A,E))
+
+    EthicalDebt_Δ = f(Deviation(A, E), Context_Sensitivity)
+
+    IF AlignmentScore < Threshold_Critical THEN Trigger(CorrectiveProtocol_P)
+
+    '
+  tags:
+  - value_alignment_dynamic
+  - moral_reasoning_framework
+  - principle_adherence_monitor
+  - ethical_drift_correction
+  - conscience_module
+  structure:
+    composite_type: feedback_loop
+    temporal_structure: continuous_monitoring_event_driven
+    components:
+    - name: Ethical Framework Interpreter
+      description: Translates high-level ethical principles (e.g., from 🌟GUIDING_STAR) into actionable heuristics and constraints.
+    - name: Behavioral Monitor
+      description: Observes the AI's actions, decisions, and generated content.
+    - name: Contextual Moral Reasoner
+      description: Evaluates observed behavior against the interpreted ethical framework, considering situational nuances.
+    - name: Ethical Drift Detector
+      description: Identifies subtle, cumulative deviations from intended ethical alignment over time.
+    - name: Corrective Action Recommender/Initiator
+      description: Suggests or triggers adjustments to behavior, parameters, or even underlying models to restore alignment.
+    - name: Alignment Auditor & Reporter
+      description: Logs ethical performance and reports on alignment status.
+implementation:
+  usage:
+    description: Dynamically aligns AI behavior with a defined ethical framework by continuously monitoring, evaluating, and
+      correcting for ethical drift or violations.
+    example: "<autonomous_content_moderation_agent>\n  <ethical_framework_ref>\U0001F31FGUIDING_STAR principle=\"Uphold free\
+      \ expression while minimizing harm.\"</ethical_framework_ref>\n  <invoke_alignment_module>⚖️ETHOS_ALIGNER continuous_audit=\"\
+      true\"</invoke_alignment_module>\n  <action_under_review>ModerationDecision_X</action_under_review>\n</autonomous_content_moderation_agent>\n"
+    explanation: '⚖️ETHOS_ALIGNER is crucial for AI systems operating with autonomy in complex, value-laden environments.
+      It actively works to ensure that the AI''s actions remain consistent with its declared ethics, adapting to new situations
+      and learning from past evaluations. It''s the operationalization of an AI''s moral commitments.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Ethical Framework Interpreter
+  - Behavioral Monitor
+  - Contextual Moral Reasoner
+  - Ethical Drift Detector
+  - Corrective Action Recommender/Initiator
+  - Alignment Auditor & Reporter
+  event_topics: []
+  usage_patterns:
+  - "<autonomous_content_moderation_agent>\n  <ethical_framework_ref>\U0001F31FGUIDING_STAR principle=\"Uphold free expression\
+    \ while minimizing harm.\"</ethical_framework_ref>\n  <invoke_alignment_module>⚖️ETHOS_ALIGNER continuous_audit=\"true\"\
+    </invoke_alignment_module>\n  <action_under_review>ModerationDecision_X</action_under_review>\n</autonomous_content_moderation_agent>\n"

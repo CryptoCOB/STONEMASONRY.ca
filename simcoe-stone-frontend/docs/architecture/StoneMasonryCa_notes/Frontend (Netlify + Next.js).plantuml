@@ -1,0 +1,122 @@
+@startuml
+title Frontend Module — Netlify + Next.js (Client & Contractor Apps)
+
+skinparam componentStyle rectangle
+skinparam shadowing true
+skinparam package {
+  BackgroundColor<<feature>> #DAE8FC
+  BackgroundColor<<ui>> #E1D5E7
+  BackgroundColor<<sdk>> #FFF2CC
+  BackgroundColor<<integration>> #D5E8D4
+  BackgroundColor<<admin>> #F8CECC
+  BorderColor black
+}
+
+actor Homeowner as CLIENT
+actor Mason as CONTRACTOR
+actor Admin as ADMIN
+
+package "Next.js App (Deployed on Netlify)" <<feature>> {
+  package "Routing / Pages" <<ui>> {
+    ["/" as LandingPages]
+    ["/jobs/new" as JobPostingPage]
+    ["/jobs/:id" as JobDetailsPage]
+    ["/contractor" as ContractorPortal]
+    ["/contractor/bids" as BiddingDashboard]
+    ["/contractor/portfolio" as PortfolioManager]
+    ["/dashboard" as ClientDashboard]
+    ["/admin" as AdminPanel]
+    ["/auth" as AuthPages]
+  }
+
+  package "Feature Components" <<ui>> {
+    [AuthUI] as AuthUI
+    [JobForm + Validation] as JobForm
+    [ImageUploader (drag-drop, compress)] as ImageUploader
+    [AddressAutocomplete (Map/Places)] as AddressAuto
+    [ReviewWidget] as ReviewWidget
+    [LeadsTable] as LeadsTable
+    [BidsBoard] as BidsBoard
+    [CheckoutButton (Stripe/Crypto)] as CheckoutBtn
+    [NotificationBell (Realtime)] as NotifBell
+    [Analytics (page/events)] as FEAnalytics
+    [All UI] as AllUI
+  }
+
+  package "Client State & Services" <<feature>> {
+    [Session Provider] as SessionProv
+    [API Client / SDK Wrapper] as ApiClient
+    [Form Hooks / Zod Schema] as FormHooks
+    [Realtime Listener] as Realtime
+  }
+
+  package "SDKs & Libs" <<sdk>> {
+    [Supabase JS SDK] as SupaSDK
+    [Stripe JS] as StripeJS
+    [Crypto.com Pay Button] as CryptoBtn
+    [Upload/Compress (e.g. Uppy/Compressor.js)] as UploadLib
+    [Map/Places JS] as MapsJS
+  }
+
+  package "External Interfaces" <<integration>> {
+    [Supabase REST / Realtime]
+    [Supabase Storage (photos/docs)]
+    [Edge Functions (RPC)] as EdgeFn
+    [Make.com Inbound Webhook] as MakeWebhook
+    [SendGrid/Twilio (via Make.com)] as Comms
+  }
+
+  package "Admin Utilities" <<admin>> {
+    [User & Role Management]
+    [Disputes Dashboard]
+    [Content Moderation]
+    [Reports & Exports]
+  }
+}
+
+' Actors to UI entry points
+CLIENT --> LandingPages
+CLIENT --> JobPostingPage
+CLIENT --> ClientDashboard
+CONTRACTOR --> ContractorPortal
+CONTRACTOR --> BiddingDashboard
+CONTRACTOR --> PortfolioManager
+ADMIN --> AdminPanel
+' UI uses components
+JobPostingPage --> JobForm
+JobPostingPage --> ImageUploader
+JobPostingPage --> AddressAuto
+ContractorPortal --> LeadsTable
+BiddingDashboard --> BidsBoard
+ContractorPortal --> CheckoutBtn
+JobDetailsPage --> ReviewWidget
+AllUI --> NotifBell
+AllUI --> FEAnalytics
+
+' State/services & SDK usage
+AllUI --> SessionProv
+AllUI --> ApiClient
+JobForm --> FormHooks
+NotifBell --> Realtime
+NotifBell --> Realtime
+
+' SDK bindings
+ApiClient --> SupaSDK
+CheckoutBtn --> StripeJS
+CheckoutBtn --> CryptoBtn
+ImageUploader --> UploadLib
+AddressAuto --> MapsJS
+
+' External calls
+ApiClient --> "Supabase REST / Realtime"
+ImageUploader --> "Supabase Storage (photos/docs)"
+ApiClient --> EdgeFn
+ApiClient --> MakeWebhook : POST on key events\n(e.g., new job -> scenario trigger)
+EdgeFn --> "Supabase REST / Realtime" : secure RPC
+MakeWebhook --> Comms : fan-out notifications
+
+' Admin utilities (frontend) -> backends via API client
+AdminPanel --> "Supabase REST / Realtime"
+AdminPanel --> EdgeFn
+
+@enduml

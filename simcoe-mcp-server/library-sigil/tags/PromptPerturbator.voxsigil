@@ -1,0 +1,69 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🧬🔀💡
+  alias: PromptPerturbator
+  tag: CreativityEnhancement
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.574619'
+  source_file: tags\PromptPerturbator.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+cognitive:
+  principle: Injects controlled creative perturbation or divergence into prompts or cognitive states by subtly shifting semantic
+    vectors, introducing noise, synonyms, or conceptual inversions, aiming to stimulate novel outputs, explore alternative
+    solution paths, or diagnose error sensitivities.
+  math: 'Let P be a prompt represented as a vector p in a semantic space. Mutate(p, σ²) → p'' where p'' = p + ε, and ε is
+    a perturbation vector sampled from a distribution with variance σ² (strength). Alternatively, transformation T: P → P''
+    where T can be synonym_replacement(P, rate), concept_inversion(P, target), add_random_related_token(P).'
+  tags:
+  - prompt_engineering
+  - divergent_thinking
+  - creative_ideation
+  - semantic_mutation
+  - exploration_stimulus
+  - error_diagnosis_aid
+  structure:
+    composite_type: sequential
+    components:
+    - name: InputAnalyzer
+      description: Identifies key semantic components or modifiable elements in the input prompt/state.
+    - name: MutationStrategySelector
+      description: Chooses a method for perturbation (e.g., noise injection, synonym replacement, conceptual shift, negation).
+    - name: PerturbationApplier
+      description: Applies the selected mutation strategy with a given strength/intensity.
+    - name: OutputFormatter
+      description: Presents the mutated prompt/state.
+implementation:
+  usage:
+    description: Intentionally introduces small, controlled changes or 'mutations' to a given prompt or internal representation
+      to encourage creative divergence, break out of repetitive loops, or test system robustness.
+    example: &id001
+      original_prompt: Write a story about a brave knight.
+      invocation_tag: '<deviate:mutation strength=0.3 mutation_type=''adjective_synonym_shift''>Original: ''Write a story
+        about a brave knight.'' </deviate:mutation>'
+      potential_mutated_prompt: 'Mutated Prompt: ''Write a story about a courageous paladin.'' or ''Write a story about a
+        valiant hero.'' or ''Write a story about an audacious warrior.'''
+    explanation: This sigil is used to spark creativity or explore the solution space more broadly. By slightly altering the
+      input ('shifting the semantic vector'), it can lead the AI to generate different, potentially more innovative responses
+      than it would with the canonical prompt. It's also useful for 'what-if' scenarios or diagnosing why a particular prompt
+      might be failing by testing variations. The 'noise + synonym + inversion' are examples of mutation techniques.
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - InputAnalyzer
+  - MutationStrategySelector
+  - PerturbationApplier
+  - OutputFormatter
+  event_topics: []
+  usage_patterns:
+  - *id001

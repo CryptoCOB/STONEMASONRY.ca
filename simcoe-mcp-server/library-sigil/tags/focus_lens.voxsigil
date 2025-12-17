@@ -1,0 +1,54 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: <lens focus="x">
+  alias: FocusLens
+  tag: AttentionFocusing
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.519094'
+  source_file: tags\focus_lens.voxsigil
+holo_mesh:
+  is_cognitive_primitive: true
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: atomic
+cognitive:
+  principle: 'Selective Abstraction Framing - Constrains the attention and reasoning of the system to a specific domain or
+    subset of information, enhancing precision and relevance.
+
+    '
+  math: "L(x) → ∇attention(x) > τ\n\nWhere:\n  - L(x) is the lens operator applied to domain x\n  - ∇attention(x) represents\
+    \ the gradient of attention focused on x\n  - τ is the threshold value determining meaningful focus\n"
+  tags:
+  - selective_attention
+  - domain_focus
+  - attention_control
+  - context_framing
+  structure:
+    components:
+    - name: DefaultComponent
+      description: Default component - needs specification
+    composite_type: simple
+    temporal_structure: atomic
+implementation:
+  usage:
+    description: Constrain attention to domain subset
+    example: <lens focus='code'>...</lens>
+    explanation: 'The focus lens allows the system to increase attention on a specific domain or context while reducing cognitive
+      resources allocated to irrelevant aspects, improving the quality and relevance of outputs.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - DefaultComponent
+  event_topics: []
+  usage_patterns:
+  - <lens focus='code'>...</lens>

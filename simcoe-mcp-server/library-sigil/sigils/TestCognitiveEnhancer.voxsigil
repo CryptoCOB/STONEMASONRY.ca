@@ -1,0 +1,47 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🧠💡
+  alias: UnknownSigil
+  tag: UnknownCategory
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.376378'
+  source_file: sigils\TestCognitiveEnhancer.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+cognitive:
+  principle: TBD
+  math: {}
+  tags:
+  - Attention
+  - Memory
+  - Learning
+  - Cognitive Enhancement
+  structure:
+    cognitive_structure:
+      components:
+      - Cognitive Amplifier
+      - Neural Pattern Reinforcer
+    components:
+    - name: DefaultComponent
+      description: Default component - needs specification
+implementation:
+  usage:
+    example: UNKNOWN
+    description: TBD
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - DefaultComponent
+  event_topics: []
+  usage_patterns:
+  - UNKNOWN

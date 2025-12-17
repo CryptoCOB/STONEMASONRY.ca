@@ -1,0 +1,65 @@
+@startuml
+title Module 9 — Enhanced Contractor Acquisition Engine
+
+skinparam componentStyle rectangle
+skinparam shadowing true
+skinparam package {
+  BackgroundColor<<acq>> #DAE8FC
+  BackgroundColor<<crm>> #E1D5E7
+  BackgroundColor<<auto>> #D5E8D4
+  BackgroundColor<<onboard>> #FFD966
+  BackgroundColor<<admin>> #F8CECC
+  BorderColor black
+}
+
+actor Prospect as ContractorProspect
+actor Admin
+
+package "Acquisition Engine" <<acq>> {
+  [Contractor Discovery\n(Web, Social, Directories)]
+  [Contact List Builder]
+  [AI-Driven Lead Scoring]
+}
+
+package "CRM & Pipeline" <<crm>> {
+  [Airtable Contractor DB]
+  [HubSpot Pipeline]
+  [Real-Time Dashboard & Analytics]
+}
+
+package "Outreach Campaigns" <<auto>> {
+  [GMass Bulk Email]
+  [Twilio SMS Blasts]
+  [Social DMs (LinkedIn/TikTok)]
+  [Multi-Channel Automated Follow-Ups]
+}
+
+package "Conversion Funnel" <<onboard>> {
+  [Landing Page (Mobile-Friendly)]
+  [Signup Form + Compliance Checks]
+  [E-Signature Workflow]
+  [Personalized Onboarding Wizard]
+  [Centralized Communication Hub]
+  [Automated Access & Credential Provisioning]
+  [Feedback Surveys (Post-Onboarding)]
+}
+
+Admin --> [Contractor Discovery\n(Web, Social, Directories)]
+[Contractor Discovery\n(Web, Social, Directories)] --> [Contact List Builder]
+[Contact List Builder] --> [AI-Driven Lead Scoring]
+[AI-Driven Lead Scoring] --> [Airtable Contractor DB]
+[Airtable Contractor DB] --> [HubSpot Pipeline]
+[HubSpot Pipeline] --> [Outreach Campaigns]
+
+[Outreach Campaigns] --> ContractorProspect
+ContractorProspect --> [Landing Page (Mobile-Friendly)]
+[Landing Page (Mobile-Friendly)] --> [Signup Form + Compliance Checks]
+[Signup Form + Compliance Checks] --> [E-Signature Workflow]
+[E-Signature Workflow] --> [Personalized Onboarding Wizard]
+[Personalized Onboarding Wizard] --> [Centralized Communication Hub]
+[Personalized Onboarding Wizard] --> [Automated Access & Credential Provisioning]
+[Personalized Onboarding Wizard] --> [Feedback Surveys (Post-Onboarding)]
+
+Admin --> [Real-Time Dashboard & Analytics]
+
+@enduml

@@ -1,0 +1,84 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🧠🕸️🔗
+  alias: AMN_Scaffold
+  tag: CoreMemorySystem
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:15.637201'
+  source_file: scaffolds\associative_memory_network_scaffold.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: event_triggered_sequence
+cognitive:
+  principle: "The \U0001F9E0\U0001F578️\U0001F517 (Associative Memory Network Scaffold) defines the architecture for a dynamic,\
+    \ associative memory system. \nIt enables the storage, linking, and context-sensitive retrieval of diverse information\
+    \ types (episodic, semantic, \nprocedural) based on relational strength, recency, relevance, and emotional tagging, forming\
+    \ a rich, \ninterconnected knowledge web. It supports not just recall but also inference and pattern completion across\
+    \ linked concepts.\n"
+  math: {}
+  tags:
+  - KnowledgeRepresentation
+  - InformationRetrieval
+  - SemanticNetwork
+  - LongTermMemory
+  - ContextualRecall
+  structure:
+    composite_type: network
+    temporal_structure: event_triggered_sequence
+    components:
+    - name: MemoryNodeEncoder
+      description: Transforms raw information into a storable memory node format, including metadata (timestamp, source, emotional
+        tags).
+      sigil_ref: 📥ENCODE_INPUT
+    - name: AssociativeLinker
+      description: Establishes and strengthens weighted links between memory nodes based on co-occurrence, similarity, causality,
+        or explicit relations.
+      sigil_ref: ⛓️RELATION_FORGER
+    - name: ContextualRetrievalEngine
+      description: Retrieves relevant memory nodes based on a query, current context, spreading activation, or traversal of
+        associative links.
+      sigil_ref: 🔎CONTEXT_QUERY
+    - name: MemoryConsolidator_Pruner
+      description: Periodically reorganizes memory, reinforces important traces, fades unused ones, and manages interference.
+      sigil_ref: 🧹MEMORY_MAINTAINER
+    - name: InferenceModule
+      description: Performs inferences or pattern completion across retrieved memory fragments.
+      sigil_ref: 🤔INFER_FROM_MEMORY
+implementation:
+  usage:
+    description: Provides the foundational scaffold for an agent's long-term memory, supporting storage, rich association,
+      contextual recall, and inference.
+    example: "// Agent needs to recall information related to \"Project Chimera\" in the context of \"ethical concerns\".\n\
+      retrieved_memories = AMN_SCAFFOLD.retrieve(\n    query_concepts=[\"Project Chimera\", \"ethics\"],\n    context_vector=\"\
+      current_conversation_embedding\",\n    max_results=5,\n    retrieval_strategy=\"spreading_activation_with_relevance_filter\"\
+      \n);\n"
+    explanation: 'This scaffold is constantly active in an agent, encoding experiences and knowledge. It''s queried during
+
+      problem-solving, conversation, planning, and self-reflection to provide relevant past information,
+
+      contextualize current situations, and support complex reasoning by drawing on learned associations.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - MemoryNodeEncoder
+  - AssociativeLinker
+  - ContextualRetrievalEngine
+  - MemoryConsolidator_Pruner
+  - InferenceModule
+  event_topics: []
+  usage_patterns:
+  - "// Agent needs to recall information related to \"Project Chimera\" in the context of \"ethical concerns\".\nretrieved_memories\
+    \ = AMN_SCAFFOLD.retrieve(\n    query_concepts=[\"Project Chimera\", \"ethics\"],\n    context_vector=\"current_conversation_embedding\"\
+    ,\n    max_results=5,\n    retrieval_strategy=\"spreading_activation_with_relevance_filter\"\n);\n"

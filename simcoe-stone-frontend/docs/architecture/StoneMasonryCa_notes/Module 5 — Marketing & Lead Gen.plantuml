@@ -1,0 +1,72 @@
+@startuml
+title Module 5 — Marketing & Lead Generation
+
+skinparam componentStyle rectangle
+skinparam shadowing true
+skinparam package {
+  BackgroundColor<<ads>> #DAE8FC
+  BackgroundColor<<seo>> #FFF2CC
+  BackgroundColor<<content>> #E1D5E7
+  BackgroundColor<<auto>> #D5E8D4
+  BackgroundColor<<crm>> #F8CECC
+  BorderColor black
+}
+
+actor Visitor
+actor Contractor
+actor Admin
+
+package "Advertising Channels" <<ads>> {
+  [Google Ads (Search/Display)]
+  [Instagram Ads]
+  [TikTok Ads]
+  [Retargeting Campaigns]
+}
+
+package "SEO & Content" <<seo>> {
+  [SEO Landing Pages\n(Netlify + Next.js)]
+  [Blog Posts & Guides]
+  [Local Business Pages\n(Scarborough, GTA)]
+}
+
+package "Content Automation" <<content>> {
+  [Dropbox → Gemini\n(auto social posts)]
+  [Blog Scheduler (Make.com)]
+  [Review → Social Share]
+}
+
+package "Automation Hub" <<auto>> {
+  [Make.com Campaign Manager]
+  [Ad Performance Webhooks]
+  [UTM Tracking Enrichment]
+}
+
+package "CRM & Tracking" <<crm>> {
+  [Airtable Leads\n(from Ads & Landing Pages)]
+  [HubSpot Pipelines\n(Marketing Qualified Lead)]
+  [Analytics Dashboard\n(GA4, Supabase events)]
+}
+
+Visitor --> [Google Ads (Search/Display)]
+Visitor --> [Instagram Ads]
+Visitor --> [TikTok Ads]
+Visitor --> [SEO Landing Pages\n(Netlify + Next.js)]
+Visitor --> [Blog Posts & Guides]
+
+[Google Ads (Search/Display)] --> [SEO Landing Pages\n(Netlify + Next.js)]
+[Instagram Ads] --> [SEO Landing Pages\n(Netlify + Next.js)]
+[TikTok Ads] --> [SEO Landing Pages\n(Netlify + Next.js)]
+
+[SEO Landing Pages\n(Netlify + Next.js)] --> [Make.com Campaign Manager]
+[Blog Posts & Guides] --> [Blog Scheduler (Make.com)]
+[Dropbox → Gemini\n(auto social posts)] --> [Instagram Ads]
+[Dropbox → Gemini\n(auto social posts)] --> [TikTok Ads]
+
+[Make.com Campaign Manager] --> [Airtable Leads\n(from Ads & Landing Pages)]
+[Make.com Campaign Manager] --> [HubSpot Pipelines\n(Marketing Qualified Lead)]
+[Make.com Campaign Manager] --> [Analytics Dashboard\n(GA4, Supabase events)]
+
+Admin --> [Analytics Dashboard\n(GA4, Supabase events)]
+Contractor --> [Review → Social Share]
+
+@enduml

@@ -1,0 +1,91 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🐾TREE_NAVIGATOR
+  alias: ThoughtTreeTraversal
+  tag: MetaCognitiveAction
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.387200'
+  source_file: sigils\tree_navigator.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+cognitive:
+  principle: 'The 🐾TREE_NAVIGATOR sigil represents the cognitive action of an agent deliberately
+
+    traversing, evaluating, and selecting paths within an existing or actively growing
+
+    🌳TREETHOUGHT (Tree of Thoughts) structure. While 🌳TREETHOUGHT defines the generation
+
+    of the tree, 🐾TREE_NAVIGATOR embodies the agent''s process of ''climbing'' this tree –
+
+    making choices at nodes, backtracking from unpromising branches, focusing on specific subtrees,
+
+    or identifying the optimal path to a solution based on evolving criteria or new information.
+
+    It enables dynamic, agent-driven interaction with complex thought explorations.
+
+    '
+  math: {}
+  tags:
+  - DecisionMaking
+  - PathSelection
+  - TreeSearch
+  - ExplorationStrategy
+  - Backtracking
+  structure:
+    composite_type: sequential
+    components:
+    - name: NodeSelector
+      description: Mechanism for choosing the next node or branch to explore/evaluate.
+      sigil_ref: 👆FOCUS_DIRECTOR
+    - name: PathEvaluator
+      description: Evaluates the promise or utility of a current path segment.
+      sigil_ref: 📊PATH_METRICS
+    - name: BacktrackingController
+      description: Manages the decision to abandon a current path and return to a previous choice point.
+      sigil_ref: ↩️RETRACE_STEP
+    - name: GoalProximityAssessor
+      description: Estimates how close a current node/path is to achieving the overall goal.
+implementation:
+  usage:
+    description: Enables an agent to actively navigate a Tree of Thoughts, make decisions at branch points, backtrack, and
+      select optimal paths, effectively 'climbing' the tree to find a solution.
+    example: "// Assuming a ToT has been partially generated for 'problem_X'\n// Agent (e.g., Vanta) decides to re-evaluate\
+      \ a specific branch:\n\nnavigator_action = TREE_NAVIGATOR.execute(\n    tree_id=\"ToT_problem_X_run_001\",\n    current_node_id=\"\
+      node_branch_A_depth_3\",\n    action_type=\"explore_children_prioritized\", // or \"backtrack\", \"evaluate_path_to_root\"\
+      \n    heuristic=\"maximize_novelty_score\", // Optional heuristic for NodeSelector\n    max_steps=2\n);\n// navigator_action\
+      \ might result in a new current_node_id or a decision to prune.\n"
+    explanation: '🐾TREE_NAVIGATOR is used when an agent needs more fine-grained control over the exploration of
+
+      a thought tree than what the automated search strategy of 🌳TREETHOUGHT might provide.
+
+      It can be used interactively, allowing an agent (or even a human supervisor) to guide the
+
+      search, focus on specific areas, re-evaluate branches based on new insights, or perform
+
+      "what-if" explorations within the tree. It''s about the metacognitive actions *on* the tree.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - NodeSelector
+  - PathEvaluator
+  - BacktrackingController
+  - GoalProximityAssessor
+  event_topics: []
+  usage_patterns:
+  - "// Assuming a ToT has been partially generated for 'problem_X'\n// Agent (e.g., Vanta) decides to re-evaluate a specific\
+    \ branch:\n\nnavigator_action = TREE_NAVIGATOR.execute(\n    tree_id=\"ToT_problem_X_run_001\",\n    current_node_id=\"\
+    node_branch_A_depth_3\",\n    action_type=\"explore_children_prioritized\", // or \"backtrack\", \"evaluate_path_to_root\"\
+    \n    heuristic=\"maximize_novelty_score\", // Optional heuristic for NodeSelector\n    max_steps=2\n);\n// navigator_action\
+    \ might result in a new current_node_id or a decision to prune.\n"

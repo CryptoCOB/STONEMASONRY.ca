@@ -1,0 +1,89 @@
+@startuml
+title Backend Module — Supabase + Stripe/Crypto + Make.com
+
+skinparam componentStyle rectangle
+skinparam shadowing true
+skinparam package {
+  BackgroundColor<<db>> #FFF2CC
+  BackgroundColor<<auth>> #E1D5E7
+  BackgroundColor<<fn>> #FFE6CC
+  BackgroundColor<<service>> #D5E8D4
+  BackgroundColor<<external>> #F8CECC
+  BorderColor black
+}
+
+actor Frontend
+actor Admin
+actor MakeScenario as MAKE
+
+package "Supabase Backend" {
+  package "Auth & Roles" <<auth>> {
+    [Supabase Auth\n(JWT, RBAC)]
+    [Role Policies\n(client, contractor, admin)]
+  }
+
+  package "Database (Postgres)" <<db>> {
+    [USERS]
+    [JOBS]
+    [LEADS]
+    [REVIEWS]
+    [PAYMENTS]
+    [MEDIA (photos/docs)]
+  }
+
+  package "Storage" <<db>> {
+    [Supabase Storage Buckets]
+  }
+
+  package "Edge Functions (secure RPC)" <<fn>> {
+    [Validate Job Posting]
+    [Enrich Data (geo, tags)]
+    [Calculate Commission]
+    [Sync Payment Records]
+    [Send Admin Alerts]
+  }
+
+  package "Realtime & APIs" <<service>> {
+    [REST API]
+    [GraphQL API]
+    [Realtime Channels]
+  }
+}
+
+package "Payment Gateways" <<external>> {
+  [Stripe Subscriptions + Checkout]
+  [Crypto.com Pay API]
+}
+
+package "Automations (Make.com)" <<external>> {
+  [Inbound Webhook (job, payment, review)]
+  [CRM Sync (Airtable/HubSpot)]
+  [Email/SMS (SendGrid/Twilio)]
+  [Task Scheduling (Calendly)]
+}
+
+Frontend --> [REST API]
+Frontend --> [Realtime Channels]
+Frontend --> [Supabase Auth\n(JWT, RBAC)]
+Frontend --> [Supabase Storage Buckets]
+
+[Edge Functions (secure RPC)] --> [Database (Postgres)]
+[Edge Functions (secure RPC)] --> [Supabase Storage Buckets]
+
+[Stripe Subscriptions + Checkout] --> [Sync Payment Records]
+[Crypto.com Pay API] --> [Sync Payment Records]
+
+[Sync Payment Records] --> [PAYMENTS]
+[Validate Job Posting] --> [JOBS]
+[Enrich Data (geo, tags)] --> [JOBS]
+[Calculate Commission] --> [LEADS]
+
+[Inbound Webhook (job, payment, review)] --> MAKE
+MAKE --> [CRM Sync (Airtable/HubSpot)]
+MAKE --> [Email/SMS (SendGrid/Twilio)]
+MAKE --> [Task Scheduling (Calendly)]
+
+Admin --> [REST API]
+Admin --> [Send Admin Alerts]
+
+@enduml

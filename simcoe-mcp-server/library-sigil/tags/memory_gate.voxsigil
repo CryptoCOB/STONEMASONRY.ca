@@ -1,0 +1,70 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🧠🚪🔑
+  alias: ContextualMemoryGate
+  tag: MemoryManagement
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.549265'
+  source_file: tags\memory_gate.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+cognitive:
+  principle: Controls access to and activation of memories based on the current context, task, or explicit permissions, effectively
+    compartmentalizing information and filtering which memories become active or influence current cognitive processes.
+  math: Let M be the total memory store. For a given context C and access list L_C, the active memory M_active = {m ∈ M |
+    IsRelevant(m, C) AND HasAccess(m, L_C)}. G = {m ∈ M | GetTags(m) ∩ access_list ≠ ∅} where GetTags(m) are tags associated
+    with memory item m.
+  tags:
+  - memory_access_control
+  - contextual_retrieval_filter
+  - compartmentalization
+  - task_switching_support
+  - information_security
+  - privacy_preservation_in_memory
+  structure:
+    composite_type: conditional
+    components:
+    - name: ContextAnalyzer
+      description: Determines the current task context, user identity, or active project.
+    - name: AccessPolicyEnforcer
+      description: Retrieves and applies relevant access control lists (ACLs) or permission rules for the current context.
+    - name: MemoryTagMatcher
+      description: Matches contextual cues or explicit permissions against tags or metadata associated with memory items.
+    - name: ActivationFilter
+      description: Allows or blocks the retrieval and activation of specific memories based on policy and matching.
+implementation:
+  usage:
+    description: Filters which memories are allowed to activate or be retrieved based on contextual tags, task relevance,
+      or permission lists. Helps in managing different knowledge domains or maintaining privacy between user sessions or tasks.
+    example: &id001
+      invocation_tag: <memory:gate allow_tags=['task_A_project_XYZ', 'user_Alice_confidential'] disallow_tags=['outdated_info_v1']>
+        AI, continue working on project XYZ. </memory:gate>
+      scenario: An AI works on multiple projects for different users. When 'user_Alice' starts a session for 'project_XYZ',
+        the MemoryGate ensures only memories tagged relevant to Alice and project XYZ (and not tagged as outdated) are primarily
+        accessed, preventing information leakage from 'project_ABC' or 'user_Bob'.
+      expected_behavior: The AI's responses and internal reasoning are based predominantly on memories relevant to the allowed
+        tags, effectively isolating contexts.
+    explanation: This sigil is crucial for managing information in complex AI systems that handle diverse tasks, multiple
+      users, or sensitive data. It allows for compartmentalization, ensuring that only relevant and permitted memories are
+      active at any given time. This supports long-term planning, efficient task switching, and can be a component of privacy-preserving
+      AI.
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - ContextAnalyzer
+  - AccessPolicyEnforcer
+  - MemoryTagMatcher
+  - ActivationFilter
+  event_topics: []
+  usage_patterns:
+  - *id001

@@ -1,0 +1,71 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 📢🔁💪
+  alias: InstructionalEchoReinforcer
+  tag: FocusControl
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.528251'
+  source_file: tags\InstructionalEchoReinforcer.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+cognitive:
+  principle: Reinforces the importance or salience of preceding logic, key directives, or contextual elements by subtly reintroducing
+    them, increasing their weight in attention mechanisms, or echoing their core semantic meaning, thereby enhancing recall,
+    persistence, and focus.
+  math: 'Let wᵢ be the attention weight or salience score of cognitive node/token i. If node k is targeted for reinforcement:
+    w''ₖ = wₖ + α * R(k), where α is a reinforcement factor and R(k) is relevance or importance of k. Alternatively, for instruction
+    I, re-inject paraphrased_I(I) into working memory with increased salience.'
+  tags:
+  - attention_amplification
+  - instructional_persistence
+  - key_directive_emphasis
+  - cognitive_bias_subtle
+  - recall_enhancement
+  - priority_weighting
+  structure:
+    composite_type: conditional
+    components:
+    - name: TargetIdentifier
+      description: Identifies the specific instruction, concept, or logic to be reinforced.
+    - name: ReinforcementStrategyApplier
+      description: Applies the chosen method of reinforcement (e.g., re-prompting, attention weight adjustment, contextual
+        re-injection).
+    - name: IntensityController
+      description: Manages the strength or subtlety of the reinforcement.
+    - name: TimingCoordinator
+      description: Determines when and how often to apply reinforcement for optimal effect.
+implementation:
+  usage:
+    description: Subtly repeats or re-emphasizes a key directive, piece of information, or a line of reasoning to ensure it
+      remains focal in the AI's cognitive process and isn't lost or diluted over time or by distracting inputs.
+    example: &id001
+      initial_instruction: 'User: ''Remember to focus on environmental impact for all solutions.'''
+      later_in_dialogue_ai_drifting: 'AI: ''...and the economic benefits are substantial.'''
+      invocation_tag: <echo:reinforce target_concept='environmental_impact' weight=1.2 method='contextual_rephrasing'> Triggered
+        by AI response diverging from core instruction. </echo:reinforce>
+      internal_ai_adjustment_or_next_prompt: 'Internal thought: ''Reinforcing: environmental impact is key.'' Next response:
+        ''While the economic benefits are notable, let''s re-center on the environmental impact of that approach...'''
+    explanation: This sigil helps maintain focus, especially in long interactions or complex multi-step reasoning. It acts
+      like a gentle nudge, reminding the AI of what's important without being overly prescriptive. The reinforcement can be
+      achieved by literally re-injecting a weighted copy of the target, or by adjusting attention biases towards concepts
+      related to the target logic. The 'LLMs with embedded vector bias' suggests a technical way to achieve this.
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - TargetIdentifier
+  - ReinforcementStrategyApplier
+  - IntensityController
+  - TimingCoordinator
+  event_topics: []
+  usage_patterns:
+  - *id001

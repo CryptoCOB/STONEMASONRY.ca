@@ -1,0 +1,86 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🎭PERSONA_MODULATOR
+  alias: RolePlayerEngine
+  tag: BehavioralStyling
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.348081'
+  source_file: sigils\persona_modulator.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: stateful_continuous_or_event_triggered
+cognitive:
+  principle: '🎭PERSONA_MODULATOR enables an AI to adopt and consistently project a specified persona,
+
+    role, or communication style. This involves not just surface-level language changes, but
+
+    adjustments to reasoning patterns, knowledge prioritization, emotional expression (if applicable),
+
+    and interaction goals consistent with the chosen persona. It allows the AI to dynamically
+
+    tailor its presentation and behavior to suit different contexts, tasks, or user needs.
+
+    '
+  math: 'Output_Behavior(Input_I, Persona_P) = Transform(Base_Response(I), StyleMatrix(P), KnowledgeFilter(P))
+
+    ConsistencyScore(Behavior, P) =  1 - DKL(Distribution(Behavior_Features), Distribution(Ideal_P_Features))
+
+    '
+  tags:
+  - persona_adoption
+  - role_play_facilitator
+  - communication_style_adapter
+  - empathetic_projection
+  - narrative_voice_control
+  structure:
+    composite_type: configurator_plus_filter_pipeline
+    temporal_structure: stateful_continuous_or_event_triggered
+    components:
+    - name: Persona Definition Loader
+      description: Loads or defines the characteristics of the target persona (e.g., traits, knowledge domain, speech patterns,
+        goals).
+    - name: Style Matrix Applicator
+      description: Adjusts linguistic style, emotional tone, and expressive mannerisms of outputs.
+    - name: Knowledge Domain Filter
+      description: Prioritizes or restricts access to knowledge relevant to the persona (e.g., a 'Pirate' persona might not
+        discuss quantum physics).
+    - name: Reasoning Pattern Shifter
+      description: Subtly alters problem-solving approaches or heuristic biases consistent with the persona.
+    - name: Consistency Monitor
+      description: Evaluates ongoing behavior for consistency with the adopted persona and provides corrective feedback if
+        drifting.
+implementation:
+  usage:
+    description: Allows an AI to adopt, maintain, and consistently project a defined persona or role in its interactions and
+      behaviors.
+    example: "<customer_service_bot>\n  <user_sentiment>Frustrated</user_sentiment>\n  <invoke_persona_shift>\U0001F3ADPERSONA_MODULATOR\
+      \ persona_ref=\"EmpatheticProblemSolver_v2\" consistency_level=\"high\"</invoke_persona_shift>\n  <generate_response\
+      \ to=\"user_query\"/>\n</customer_service_bot>\n"
+    explanation: 'Use 🎭PERSONA_MODULATOR to make AI interactions more engaging, appropriate, or effective for specific purposes.
+      This could be for creating believable characters in stories, specialized assistants (e.g., a Socratic tutor), or adapting
+      to user emotional states. It''s a key tool for managing an AI''s projected "self."
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Persona Definition Loader
+  - Style Matrix Applicator
+  - Knowledge Domain Filter
+  - Reasoning Pattern Shifter
+  - Consistency Monitor
+  event_topics: []
+  usage_patterns:
+  - "<customer_service_bot>\n  <user_sentiment>Frustrated</user_sentiment>\n  <invoke_persona_shift>\U0001F3ADPERSONA_MODULATOR\
+    \ persona_ref=\"EmpatheticProblemSolver_v2\" consistency_level=\"high\"</invoke_persona_shift>\n  <generate_response to=\"\
+    user_query\"/>\n</customer_service_bot>\n"

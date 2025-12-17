@@ -1,0 +1,70 @@
+name,service_area,craft_type,phone,email,website,address,notes,source,status,score,latitude,longitude,scraped_at,category,quality_score,profile,enriched_by,type,match_key
+Test Contractor 1,Toronto,stonemason,416-555-1234,test1@example.com,https://example1.com,"123 Test St, Toronto, ON",Test notes,test,,,,,,,,,,,
+Western Granite & Stone Ltd.,Calgary,craft:stonemason,+1-403-769-9064,westerngraniteandstoneltd@hotmail.com,https://westerngranite.ca/,3611 27 Street NE,,OSM_Auto,scraped,12.0,51.0850931,-113.995352,2025-09-09T09:54:38.520447,,,,,contractor,
+Evolution Custom Cabinetry & Millwork,Calgary,craft:carpenter,,,,6027 79 Avenue SE,,OSM_Auto,scraped,5.0,50.9813859,-113.9425707,2025-09-09T09:54:42.681925,,,,,contractor,
+Art In Stone,Vancouver,craft:stonemason,+1 778 751 0300,info@artinstoneco.com,https://artinstoneco.com,2080 Clark Drive,,OSM_Auto,scraped,12.0,49.2667846,-123.0770765,2025-09-09T09:55:13.375952,,,,,contractor,
+Heritage Lumber,Vancouver,craft:carpenter,+1-604-621-9663,fraser@heritagelumber.ca,https://heritagelumber.ca/,8729 Aisne Street,,OSM_Auto,scraped,12.0,49.2069073,-123.122274,2025-09-09T09:55:17.743969,,,,,contractor,
+RIR Contracting,Vancouver,craft:carpenter,+1-778-558-8688,,https://rircontracting.com/,2986 West 10th Avenue,,OSM_Auto,scraped,10.0,49.2631252,-123.1713528,2025-09-09T09:55:17.743969,,,,,contractor,
+Chapel Arts Woodworking,Vancouver,craft:carpenter,,,https://www.chapelarts.com/,305 Dunlevy Avenue,,OSM_Auto,scraped,8.0,49.2819289,-123.0956781,2025-09-09T09:55:17.743969,,,,,contractor,
+Portrait Memorials Inc,Mississauga,craft:stonemason,,,http://www.portraitmemorials.com/,,,OSM_Auto,scraped,8.0,43.5778547,-79.5580829,2025-09-09T09:59:20.254748,,,,,contractor,
+C.B. Marblecraft,Mississauga,craft:stonemason,+1-416-741-1585,info@cbmarblecraft.com,http://cbmarblecraft.com/,17 Airview Road,,OSM_Auto,scraped,12.0,43.72056,-79.5753131,2025-09-09T09:59:20.254748,,,,,contractor,
+Ritcey Custom Cabinetry,Mississauga,craft:carpenter,,,,2133 Royal Windsor Drive,,OSM_Auto,scraped,5.0,43.5097692,-79.6331727,2025-09-09T09:59:25.669031,,,,,contractor,
+McKerr Custom Carpentry,Mississauga,craft:carpenter,,,,2133 Royal Windsor Drive,,OSM_Auto,scraped,5.0,43.5096292,-79.6330723,2025-09-09T09:59:25.669031,,,,,contractor,
+MJL Joinery Ltd,Surrey,craft:carpenter,020 7737 4450,,https://www.madefern.co.uk,,,OSM_Auto,scraped,10.0,51.4650474,-0.1030108,2025-09-09T11:00:42.784970,,,,,contractor,
+ShuttersUp,Surrey,craft:carpenter,,,,,,OSM_Auto,scraped,5.0,51.3801027,-0.0143945,2025-09-09T11:00:42.784970,,,,,contractor,
+A B Carpentry & Building Ltd,Surrey,craft:carpenter,,,,99A Hawes Lane,,OSM_Auto,scraped,5.0,51.3764116,-0.0082156,2025-09-09T11:00:42.784970,,,,,contractor,
+WG Studios Ltd.,Surrey,craft:carpenter,,,,Belinda Road,,OSM_Auto,scraped,5.0,51.4642979,-0.1054011,2025-09-09T11:00:42.784970,,,,,contractor,
+Artisans Carpentry,Surrey,craft:carpenter,,,https://www.artisanscarpentry.com,29 Summerstown,,OSM_Auto,scraped,8.0,51.4324018,-0.1846148,2025-09-09T11:00:42.784970,,,,,contractor,
+Atelier de Marbrerie,Laval,craft:stonemason,,,,,,OSM_Auto,scraped,5.0,48.0596988,-0.7848299,2025-09-09T11:01:05.598309,,,,,contractor,
+Element 7,London,craft:stonemason,,,,,,OSM_Auto,scraped,5.0,51.4759511,-0.2002914,2025-09-09T11:01:34.119833,,,,,contractor,
+R. Munday & Sons,London,craft:stonemason,,,,982 Harrow Road,,OSM_Auto,scraped,5.0,51.5304148,-0.2283204,2025-09-09T11:01:34.119833,,,,,contractor,
+R. Gray & Son,London,craft:stonemason,,,,,,OSM_Auto,scraped,5.0,51.4501457,-0.0580338,2025-09-09T11:01:34.119833,,,,,contractor,
+London Stone,London,craft:stonemason,,,,,,OSM_Auto,scraped,5.0,51.3148897,0.1160462,2025-09-09T11:01:34.119833,,,,,contractor,
+A.Elfes Monumental Masons,London,craft:stonemason,,,,130 High Street,,OSM_Auto,scraped,5.0,51.6122901,-0.2808226,2025-09-09T11:01:34.119833,,,,,contractor,
+UK Smart Build,London,craft:carpenter,,,https://www.uksmartbuild.com/,,,OSM_Auto,scraped,8.0,51.6167468,-0.0877003,2025-09-09T11:01:39.126902,,,,,contractor,
+Alsans,London,craft:carpenter,,,,,,OSM_Auto,scraped,5.0,51.4768858,-0.1984463,2025-09-09T11:01:39.126902,,,,,contractor,
+Hyperion,London,craft:carpenter,,,,,,OSM_Auto,scraped,5.0,51.4761484,-0.1998847,2025-09-09T11:01:39.126902,,,,,contractor,
+Howdens Joinery,London,craft:carpenter,,,,"Units 3-4, 101 Blackhorse Lane",,OSM_Auto,scraped,5.0,51.5907202,-0.0407328,2025-09-09T11:01:39.126902,,,,,contractor,
+MJL Joinery Ltd,London,craft:carpenter,020 7737 4450,,https://www.madefern.co.uk,,,OSM_Auto,scraped,10.0,51.4650474,-0.1030108,2025-09-09T11:01:39.126902,,,,,contractor,
+C.B. Marblecraft,Etobicoke,craft:stonemason,+1-416-741-1585,info@cbmarblecraft.com,http://cbmarblecraft.com/,17 Airview Road,,OSM_Auto,scraped,12.0,43.72056,-79.5753131,2025-09-09T11:02:05.101615,,,,,contractor,
+Heres Renovations,Markham,craft:carpenter,,,http://www.heresrenovations.com/,2267 Bethesda Sideroad,,OSM_Auto,scraped,8.0,43.9604841,-79.3810834,2025-09-09T11:02:39.452846,,,,,contractor,
+Valleau Custom Woodworking,Markham,craft:carpenter,+1 416-433-0480,,https://www.instagram.com/valleaucustomwoodworking/?hl=en,86 Ringwood Drive,,OSM_Auto,scraped,10.0,43.9624008,-79.2736871,2025-09-09T11:02:39.452846,,,,,contractor,
+Rocco Masons Corp,Saskatoon,craft:stonemason,+1-306-270-3247,,https://www.roccomasons.com/,510 Lauriston Street,,OSM_Auto,scraped,10.0,52.1431635,-106.6545013,2025-09-09T12:03:20.533466,,,,,contractor,
+Hy-Grade Millwork Ltd,Saskatoon,craft:carpenter,+1-306-653-1595,info@hy-grade.net,https://hy-grade.net/,624 Lauriston Street,,OSM_Auto,scraped,12.0,52.1432282,-106.6532809,2025-09-09T12:03:26.391438,,,,,contractor,
+Ottawa Tool Library,Gatineau,craft:carpenter,+1 613-868-0178,,https://ottawatoollibrary.com/,877 Boyd Avenue,,OSM_Auto,scraped,10.0,45.3758732,-75.7500914,2025-09-09T12:03:50.097359,,,,,contractor,
+Cabinet Tech,Gatineau,craft:carpenter,,,,3205 Swansea Crescent,,OSM_Auto,scraped,5.0,45.3826648,-75.6053679,2025-09-09T12:03:50.097359,,,,,contractor,
+Muskoka Cabinet Company,Gatineau,craft:carpenter,,,,2515 St-Laurent Boulevard,,OSM_Auto,scraped,5.0,45.3794982,-75.6304863,2025-09-09T12:03:50.097359,,,,,contractor,
+DIY Cabinet Warehouse,Gatineau,craft:carpenter,,,,2285 Gladwin Crescent,,OSM_Auto,scraped,5.0,45.4039576,-75.6235501,2025-09-09T12:03:50.097359,,,,,contractor,
+Kitchen Craft Cabinetry,Gatineau,craft:carpenter,,,,2287 Gladwin Crescent,,OSM_Auto,scraped,5.0,45.4038371,-75.6234965,2025-09-09T12:03:50.097359,,,,,contractor,
+Ritcey Custom Cabinetry,Oakville,craft:carpenter,,,,2133 Royal Windsor Drive,,OSM_Auto,scraped,5.0,43.5097692,-79.6331727,2025-09-09T12:04:22.449556,,,,,contractor,
+McKerr Custom Carpentry,Oakville,craft:carpenter,,,,2133 Royal Windsor Drive,,OSM_Auto,scraped,5.0,43.5096292,-79.6330723,2025-09-09T12:04:22.450562,,,,,contractor,
+Martin-Star,Richmond,craft:carpenter,,,,,,OSM_Auto,scraped,5.0,37.5477239,-77.4613465,2025-09-09T13:04:45.768376,,,,,contractor,
+"Custom Woodwork, Inc.",Richmond,craft:carpenter,,,http://www.customwoodworkinc.com/,1719 Arlington Road,,OSM_Auto,scraped,8.0,37.5751683,-77.464573,2025-09-09T13:04:45.768376,,,,,contractor,
+Heres Renovations,Richmond Hill,craft:carpenter,,,http://www.heresrenovations.com/,2267 Bethesda Sideroad,,OSM_Auto,scraped,8.0,43.9604841,-79.3810834,2025-09-09T13:05:01.710909,,,,,contractor,
+Kanata Stoneworks,Nepean,craft:stonemason,,,,44 Iber Road,,OSM_Auto,scraped,5.0,45.2804807,-75.9092818,2025-09-09T13:05:31.182034,,,,,contractor,
+DMA Masonry,Nepean,craft:stonemason,,,,56 Bentley Avenue,,OSM_Auto,scraped,5.0,45.3331966,-75.7170664,2025-09-09T13:05:31.182034,,,,,contractor,
+Ottawa Tool Library,Nepean,craft:carpenter,+1 613-868-0178,,https://ottawatoollibrary.com/,877 Boyd Avenue,,OSM_Auto,scraped,10.0,45.3758732,-75.7500914,2025-09-09T13:05:35.162350,,,,,contractor,
+The Cabinet Connection,Nepean,craft:carpenter,,,,1523 Laperriere Avenue,,OSM_Auto,scraped,5.0,45.3782783,-75.7437855,2025-09-09T13:05:35.162350,,,,,contractor,
+Heartwood Kitchen,Nepean,craft:carpenter,,,,210 Colonnade Road South,,OSM_Auto,scraped,5.0,45.3413248,-75.718503,2025-09-09T13:05:35.162350,,,,,contractor,
+Vily Kozar,Nepean,craft:carpenter,,,,54 Cleopatra Drive,,OSM_Auto,scraped,5.0,45.325425,-75.7251006,2025-09-09T13:05:35.162350,,,,,contractor,
+Raywal Kitchens,Nepean,craft:carpenter,,,,200 Colonnade Road South,,OSM_Auto,scraped,5.0,45.3417055,-75.7174713,2025-09-09T13:05:35.162350,,,,,contractor,
+Old World,Guelph,craft:carpenter,,,,460 York Road,,OSM_Auto,scraped,5.0,43.5507097,-80.2259022,2025-09-09T14:06:48.475089,,,,,contractor,
+The Stairworks,Guelph,craft:carpenter,+1-519-823-1921,,https://stairworks.ca/,295 Southgate Drive,,OSM_Auto,scraped,10.0,43.5022553,-80.2161377,2025-09-09T14:06:48.475089,,,,,contractor,
+Pura Vida Wood Co,Guelph,craft:carpenter,,,https://puravidawoodco.com/,490 York Road,,OSM_Auto,scraped,8.0,43.5518389,-80.2255152,2025-09-09T14:06:48.475089,,,,,contractor,
+Painters Place,Burlington,shop:hardware,,,,,,OSM_Auto,scraped,5.0,43.4654023,-79.7428522,2025-09-09T02:36:26.526009,general_contractor,5.0,Painters Place provides general contractor services in Burlington.,heuristic,,Painters Place|Burlington
+AXYZ International,Burlington,shop:hardware,,,https://www.axyz.com/,3100 Harvester Road,,OSM_Auto,scraped,8.0,43.3526913,-79.7972792,2025-09-09T02:36:26.526009,general_contractor,9.0,AXYZ International provides general contractor services in Burlington.,heuristic,,AXYZ International|Burlington
+Silver Oak Roofing,Oakville,craft:roofer,+1 (905) 337-8387,,https://www.silveroakroofing.ca/,1075 North Service Road West,,OSM_Auto,scraped,10.0,43.4373207,-79.7127006,2025-09-09T02:35:31.495245,general_contractor,10.0,Silver Oak Roofing provides general contractor services in Oakville.,heuristic,,Silver Oak Roofing|Oakville
+Painters Place,Oakville,shop:hardware,,,,,,OSM_Auto,scraped,5.0,43.4654023,-79.7428522,2025-09-09T02:35:38.370113,general_contractor,5.0,Painters Place provides general contractor services in Oakville.,heuristic,,Painters Place|Oakville
+Northminster United Church,Oshawa,building:material:stone,,,,,,OSM_Auto,scraped,5.0,43.9153205,-78.8717098,2025-09-09T16:43:22.389218,stone_masonry,5.0,Northminster United Church provides stone masonry services in Oshawa.,heuristic,,Northminster United Church|Oshawa
+The Co-Operators,Oshawa,building:material:wood,,,,,,OSM_Auto,scraped,5.0,43.9027564,-78.8686603,2025-09-09T16:43:33.747387,general_contractor,5.0,The Co-Operators provides general contractor services in Oshawa.,heuristic,,The Co-Operators|Oshawa
+Detail Roofing,Brampton,craft:roofer,+1 (905) 230-2969,detail@detailroof.ca,https://detailroof.ca/,5700 Timberlea Boulevard,,OSM_Auto,scraped,12.0,43.6387098,-79.65152,2025-09-09T02:31:59.985020,general_contractor,10.0,Detail Roofing provides general contractor services in Brampton.,heuristic,,Detail Roofing|Brampton
+Water Work Kingdom,Brampton,shop:hardware,,,,,,OSM_Auto,scraped,5.0,43.7730348,-79.6614025,2025-09-09T02:32:07.433931,general_contractor,5.0,Water Work Kingdom provides general contractor services in Brampton.,heuristic,,Water Work Kingdom|Brampton
+KBC Tools & Machinery,Brampton,shop:hardware,+1 (905) 564-6600,,,6200 Kennedy Road,,OSM_Auto,scraped,7.0,43.6403484,-79.675253,2025-09-09T02:32:07.433931,general_contractor,8.0,KBC Tools & Machinery provides general contractor services in Brampton.,heuristic,,KBC Tools & Machinery|Brampton
+Port Nelson United Church,Hamilton,building:material:stone,,,http://www.portnelsonunitedchurch.com/,3132 South Drive,,OSM_Auto,scraped,8.0,43.3387978,-79.7775443,2025-09-09T16:44:04.162892,stone_masonry,9.0,Port Nelson United Church provides stone masonry services in Hamilton.,heuristic,,Port Nelson United Church|Hamilton
+LiUNA Station,Hamilton,building:material:stone,,,,360 James Street North,,OSM_Auto,scraped,5.0,43.2658616,-79.8640934,2025-09-09T16:44:04.162892,stone_masonry,5.0,LiUNA Station provides stone masonry services in Hamilton.,heuristic,,LiUNA Station|Hamilton
+St. John's Roman Catholic Church,Hamilton,building:material:stone,,,,,,OSM_Auto,scraped,5.0,43.331451,-79.8051986,2025-09-09T16:44:04.162892,stone_masonry,5.0,St. John's Roman Catholic Church provides stone masonry services in Hamilton.,heuristic,,St. John's Roman Catholic Church|Hamilton
+Christ's Church Anglican Cathedral,Hamilton,building:material:stone,,,,252 James Street North,,OSM_Auto,scraped,5.0,43.262924,-79.8656924,2025-09-09T16:44:04.162892,stone_masonry,5.0,Christ's Church Anglican Cathedral provides stone masonry services in Hamilton.,heuristic,,Christ's Church Anglican Cathedral|Hamilton
+Hexagon,Hamilton,construction:yes,,,https://www.hexagonrestaurant.com/,,,OSM_Auto,scraped,8.0,43.4455606,-79.6675775,2025-09-09T16:44:27.361475,construction,9.0,Hexagon provides construction services in Hamilton.,heuristic,,Hexagon|Hamilton
+Odd Burger,Hamilton,construction:yes,(905) 815-0001,,https://oddburger.com/,A2-280 North Service Road West,,OSM_Auto,scraped,10.0,43.4469367,-79.7054866,2025-09-09T16:44:27.361475,construction,10.0,Odd Burger provides construction services in Hamilton.,heuristic,,Odd Burger|Hamilton
+Harbourside Way,Hamilton,construction:yes,,,,,,OSM_Auto,scraped,5.0,43.2769983,-79.857987,2025-09-09T16:44:27.361475,construction,5.0,Harbourside Way provides construction services in Hamilton.,heuristic,,Harbourside Way|Hamilton
+Preserve West,Hamilton,construction:yes,,,,,,OSM_Auto,scraped,5.0,43.4569286,-79.7599892,2025-09-09T16:44:27.361475,construction,5.0,Preserve West provides construction services in Hamilton.,heuristic,,Preserve West|Hamilton

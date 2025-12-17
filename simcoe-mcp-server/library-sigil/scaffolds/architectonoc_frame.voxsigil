@@ -1,0 +1,79 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🛠️ARCHITECTONIC_FRAME
+  alias: SystemBlueprintScaffold
+  tag: MetaStructureScaffold
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:15.626052'
+  source_file: scaffolds\architectonoc_frame.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: static_definition_dynamic_instantiation
+cognitive:
+  principle: 'The 🛠️ARCHITECTONIC_FRAME is a meta-scaffold used to define, instantiate, or represent the overarching blueprint
+    or architecture of a complex cognitive system. It specifies the primary cognitive modules (often other scaffolds or sigils),
+    their interconnections, data flows, control pathways, and overall organizing principles. It is a "scaffold for building
+    scaffolds," providing the foundational structure upon which an entire AI''s mind or operational framework is built or
+    understood.
+
+    '
+  math: {}
+  tags:
+  - cognitive_architecture_definition
+  - system_layout_template
+  - module_interconnection_schema
+  - foundational_design_pattern
+  - blueprint_sigil
+  structure:
+    composite_type: network
+    temporal_structure: static_definition_dynamic_instantiation
+    components:
+    - name: 🧩 Core Modules List
+      description: Enumeration of primary functional units or sigils comprising the architecture (e.g., ✧👁️‍🗨️☞PAC_Loop, 🜮HEGELIAN_KERNEL,
+        🧠C_STRUCTURE).
+    - name: 🕸️ Interconnection Matrix
+      description: Defines the relationships, data pathways, and control signals between core modules (e.g., ModuleA sends
+        output to ModuleB, ModuleC gates ModuleD).
+    - name: 🌟 Guiding Principles & Constraints
+      description: High-level design philosophies, operational constraints, or ethical guidelines embedded in the architecture
+        (e.g., references 🌟GUIDING_STAR).
+    - name: 🔩 Initialization & Bootstrapping Protocol
+      description: Sequence or procedure for instantiating and activating the system based on this frame.
+    - name: 📊 Performance & Health Monitoring Points
+      description: Defined interfaces or metrics for observing the overall system's state and performance.
+implementation:
+  usage:
+    description: Defines or instantiates the high-level architectural blueprint of a cognitive system, specifying its core
+      components, their interconnections, and guiding principles. Acts as a template for system construction or a map for
+      system understanding.
+    example: "<define_cognitive_system name=\"VANTASystem_MkII\">\n  <apply_architecture_scaffold>\U0001F6E0️ARCHITECTONIC_FRAME</apply_architecture_scaffold>\n\
+      \  <blueprint_source ref=\"VantaCoreArchitectureSpec_v2.3.voxsigil\"/>\n  <parameters>\n    <instantiation_mode>simulation_only</instantiation_mode>\n\
+      \    <override_module id=\"DecisionMaker\" new_sigil_ref=\"\U0001F3AFADVANCED_PLANNER_X7\"/>\n  </parameters>\n</define_cognitive_system>\n"
+    explanation: 'Use 🛠️ARCHITECTONIC_FRAME at the highest level of system design or analysis. It can serve as a formal specification
+      for building an AI, a tool for visualizing its structure, or a dynamic template that an AI uses to understand or even
+      modify its own architecture. It''s the ultimate "blueprint" sigil.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - 🧩 Core Modules List
+  - 🕸️ Interconnection Matrix
+  - 🌟 Guiding Principles & Constraints
+  - 🔩 Initialization & Bootstrapping Protocol
+  - 📊 Performance & Health Monitoring Points
+  event_topics: []
+  usage_patterns:
+  - "<define_cognitive_system name=\"VANTASystem_MkII\">\n  <apply_architecture_scaffold>\U0001F6E0️ARCHITECTONIC_FRAME</apply_architecture_scaffold>\n\
+    \  <blueprint_source ref=\"VantaCoreArchitectureSpec_v2.3.voxsigil\"/>\n  <parameters>\n    <instantiation_mode>simulation_only</instantiation_mode>\n\
+    \    <override_module id=\"DecisionMaker\" new_sigil_ref=\"\U0001F3AFADVANCED_PLANNER_X7\"/>\n  </parameters>\n</define_cognitive_system>\n"

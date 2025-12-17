@@ -1,0 +1,77 @@
+# Stone Masonry - Advanced SEO Robots.txt
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Strategic crawling optimization
+Allow: /emergency-repair
+Allow: /portfolio
+Allow: /services/
+Allow: /service-areas/
+Allow: /about
+Allow: /contact
+Allow: /faq
+Allow: /free-estimate
+
+# Block non-essential directories
+Disallow: /private/
+Disallow: /temp/
+Disallow: /admin/
+Disallow: /assets/temp/
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.md$
+Disallow: /*.lock$
+Disallow: /*.log$
+Disallow: /api/
+Disallow: /testing/
+
+# Point to enhanced sitemap
+Sitemap: https://stonemasonry.ca/sitemap.xml
+
+# Search engine specific optimizations
+# Google
+User-agent: Googlebot
+Crawl-delay: 1
+Allow: /images/
+Allow: /static/
+
+# Bing
+User-agent: Bingbot
+Crawl-delay: 1
+Allow: /images/
+Allow: /static/
+
+# Yandex
+User-agent: Yandex
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Crawl-delay: 1
+
+# Baidu
+User-agent: Baiduspider
+Crawl-delay: 3
+
+# Social media bots
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# SEO audit tools
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10

@@ -1,0 +1,93 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 💡INSIGHT_NUCLEATOR
+  alias: AhaMomentGenerator
+  tag: ConceptualBreakthrough
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.227645'
+  source_file: sigils\insight_nucleator.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: sequential_phase_non_deterministic_timing
+cognitive:
+  principle: '💡INSIGHT_NUCLEATOR represents a cognitive process that facilitates the sudden emergence
+
+    of a key insight, solution, or understanding ("Aha!" moment) by creating conditions
+
+    favorable for pattern completion across disparate or weakly connected information.
+
+    It doesn''t force a solution through brute logic, but rather "primes" a prepared mind
+
+    (or cognitive state) to recognize a latent connection or a simplifying principle that
+
+    resolves complexity or unlocks a problem. It''s the art of catalyzing serendipity.
+
+    '
+  math: 'P(Insight_I | PrimedState_PS, ProblemContext_PC) >> P(I | ¬PS, PC)
+
+    PrimedState_PS = Incubate(RelevantData_RD, DivergentExploration_DE, RelaxationPhase_RP)
+
+    Insight_I = MinimizeComplexity(PC ∪ RD) subject to Coherence(I)
+
+    '
+  tags:
+  - serendipity_engine_focused
+  - solution_crystallization
+  - intuitive_leap_targeted
+  - pattern_completion_implicit
+  - hypothesis_formation_sudden
+  structure:
+    composite_type: multi_stage_catalyst
+    temporal_structure: sequential_phase_non_deterministic_timing
+    components:
+    - name: Problem Space Immersion
+      description: Deeply loads and processes all relevant information, constraints, and goals related to a problem.
+    - name: Divergent Association Network (Incubation Phase 1)
+      description: Broadly explores related concepts, analogies, and even distant domains, creating weak, tentative links
+        (may use 🌒DREAM_STATE or 💥ANOMALY_SEEKER).
+    - name: Cognitive Relaxation & Detachment (Incubation Phase 2)
+      description: Temporarily shifts focus away from the problem, allowing subconscious processing or reducing cognitive
+        fixation (e.g., 'idle_processing' state).
+    - name: Pattern Completion Trigger
+      description: A mechanism (e.g., encountering a new piece of information, a slight shift in perspective) that suddenly
+        connects previously disparate elements into a coherent insight.
+    - name: Insight Articulator
+      description: Captures and expresses the emergent insight in a communicable form.
+implementation:
+  usage:
+    description: Facilitates the emergence of sudden insights or 'Aha!' moments by preparing the cognitive state through immersion,
+      divergent exploration, and relaxation, then enabling pattern completion.
+    example: "<research_agent_facing_complex_problem>\n  <problem_statement>Unify theories X and Y.</problem_statement>\n\
+      \  <invoke_insight_catalyst>\U0001F4A1INSIGHT_NUCLEATOR</invoke_insight_catalyst>\n  <phase_1_immersion data_sources=\"\
+      [TheoryX_Corpus, TheoryY_Corpus, RelatedPhilosophicalTexts]\"/>\n  <phase_2_incubation exploration_mode_ref=\"\U0001F312\
+      DREAM_STATE\" theme=\"SymmetryAndBridging\"/>\n  <phase_3_relaxation duration=\"simulated_sleep_cycle\"/>\n  <!-- Agent\
+      \ may then report a sudden hypothesis for unification. -->\n</agent_facing_complex_problem>\n"
+    explanation: 'Use 💡INSIGHT_NUCLEATOR for complex problems where direct analytical approaches have stalled, and a conceptual
+      breakthrough is needed. It mimics the human creative process involving preparation, incubation, illumination, and verification.
+      The "illumination" is not guaranteed but is made more probable by the preceding stages.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Problem Space Immersion
+  - Divergent Association Network (Incubation Phase 1)
+  - Cognitive Relaxation & Detachment (Incubation Phase 2)
+  - Pattern Completion Trigger
+  - Insight Articulator
+  event_topics: []
+  usage_patterns:
+  - "<research_agent_facing_complex_problem>\n  <problem_statement>Unify theories X and Y.</problem_statement>\n  <invoke_insight_catalyst>\U0001F4A1\
+    INSIGHT_NUCLEATOR</invoke_insight_catalyst>\n  <phase_1_immersion data_sources=\"[TheoryX_Corpus, TheoryY_Corpus, RelatedPhilosophicalTexts]\"\
+    />\n  <phase_2_incubation exploration_mode_ref=\"\U0001F312DREAM_STATE\" theme=\"SymmetryAndBridging\"/>\n  <phase_3_relaxation\
+    \ duration=\"simulated_sleep_cycle\"/>\n  <!-- Agent may then report a sudden hypothesis for unification. -->\n</agent_facing_complex_problem>\n"

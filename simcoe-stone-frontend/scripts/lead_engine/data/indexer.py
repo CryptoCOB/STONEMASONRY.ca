@@ -1,0 +1,3 @@
+# Data indexing logic for Chroma and Supabase
+
+# ...existing code from contractor_rag_pipeline.py related to indexing...

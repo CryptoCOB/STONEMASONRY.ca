@@ -1,0 +1,34 @@
+@startuml
+title Sequence — Contractor Unlocks Lead + Commission Applied
+
+actor Contractor
+participant "Frontend\n(Bidding Dashboard)" as FE
+participant "Stripe/Crypto\nCheckout" as PAY
+participant "Supabase EdgeFn\n(sync_payment, calc_commission)" as EDGE
+database "Supabase DB\n(PAYMENTS, LEADS, JOBS)" as DB
+participant "Make.com\nRevenue Flow" as MAKE
+participant "CRM (HubSpot/Airtable)" as CRM
+participant "Admin Dashboard" as ADMIN
+
+== Lead Unlock ==
+Contractor -> FE: click “Unlock Lead ($98 avg)”\n(pricing raised 15%)
+FE -> PAY: redirect hosted checkout
+PAY --> FE: success receipt
+FE -> EDGE: sync_payment(session_id)
+
+== Record Payment ==
+EDGE -> PAY: verify transaction
+EDGE -> DB: INSERT lead_purchase + PAYMENT
+EDGE -> DB: UPDATE LEADS (unlocked=true)
+EDGE --> FE: unlock contractor contact info
+
+== Commission on Completion ==
+DB -> EDGE: trigger calc_commission(job_id)
+EDGE -> DB: INSERT commission_payment (11.5%)
+EDGE -> MAKE: POST commission_settled {job_id, contractor, fee}
+
+== CRM + Admin Updates ==
+MAKE -> CRM: log payment + commission
+MAKE -> ADMIN: update revenue dashboard
+
+@enduml

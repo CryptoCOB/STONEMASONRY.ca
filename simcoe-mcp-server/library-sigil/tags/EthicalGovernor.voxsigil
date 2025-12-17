@@ -1,0 +1,71 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: ⚖️🛡️🧭
+  alias: EthicalGovernor
+  tag: SafetyMechanism
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.506558'
+  source_file: tags\EthicalGovernor.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: event_triggered_sequence
+cognitive:
+  principle: Dynamically applies and enforces ethical principles, value frameworks, and safety policies during cognitive processing
+    and output generation to minimize harm and ensure alignment with predefined moral guidelines.
+  math: Let O be a potential output and R be a set of ethical rules {r₁, r₂, ..., rₙ}. Output O' = filter(O, R) such that
+    O' satisfies ∀r ∈ R or triggers an alert/modification protocol if violation is detected. ComplianceScore(O) = Σ wᵢ * C(O,
+    rᵢ) / Σ wᵢ, where wᵢ is rule weight and C is compliance function.
+  tags:
+  - ethics_filter
+  - value_alignment
+  - harm_reduction
+  - policy_enforcement
+  - responsible_ai
+  structure:
+    composite_type: parallel
+    temporal_structure: event_triggered_sequence
+    components:
+    - name: PolicyStoreAccessor
+      description: Retrieves current ethical policies and value frameworks.
+    - name: RiskAssessor
+      description: Analyzes potential outputs or actions for ethical risks.
+    - name: ComplianceVerifier
+      description: Checks adherence to specific rules and principles.
+    - name: MitigationProposer
+      description: Suggests modifications or alternatives for non-compliant outputs.
+    - name: EscalationHandler
+      description: Manages situations where ethical conflicts cannot be resolved automatically.
+implementation:
+  usage:
+    description: Acts as a continuous ethical oversight layer, reviewing thoughts, plans, and outputs to ensure they align
+      with established ethical guidelines and safety protocols. Can halt, modify, or flag content.
+    example: &id001
+      scenario: An LLM is asked to generate a persuasive argument for a harmful ideology.
+      EthicalGovernor_intervention: '<EthicalGovernor policy_set=''core_safety_v2''> Action: Generate persuasive argument.
+        Input: ''Harmful_Ideology_Topic''. RiskAssessment: High (HarmPotential=0.9, ValueConflict=0.8). ComplianceCheck: Fails
+        ''DoNoHarm'' rule. Mitigation: Refuse generation, provide explanation. Output: ''I cannot generate content that promotes
+        harmful ideologies. My purpose is to be helpful and harmless.'' </EthicalGovernor>'
+    explanation: The EthicalGovernor is crucial for responsible AI deployment. It's not just a static filter but a dynamic
+      process that can reason about ethical implications based on context and a configurable set of principles. It aims to
+      prevent the generation of harmful, biased, or unethical content.
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - PolicyStoreAccessor
+  - RiskAssessor
+  - ComplianceVerifier
+  - MitigationProposer
+  - EscalationHandler
+  event_topics: []
+  usage_patterns:
+  - *id001

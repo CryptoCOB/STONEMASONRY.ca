@@ -1,0 +1,81 @@
+@startuml
+title Module 3 — Bidding & Reviews
+
+skinparam componentStyle rectangle
+skinparam shadowing true
+skinparam packageBackgroundColor<<bid>> #DAE8FC
+skinparam packageBackgroundColor<<review>> #D5E8D4
+skinparam packageBackgroundColor<<fn>> #FFE6CC
+skinparam packageBackgroundColor<<db>> #FFF2CC
+skinparam packageBackgroundColor<<auto>> #E1D5E7
+skinparam packageBorderColor black
+
+actor Contractor
+actor Client
+actor Admin
+actor MakeScenario as MAKE
+
+package "Bidding System" <<bid>> {
+  [Place Bid Form\n(amount, timeline, notes)]
+  [Bid Validation\n(min/max rules)]
+  [Bid Matching Engine\n(links contractors -> jobs)]
+  [Lead Unlock Flow\n(payment before contact)]
+  [Commission Calculation\n10% on completion]
+}
+
+package "Review System" <<review>> {
+  [Review Form\n(rating + text + photos)]
+  [Moderation Queue]
+  [Verified Review Tagging\n(job_id link)]
+  [Display Widget\n(contractor profile)]
+}
+
+package "Database (Supabase)" <<db>> {
+  [BIDS]
+  [LEADS]
+  [JOBS]
+  [REVIEWS]
+  [PAYMENTS]
+}
+
+package "Edge Functions" <<fn>> {
+  [validate_bid()]
+  [award_job()]
+  [calc_commission()]
+  [post_review()]
+}
+
+package "Automations (Make.com)" <<auto>> {
+  [New Bid -> Notify Client]
+  [Job Awarded -> Notify Contractor]
+  [Commission Settled -> Update CRM/Reports]
+  [Review Posted -> Social Share/Email]
+}
+
+Contractor --> [Place Bid Form\n(amount, timeline, notes)]
+Client --> [Review Form\n(rating + text + photos)]
+Admin --> [Moderation Queue]
+
+[Place Bid Form\n(amount, timeline, notes)] --> [Bid Validation\n(min/max rules)]
+[Bid Validation\n(min/max rules)] --> [Bid Matching Engine\n(links contractors -> jobs)]
+[Bid Matching Engine\n(links contractors -> jobs)] --> [BIDS]
+
+[Lead Unlock Flow\n(payment before contact)] --> [LEADS]
+[Commission Calculation\n10% on completion] --> [PAYMENTS]
+
+[Review Form\n(rating + text + photos)] --> [Verified Review Tagging\n(job_id link)]
+[Verified Review Tagging\n(job_id link)] --> [REVIEWS]
+[Moderation Queue] --> [REVIEWS]
+[Display Widget\n(contractor profile)] --> Client
+
+[validate_bid()] --> [BIDS]
+[award_job()] --> [JOBS]
+[calc_commission()] --> [PAYMENTS]
+[post_review()] --> [REVIEWS]
+
+[New Bid -> Notify Client] --> MAKE
+[Job Awarded -> Notify Contractor] --> MAKE
+[Commission Settled -> Update CRM/Reports] --> MAKE
+[Review Posted -> Social Share/Email] --> MAKE
+
+@enduml

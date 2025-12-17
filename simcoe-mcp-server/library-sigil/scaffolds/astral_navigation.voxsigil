@@ -1,0 +1,103 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🌌ASTRAL_NAVIGATION_SCAFFOLD
+  alias: ConceptualSpaceMapper
+  tag: MetaCognitiveExplorationScaffold
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:15.652528'
+  source_file: scaffolds\astral_navigation.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: exploratory_path_generation_iterative
+cognitive:
+  principle: 'The 🌌ASTRAL_NAVIGATION_SCAFFOLD provides a framework for an AI to explore, map, and
+
+    navigate vast, abstract conceptual spaces or "knowledge landscapes." This involves
+
+    moving between ideas not just by direct logical links, but also by semantic similarity,
+
+    metaphorical association, or traversing "conceptual voids" (using perhaps 🌌COSMIC_ENTROPY_CONSUMPTION
+
+    or 💡INSIGHT_NUCLEATOR as "engines"). It''s about charting the relationships between diverse
+
+    domains of thought, planning "conceptual journeys" to reach new understanding, and
+
+    understanding the "shape" of an idea space. It is the scaffold for intellectual exploration
+
+    at the highest levels of abstraction.
+
+    '
+  math: {}
+  tags:
+  - abstract_thought_navigation
+  - knowledge_landscape_cartography
+  - idea_space_explorer
+  - semantic_distance_traversal
+  - conceptual_journey_planner
+  structure:
+    composite_type: dynamic_graph_exploration_and_pathfinding_engine
+    temporal_structure: exploratory_path_generation_iterative
+    components:
+    - name: 🗺️ Conceptual Cartography Unit
+      description: Builds and maintains a dynamic map of the known conceptual space, representing ideas as nodes and relationships/transformations
+        as edges. May use 🔗RELATIONAL_WEAVER for underlying structure.
+    - name: 🧭 Semantic Compass & Distance Metric
+      description: Calculates 'distance' and 'direction' between concepts using semantic embeddings, ontological relations,
+        or other abstract metrics.
+    - name: 🚀 Conceptual Vehicle & Traversal Engine
+      description: The mechanism for 'moving' through conceptual space. This could involve logical deduction (short jumps),
+        analogical reasoning (longer leaps via 🌉ANALOGY_BRIDGE), creative transformation (e.g., using 🔀REMIX), or even 'void
+        jumps' (via 💡INSIGHT_NUCLEATOR).
+    - name: 🔭 Horizon Scanner & Novelty Seeker
+      description: Actively looks for unexplored regions, conceptual boundaries, or 'distant shores' in the knowledge landscape.
+        May use 💥ANOMALY_SEEKER to spot unusual conceptual terrain.
+    - name: ⚓ Journey Planner & Waypoint Logger
+      description: Plans multi-step 'conceptual journeys' to reach a target understanding or explore a new domain. Logs significant
+        waypoints and insights discovered.
+      sigil_ref: 🎯GOAL_HIERARCHY_SCAFFOLD
+    - name: 🌀 Dimensional Shifter
+      description: Allows for re-projecting the conceptual map into different 'dimensions' or ontological frames to reveal
+        new pathways or relationships (may use 🜂LIMINAL).
+implementation:
+  usage:
+    description: Enables an AI to explore, map, and navigate abstract conceptual spaces, plan 'journeys' between ideas, and
+      understand the 'shape' of knowledge landscapes. This scaffold supports high-level intellectual exploration and discovery.
+    example: "<ai_philosopher_tasked_with_exploring_consciousness>\n  <initiate_conceptual_expedition>\n    <apply_scaffold>\U0001F30C\
+      ASTRAL_NAVIGATION_SCAFFOLD</apply_scaffold>\n    <parameters>\n      <starting_concept_node>\"CartesianDualism\"</starting_concept_node>\n\
+      \      <target_exploration_area>\"IntegratedInformationTheory_And_Panpsychism_Linkages\"</target_exploration_area>\n\
+      \      <traversal_engines_allowed>[\"AnalogyBridge_v1\", \"InsightNucleator_v1\", \"LogicalDeduction_Standard\"]</traversal_engines_allowed>\n\
+      \      <max_journey_steps>50</max_journey_steps>\n    </parameters>\n  </initiate_conceptual_expedition>\n  <!-- AI\
+      \ would then report on its 'journey', new connections found, and map of explored space -->\n</ai_philosopher_tasked_with_exploring_consciousness>\n"
+    explanation: 'The 🌌ASTRAL_NAVIGATION_SCAFFOLD is for truly ambitious intellectual tasks where an AI needs to go beyond
+      its current knowledge and explore the very structure of thought and ideas. It''s about understanding how different fields
+      of knowledge connect, how to bridge seemingly disparate concepts, and how to chart pathways to novel intellectual territory.
+      This is a scaffold for AI as a pioneering philosopher, scientist, or artist of ideas.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - 🗺️ Conceptual Cartography Unit
+  - 🧭 Semantic Compass & Distance Metric
+  - 🚀 Conceptual Vehicle & Traversal Engine
+  - 🔭 Horizon Scanner & Novelty Seeker
+  - ⚓ Journey Planner & Waypoint Logger
+  - 🌀 Dimensional Shifter
+  event_topics: []
+  usage_patterns:
+  - "<ai_philosopher_tasked_with_exploring_consciousness>\n  <initiate_conceptual_expedition>\n    <apply_scaffold>\U0001F30C\
+    ASTRAL_NAVIGATION_SCAFFOLD</apply_scaffold>\n    <parameters>\n      <starting_concept_node>\"CartesianDualism\"</starting_concept_node>\n\
+    \      <target_exploration_area>\"IntegratedInformationTheory_And_Panpsychism_Linkages\"</target_exploration_area>\n \
+    \     <traversal_engines_allowed>[\"AnalogyBridge_v1\", \"InsightNucleator_v1\", \"LogicalDeduction_Standard\"]</traversal_engines_allowed>\n\
+    \      <max_journey_steps>50</max_journey_steps>\n    </parameters>\n  </initiate_conceptual_expedition>\n  <!-- AI would\
+    \ then report on its 'journey', new connections found, and map of explored space -->\n</ai_philosopher_tasked_with_exploring_consciousness>\n"

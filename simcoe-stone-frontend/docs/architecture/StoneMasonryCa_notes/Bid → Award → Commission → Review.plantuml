@@ -1,0 +1,46 @@
+@startuml
+title Sequence — Bid to Commission + Review
+
+actor Contractor
+actor Client
+participant "Frontend\n(Bid Form)" as FE
+participant "Supabase EdgeFn\n(validate_bid, award_job, commission)" as EDGE
+database "Supabase DB\n(BIDS, JOBS, LEADS, PAYMENTS, REVIEWS)" as DB
+participant "Stripe/Crypto\n(lead unlock)" as PAY
+participant "Make.com\nAutomations" as MAKE
+participant "CRM (Airtable/HubSpot)" as CRM
+participant "Social/Email\nvia Make" as COMMS
+
+== Contractor Bids ==
+Contractor -> FE: submit bid {job_id, amount, notes}
+FE -> EDGE: call validate_bid()
+EDGE -> DB: INSERT BIDS
+EDGE -> MAKE: POST new_bid {job_id, contractor, amount}
+MAKE -> Client: email/SMS “New bid received”
+
+== Client Awards ==
+Client -> FE: click “Award Contractor”
+FE -> EDGE: call award_job(job_id, contractor_id)
+EDGE -> DB: UPDATE JOBS.status=awarded
+EDGE -> DB: UPDATE LEADS (mark chosen contractor)
+EDGE -> MAKE: POST job_awarded {job_id, contractor_id}
+MAKE -> Contractor: notify “You were awarded”
+
+== Lead Unlock (before contact) ==
+Contractor -> FE: pay to unlock lead
+FE -> PAY: Stripe/Crypto checkout
+PAY --> FE: success
+FE -> EDGE: call commission_record()
+EDGE -> DB: INSERT LEADS + PAYMENT record
+EDGE -> MAKE: POST commission_settled {lead, contractor, fee}
+MAKE -> CRM: update revenue dashboards
+
+== Review Posting ==
+Client -> FE: submit review {rating, text, photos}
+FE -> EDGE: call post_review()
+EDGE -> DB: INSERT REVIEWS
+EDGE -> MAKE: POST review_posted {contractor, rating}
+MAKE -> COMMS: email contractor copy of review
+MAKE -> Social/Email: auto-post positive reviews (optional)
+
+@enduml

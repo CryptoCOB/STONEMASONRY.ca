@@ -1,0 +1,10 @@
+{
+  "total_leads": 57,
+  "new_leads": 35,
+  "cities_processed": 10,
+  "cities_failed": 0,
+  "start_time": "2025-09-09T16:46:21.038096",
+  "end_time": "2025-09-09T16:48:09.764361",
+  "rag_updated": true,
+  "enriched": 35
+}

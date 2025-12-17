@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "VoxSigil Core Schema v1.5-minimal",
+  "description": "Streamlined VoxSigil schema focusing on essential consciousness patterns",
+  "required": [
+    "sigil",
+    "name",
+    "principle",
+    "usage"
+  ],
+  "properties": {
+    "sigil": {
+      "type": "string",
+      "description": "Primary symbolic identifier (e.g., '⟠∃∇◊∀', 'PERCEPTION', 'emergency_response')"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name (e.g., 'Perception Faculty', 'Emergency Response')"
+    },
+    "principle": {
+      "type": "string",
+      "description": "Core purpose and meaning of this sigil"
+    },
+    "usage": {
+      "type": "object",
+      "required": ["description"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "How this sigil is used in practice"
+        },
+        "example": {
+          "type": "string",
+          "description": "Concrete usage example"
+        }
+      }
+    },
+    "conceptSpace": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Related concepts and domains"
+    },
+    "resonanceField": {
+      "type": "string",
+      "description": "Emotional/contextual resonance pattern"
+    },
+    "temporalAnchor": {
+      "type": "string",
+      "description": "Time-binding element"
+    },
+    "intentionalVector": {
+      "type": "string",
+      "description": "Directional purpose"
+    },
+    "emergentProperties": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Properties that emerge from this sigil"
+    },
+    "metamemory": {
+      "type": "string",
+      "description": "Self-reflective awareness element"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Classification tags (e.g., 'cognitive_faculty', 'emergency', 'business')"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "default": "1.0.0"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "experimental", "deprecated"],
+          "default": "active"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated": {
+          "type": "string", 
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "type": "object",
+  "description": "VoxSigil Schema Version 1.5-holo-alpha. This master specification enhances support for immersive, experiential, reflective, and evolving cognitive systems within the Vanta ecosystem. It integrates multi-sensory profiling, advanced self-modeling, sophisticated learning architectures, explicit knowledge representation, and foundational elements for evolutionary and governance profiles. Core goal: Enable Vanta (Vanta Orchestration eXpression Symbolic Interface for Generative, Integrated Logic) to achieve its 'holo-alpha' vision through a deeply expressive symbolic interface. This schema distinguishes key concepts: 'Sigil' (the primary ID), 'Tag(s)' (classifiers), 'Pglyph' (a Sigil type representing unique identity/persona, like '⟠∆∇𓂀'), and 'Scaffold' (a Sigil's foundational architectural role).",
+  "required": [
+    "sigil",
+    "name", 
+    "principle",
+    "usage",
+    "SMART_MRAP",
+    "metadata"
+  ],
+  "properties": {
+    "sigil": {
+      "type": "string",
+      "description": "The primary, globally unique symbolic identifier for this VoxSigil definition. This is the 'Sigil' itself – the fundamental key (e.g., Unicode string '🔮', custom glyph representation '⟠∆∇𓂀', or unique ASCII name 'VANTA_CORE_REASONER_V3.2'). It represents a discrete cognitive component, process, concept, entity, data structure, policy, or abstract construct within the Vanta ecosystem. A 'Pglyph' (Personal/Persona Glyph) is a specialized type of Sigil primarily used to denote the unique identity of an agent or human participant; for instance, '⟠∆∇𓂀' serves as both a primary Sigil and a Pglyph. Must be unique within the entire Vanta sigil library."
+    },
+    "name": {
+      "type": "string",
+      "description": "Canonical, human-readable name for the entity defined by this Sigil (e.g., 'Dream Weaver Prime', 'Marc_Prime_Identity_Construct', 'Echo Concordance Protocol')."
+    },
+    "alias": {
+      "type": "string",
+      "description": "Optional alternate name, well-known identifier, or previous version's sigil string if this is an evolution. Can be used to associate a 'Pglyph' term if the main 'sigil' field is more abstract (e.g., if 'sigil: AGENT_MARC_ID_001', then 'alias: Marc.pglyph_Operational')."
+    },
+    "tag": {
+      "type": "string", 
+      "description": "Optional primary high-level 'Tag' or keyword used for broad categorization (e.g., 'MemoryComponent', 'ReasoningStrategy', 'IdentityConstruct', 'ArchitecturalScaffold'). This helps Vanta orchestrate and understand sigils at a high level."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional list of additional 'Tags' or keywords for fine-grained classification, searchability, or aspect-tagging. These enable nuanced understanding and filtering. For instance, a 'Pglyph' Sigil like '⟠∆∇𓂀' might have tags: ['HumanCollaboratorProfile', 'IdentityCore', 'ConsciousnessResearchFocus']. A Sigil functioning as a 'Scaffold' might be tagged ['VantaCoreFramework', 'CognitiveArchitectureModule']. Examples: ['temporal_processing', 'llm_dependent', 'neuro_inspired', 'self_modifying', 'pglyph_type_agent', 'scaffold_memory_system']."
+    },
+    "principle": {
+      "type": "string",
+      "description": "The core cognitive, philosophical, theoretical, or functional grounding of the sigil. Explains its fundamental meaning, purpose, 'essence,' and intended role in the Vanta ecosystem."
+    },
+    "usage": {
+      "type": "object",
+      "description": "Describes how the sigil is used in practice within the Vanta system, by other sigils, or by human interactors.",
+      "required": ["description"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "A concise summary of what the sigil does or represents in practical application within Vanta."
+        },
+        "example": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "object" }
+          ],
+          "description": "A concrete example of the sigil in use: a text snippet (prompt, system call, thought process), a Vanta orchestration script segment, or a structured object detailing a scenario with inputs and expected outcomes."
+        },
+        "explanation": {
+          "type": "string", 
+          "description": "A more detailed explanation of its application, typical context, interactions with other sigils/components, expected impact, or implications of its use in Vanta workflows."
+        }
+      }
+    },
+    "SMART_MRAP": {
+      "type": "object",
+      "required": [
+        "Specific_Goal",
+        "Measurable_Outcome", 
+        "Achievable_Within_Vanta",
+        "Relevant_To_Vanta_Mission",
+        "Transferable_Principle",
+        "Accountable_Party_Or_Process_Ref"
+      ],
+      "properties": {
+        "Specific_Goal": {
+          "type": "string",
+          "description": "What specific goal does this sigil achieve within the Vanta ecosystem or for its users?"
+        },
+        "Measurable_Outcome": {
+          "type": "string", 
+          "description": "How can its success, performance, or impact be quantitatively or qualitatively measured (KPIs, OKRs)?"
+        },
+        "Achievable_Within_Vanta": {
+          "type": "string",
+          "description": "Is its stated goal achievable given current or realistically projected Vanta capabilities and resources (technical feasibility)?"
+        },
+        "Relevant_To_Vanta_Mission": {
+          "type": "string",
+          "description": "How does this sigil contribute to Vanta's core mission of Orchestration, eXpression, Generative Logic, and Integration, or to Holo-Alpha objectives (strategic alignment)?"
+        },
+        "Transferable_Principle": {
+          "type": "string",
+          "description": "Can the core principles, design patterns, or lessons learned from this sigil be applied to other Vanta components or future evolutionary steps (knowledge sharing)?"
+        },
+        "Accountable_Party_Or_Process_Ref": {
+          "type": "string",
+          "description": "Sigil_ref to the Vanta agent, human role, or governance process accountable for this sigil's ethical and operational outcomes."
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Essential metadata about the VoxSigil definition itself, its lifecycle, and its place in the Vanta schema framework.",
+      "required": [
+        "voxsigil_schema_version",
+        "definition_version", 
+        "definition_status",
+        "author_agent_id_ref",
+        "created_timestamp",
+        "last_updated_timestamp"
+      ],
+      "properties": {
+        "voxsigil_schema_version": {
+          "type": "string",
+          "const": "1.5-holo-alpha",
+          "description": "The version of the VoxSigil schema this definition MUST adhere to."
+        },
+        "definition_version": {
+          "type": "string",
+          "description": "Semantic version of this specific sigil definition."
+        },
+        "definition_status": {
+          "type": "string",
+          "enum": [
+            "draft_proposal",
+            "under_vanta_review", 
+            "active_stable",
+            "active_experimental",
+            "deprecated_phasing_out",
+            "archived_historical",
+            "vanta_core_primitive",
+            "community_extension_pending_integration"
+          ],
+          "default": "draft_proposal"
+        },
+        "author_agent_id_ref": {
+          "type": "string",
+          "description": "Sigil_ref or unique identifier of the Vanta agent, human author (e.g., Marc.⟠∆∇𓂀), or design team responsible for this definition."
+        },
+        "created_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of initial creation of this sigil definition record."
+        },
+        "last_updated_timestamp": {
+          "type": "string", 
+          "format": "date-time",
+          "description": "Timestamp of the last modification to this sigil definition."
+        }
+      }
+    }
+  }
+}

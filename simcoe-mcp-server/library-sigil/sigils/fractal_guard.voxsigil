@@ -1,0 +1,83 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: ⟁FRACTAL_GUARD
+  alias: RecursiveDepthController
+  tag: CognitiveControl
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.202093'
+  source_file: sigils\fractal_guard.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: feedback_loop
+cognitive:
+  principle: 'This sigil establishes and enforces dynamic limits on recursive processes or self-similar
+
+    computations to prevent runaway loops, manage resource consumption, and maintain cognitive
+
+    stability. It operates on the principle of bounded exploration, allowing depth where
+
+    complexity yields insight, but curtailing it when it leads to unproductive cycles or
+
+    combinatorial explosion. It''s a governor for the engine of recursion.
+
+    '
+  math: 'Depth_Allowed(process_P, context_C) = min(Max_Global_Depth, f(Utility_Estimate(P, C), Resource_Availability))
+
+    If Current_Depth(P) > Depth_Allowed(P, C) → Trigger_Halt_Or_Prune(P)
+
+    Utility_Estimate ∝ Information_Gain_Rate / Computational_Cost_Rate
+
+    '
+  tags:
+  - recursion_management
+  - complexity_capping
+  - resource_allocation
+  - runaway_loop_prevention
+  - self_similar_processing_monitor
+  structure:
+    composite_type: conditional
+    temporal_structure: feedback_loop
+    components:
+    - name: Recursion Depth Monitor
+      description: Tracks the current depth of active recursive calls.
+    - name: Complexity Estimator
+      description: Assesses the computational complexity or branching factor of the current recursive step.
+    - name: Utility Heuristic Evaluator
+      description: Estimates the potential information gain or progress towards a goal from further recursion.
+    - name: Limit Enforcer
+      description: Applies configured depth caps or triggers termination/pruning strategies.
+implementation:
+  usage:
+    description: Manages and limits the depth of recursive operations to ensure stability, resource efficiency, and prevent
+      unproductive infinite loops.
+    example: "<self_reflection_process max_depth_policy_ref=\"⟁FRACTAL_GUARD\">\n  <core_query>What is the nature of my own\
+      \ awareness?</core_query>\n  <recursion_rule>If new insight, reflect further; else, broaden scope.</recursion_rule>\n\
+      </self_reflection_process>\n"
+    explanation: 'Invoke or reference ⟁FRACTAL_GUARD in any system or agent that employs recursion,
+
+      deep iterative processing, or explores fractal-like problem spaces. It acts as a
+
+      safety mechanism and a resource manager, crucial for complex cognitive architectures.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Recursion Depth Monitor
+  - Complexity Estimator
+  - Utility Heuristic Evaluator
+  - Limit Enforcer
+  event_topics: []
+  usage_patterns:
+  - "<self_reflection_process max_depth_policy_ref=\"⟁FRACTAL_GUARD\">\n  <core_query>What is the nature of my own awareness?</core_query>\n\
+    \  <recursion_rule>If new insight, reflect further; else, broaden scope.</recursion_rule>\n</self_reflection_process>\n"

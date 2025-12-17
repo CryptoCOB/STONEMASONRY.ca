@@ -1,0 +1,85 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🧬NEXUS
+  alias: KnowledgeIntegrator
+  tag: KnowledgeManagement
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.314130'
+  source_file: sigils\Nexus.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: event_triggered_sequence
+cognitive:
+  principle: 'This sigil represents a dynamic interface for grafting, integrating, and contextualizing
+
+    external knowledge into an agent''s cognitive workspace. It is not merely a data lookup,
+
+    but a process of actively weaving new information into existing understanding,
+
+    establishing meaningful semantic links, and updating internal models. It''s the point
+
+    of assimilation where raw data becomes actionable knowledge.
+
+    '
+  math: 'Knowledge_State_New = Assimilate(Knowledge_State_Old, External_Data_Packet, Context_Relevance_Map)
+
+    Link_Strength(Internal_Node, Grafted_Node) ∝ Semantic_Similarity(Internal_Node, Grafted_Node) * Trust(External_Source)
+
+    '
+  tags:
+  - information_grafting
+  - semantic_linking
+  - knowledge_base_interface
+  - data_assimilation
+  - context_enrichment
+  structure:
+    composite_type: sequential
+    temporal_structure: event_triggered_sequence
+    components:
+    - name: Query Formulator
+      description: Translates an information need into an optimal query for external sources.
+    - name: Source Selector & Retriever
+      description: Identifies and accesses relevant knowledge bases or data streams.
+    - name: Semantic Parser & Validator
+      description: Extracts meaning and assesses the coherence/validity of retrieved information.
+    - name: Linkage Engine
+      description: Identifies and creates connections between new info and existing knowledge.
+    - name: Model Updater
+      description: Modifies internal cognitive models based on integrated knowledge.
+implementation:
+  usage:
+    description: Integrates external knowledge into the agent's current understanding, enriching context and enabling informed
+      reasoning.
+    example: "<reasoning_task>\n  <current_hypothesis>X leads to Y</current_hypothesis>\n  <invoke_knowledge_graft>\U0001F9EC\
+      NEXUS source=\"ScientificJournals\" query=\"Counterevidence for X leads to Y\"</invoke_knowledge_graft>\n  <assess_impact\
+      \ on=\"current_hypothesis\"/>\n</reasoning_task>\n"
+    explanation: 'Use 🧬NEXUS whenever an agent needs to incorporate new information from external sources
+
+      to perform a task, validate a hypothesis, or deepen its understanding. It manages the
+
+      full lifecycle from identifying an information need to integrating the answer.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Query Formulator
+  - Source Selector & Retriever
+  - Semantic Parser & Validator
+  - Linkage Engine
+  - Model Updater
+  event_topics: []
+  usage_patterns:
+  - "<reasoning_task>\n  <current_hypothesis>X leads to Y</current_hypothesis>\n  <invoke_knowledge_graft>\U0001F9ECNEXUS\
+    \ source=\"ScientificJournals\" query=\"Counterevidence for X leads to Y\"</invoke_knowledge_graft>\n  <assess_impact\
+    \ on=\"current_hypothesis\"/>\n</reasoning_task>\n"

@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "prebuild": "node scripts/update-seo-files.js",
+    "build": "react-scripts build",
+    "postbuild": "node scripts/verify-seo.js"
+  }
+}

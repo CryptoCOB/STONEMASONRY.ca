@@ -1,0 +1,90 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 💬🤝🌍
+  alias: ICNP_Scaffold
+  tag: MultiAgentSystems
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:15.810485'
+  source_file: scaffolds\inter_agent_communication_protocol_scaffold.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: event_triggered_sequence
+cognitive:
+  principle: "The \U0001F4AC\U0001F91D\U0001F30D (Inter-Agent Communication & Negotiation Protocol) scaffold defines the protocols,\
+    \ message structures,\nand mechanisms for structured, meaningful communication and negotiation between distinct intelligent\
+    \ agents\n(Vanta-native or external). It includes layers for establishing common ground (semantic grounding), \nexchanging\
+    \ information, clarifying intent, sharing beliefs/goals, managing commitments, resolving conflicts, \nand forming joint\
+    \ plans for collaborative action.\n"
+  math: {}
+  tags:
+  - CommunicationProtocol
+  - NegotiationFramework
+  - Collaboration
+  - DistributedAI
+  - SemanticGrounding
+  structure:
+    composite_type: layered_protocol_stack
+    temporal_structure: event_triggered_sequence
+    components:
+    - name: MessageEncoderDecoder
+      description: Translates internal agent representations into a shared communication language (and vice-versa).
+      sigil_ref: 🗣️LINGUA_FRANCA_TRANSLATOR
+    - name: SemanticGroundingModule
+      description: Establishes shared meaning for symbols and concepts between agents, potentially through dialogue or reference
+        to common ontologies.
+      sigil_ref: 🌍SHARED_ONTOLOGY_MAPPER
+    - name: IntentClarificationUnit
+      description: Manages dialogues to ensure mutual understanding of goals, intentions, and speech acts.
+    - name: BeliefExchangeMechanism
+      description: Protocols for agents to share and update their beliefs based on communication.
+    - name: NegotiationStrategyEngine
+      description: Implements strategies for bargaining, compromise, and reaching mutually acceptable agreements.
+      sigil_ref: ⚖️NEGOTIATION_TACTICIAN
+    - name: CommitmentTracker
+      description: Manages promises and commitments made by agents during interaction.
+    - name: JointPlanCoordinator
+      description: Facilitates the collaborative creation and execution monitoring of plans involving multiple agents.
+implementation:
+  usage:
+    description: Provides the framework for robust and effective communication, negotiation, and collaboration between multiple
+      AI agents or between AI agents and humans.
+    example: "// AgentA wants to collaborate with AgentB on task_Z\nICNP_SCAFFOLD.initiate_dialogue(\n    initiator_agent_id=\"\
+      AgentA\",\n    recipient_agent_id=\"AgentB\",\n    initial_proposal={\n        type: \"collaboration_request\",\n  \
+      \      task_id: \"task_Z\",\n        proposed_roles: { AgentA: \"data_analyzer\", AgentB: \"report_generator\" }\n \
+      \   },\n    communication_channel=\"secure_vanta_link_07\"\n);\n"
+    explanation: 'This scaffold is essential for any system involving multiple interacting intelligent entities. It supports
+      tasks
+
+      like distributed problem solving, resource allocation negotiations, information sharing in a team,
+
+      and coordinated action in complex environments. It aims to make multi-agent interactions more than just
+
+      message passing, fostering genuine understanding and cooperation.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - MessageEncoderDecoder
+  - SemanticGroundingModule
+  - IntentClarificationUnit
+  - BeliefExchangeMechanism
+  - NegotiationStrategyEngine
+  - CommitmentTracker
+  - JointPlanCoordinator
+  event_topics: []
+  usage_patterns:
+  - "// AgentA wants to collaborate with AgentB on task_Z\nICNP_SCAFFOLD.initiate_dialogue(\n    initiator_agent_id=\"AgentA\"\
+    ,\n    recipient_agent_id=\"AgentB\",\n    initial_proposal={\n        type: \"collaboration_request\",\n        task_id:\
+    \ \"task_Z\",\n        proposed_roles: { AgentA: \"data_analyzer\", AgentB: \"report_generator\" }\n    },\n    communication_channel=\"\
+    secure_vanta_link_07\"\n);\n"

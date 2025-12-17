@@ -1,0 +1,86 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: S↻∑
+  alias: RecursiveSymbolicReasoning
+  tag: ReasoningPattern
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.631428'
+  source_file: tags\recursive_symbolic.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: feedback_loop
+cognitive:
+  principle: 'The application of self-referential and iterative symbolic operations to analyze, transform, or generate complex
+    symbolic structures, enabling problem-solving through layered abstraction and hierarchical decomposition.
+
+    '
+  math: "Let S be a set of symbols and O be a set of operations o: S* → S*. A recursive symbolic process R can be defined\
+    \ as:\nR(s_input) = \n  IF BaseCaseCondition(s_input) THEN \n    BaseCaseTransform(s_input)\n  ELSE \n    CombineResults(s_input,\
+    \ R(RecursiveStepTransform_1(s_input)), ..., R(RecursiveStepTransform_n(s_input)))\nWhere s_input ∈ S*.\n"
+  tags:
+  - recursion
+  - symbolic_manipulation
+  - meta_reasoning
+  - problem_decomposition
+  - self_reference
+  - hierarchical_processing
+  structure:
+    composite_type: recursive
+    temporal_structure: feedback_loop
+    components:
+    - name: SymbolSetDefinition
+      description: The vocabulary of symbols the recursive process operates upon.
+    - name: BaseCaseIdentifier
+      description: Logic to identify the terminal condition(s) of the recursion.
+    - name: BaseCaseAction
+      description: The operation performed when a base case is met.
+    - name: RecursiveStepOperator
+      description: The transformation applied to the input to generate sub-problems for further recursive calls.
+    - name: ResultCombinationLogic
+      description: How results from recursive calls are combined or aggregated.
+    - name: TerminationConditionEnforcer
+      description: Ensures the recursion eventually stops (e.g., depth limit, convergence).
+implementation:
+  usage:
+    description: Applying recursive patterns in symbolic reasoning for complex problem-solving, analysis, or generation tasks
+      that benefit from self-similar processing at multiple levels of abstraction.
+    example: &id001
+      task: Hierarchical symbolic decomposition of a complex problem statement.
+      input: 'Problem: ''Optimize global supply chain for sustainable energy components considering geopolitical risks and
+        material scarcity.'''
+      recursive_logic_sketch: "R(ProblemStatement):\n  IF ProblemStatement is atomic_and_solvable THEN Analyze(ProblemStatement)\n\
+        \  ELSE \n    SubProblems = Decompose(ProblemStatement into KeyThemes/Constraints)\n    Solutions = []\n    FOR SP\
+        \ in SubProblems: Solutions.append(R(SP))\n    RETURN SynthesizeSolutions(Solutions, OriginalContext(ProblemStatement))\n"
+      explanation_of_example: The main problem is recursively broken down into smaller, more manageable sub-problems (e.g.,
+        'sustainable energy components', 'geopolitical risks', 'material scarcity'). Each sub-problem is then addressed recursively
+        until a base level of analysis is possible. The solutions/analyses are then synthesized back up the hierarchy.
+    explanation: 'This sigil represents reasoning processes that call upon themselves, either directly or indirectly, to operate
+      on progressively simpler, more abstract, or transformed versions of an initial symbolic input. It''s fundamental for
+      tasks like parsing hierarchical structures (e.g., language, code), meta-reasoning (reasoning about reasoning), exploring
+      fractal-like problem spaces, and any situation where a problem can be defined in terms of smaller instances of itself.
+      Examples include self-referential symbolic processes, hierarchical symbolic decomposition, and meta-symbolic reasoning
+      about reasoning systems.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - SymbolSetDefinition
+  - BaseCaseIdentifier
+  - BaseCaseAction
+  - RecursiveStepOperator
+  - ResultCombinationLogic
+  - TerminationConditionEnforcer
+  event_topics: []
+  usage_patterns:
+  - *id001

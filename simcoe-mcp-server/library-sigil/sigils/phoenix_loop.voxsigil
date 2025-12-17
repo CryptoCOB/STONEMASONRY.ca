@@ -1,0 +1,88 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🜔PHOENIX
+  alias: RegenerativeMemoryPurge
+  tag: MemoryManagement
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.359560'
+  source_file: sigils\phoenix_loop.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: event_triggered_sequence
+cognitive:
+  principle: '🜔PHOENIX embodies the principle of regenerative feedback combined with selective forgetting.
+
+    Inspired by iterative renewal and the concept of "creative destruction," it prunes stale,
+
+    redundant, or low-value information from a cognitive system''s memory or context.
+
+    It then allows for the "regrowth" or reintegration of core insights or new information
+
+    into a cleaner, more focused cognitive state. It''s a mechanism for memory hygiene,
+
+    long-chain coherence, and escaping cognitive ruts by "burning down" the old to make
+
+    way for the new.
+
+    '
+  math: 'MemoryState(t+1) = Prune(MemoryState(t), Threshold_φ) ⊕ Integrate(NewInsight_Δ, CoreSchema_S)
+
+    Prune_Criteria(Information_i) = ValueScore(i) < Threshold_φ OR Entropy(i) > Threshold_ε
+
+    ValueScore(i) ∝ Relevance(i, CurrentGoal) * Recency(i) * Connectivity(i)
+
+    '
+  tags:
+  - selective_forgetting
+  - context_renewal
+  - iterative_refinement_reset
+  - knowledge_distillation
+  - resilience_mechanism
+  structure:
+    composite_type: sequential_phase
+    temporal_structure: event_triggered_sequence
+    components:
+    - name: Value/Relevance Assessor
+      description: Evaluates existing memory elements based on criteria like relevance, recency, entropy, or utility.
+    - name: Selective Pruning Mechanism
+      description: Removes or archives memory elements that fall below a defined threshold.
+    - name: Core Insight Distiller/Extractor
+      description: Identifies and preserves essential knowledge or 'seeds' from the pruned memory.
+    - name: Regeneration/Reintegration Interface
+      description: Facilitates the rebuilding of context around distilled insights or the integration of fresh perspectives
+        (Δ).
+implementation:
+  usage:
+    description: Triggers a process of selective memory pruning and context regeneration to refresh cognitive state, improve
+      coherence, and integrate new insights effectively.
+    example: "<long_running_research_agent>\n  <status>Context window nearing saturation, reasoning becoming circular.</status>\n\
+      \  <invoke_memory_renewal>\U0001F714PHOENIX retention_heuristic=\"keep_core_hypotheses\" new_input_source=\"latest_findings_summary\"\
+      </invoke_memory_renewal>\n  <continue_research with=\"refreshed_context\"/>\n</long_running_research_agent>\n"
+    explanation: 'Invoke 🜔PHOENIX when a cognitive process has become stale, its context window is bloated with irrelevant
+      information, or a radical shift in perspective is needed. It "burns away" the less valuable parts of the current memory
+      or context, retaining the "ashes" (core insights) from which a new, more potent understanding can grow, often incorporating
+      new data (Δ).
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - Value/Relevance Assessor
+  - Selective Pruning Mechanism
+  - Core Insight Distiller/Extractor
+  - Regeneration/Reintegration Interface
+  event_topics: []
+  usage_patterns:
+  - "<long_running_research_agent>\n  <status>Context window nearing saturation, reasoning becoming circular.</status>\n \
+    \ <invoke_memory_renewal>\U0001F714PHOENIX retention_heuristic=\"keep_core_hypotheses\" new_input_source=\"latest_findings_summary\"\
+    </invoke_memory_renewal>\n  <continue_research with=\"refreshed_context\"/>\n</long_running_research_agent>\n"

@@ -1,0 +1,68 @@
+@startuml
+title Module 7 — Contractor Growth Services
+
+skinparam componentStyle rectangle
+skinparam shadowing true
+skinparam package {
+  BackgroundColor<<growth>> #D0ECE7
+  BackgroundColor<<pay>> #F8CECC
+  BackgroundColor<<crm>> #E1D5E7
+  BackgroundColor<<auto>> #D5E8D4
+  BackgroundColor<<content>> #FFF2CC
+  BorderColor black
+}
+
+actor Contractor
+actor Admin
+
+package "Growth Services" <<growth>> {
+  [Website Servicing\n(template landing page, updates)]
+  [Portfolio Gallery\n(project uploads → showcase]
+  [Social Media Management\n(Instagram/TikTok)]
+  [Ad Campaign Management\n(Google/Meta Ads)]
+}
+
+package "Content Pipeline" <<content>> {
+  [Dropbox → Gemini auto-posts]
+  [Review → Social Post Automation]
+  [Blog/Guide Distribution]
+}
+
+package "Automation Hub (Make.com)" <<auto>> {
+  [Growth Services Scenarios]
+  [Social Scheduler]
+  [Website Update Jobs]
+  [Ad Campaign Sync]
+}
+
+package "CRM & Billing" <<crm>> {
+  [HubSpot CRM — Contractor Add-ons]
+  [Airtable Growth Services Tracker]
+  [Analytics Dashboard — Service Usage]
+}
+
+package "Payment Processor" <<pay>> {
+  [Stripe Subscriptions — Growth Plans]
+  [Crypto.com Pay — Growth Plans]
+}
+
+Contractor --> [Website Servicing\n(template landing page, updates)]
+Contractor --> [Portfolio Gallery\n(project uploads → showcase]
+Contractor --> [Social Media Management\n(Instagram/TikTok)]
+Contractor --> [Ad Campaign Management\n(Google/Meta Ads)]
+
+[Website Servicing\n(template landing page, updates)] --> [Website Update Jobs]
+[Portfolio Gallery\n(project uploads → showcase] --> [Dropbox → Gemini auto-posts]
+[Social Media Management\n(Instagram/TikTok)] --> [Social Scheduler]
+[Ad Campaign Management\n(Google/Meta Ads)] --> [Ad Campaign Sync]
+
+[Growth Services Scenarios] --> [HubSpot CRM — Contractor Add-ons]
+[Growth Services Scenarios] --> [Airtable Growth Services Tracker]
+[Growth Services Scenarios] --> [Analytics Dashboard — Service Usage]
+
+[Stripe Subscriptions — Growth Plans] --> [HubSpot CRM — Contractor Add-ons]
+[Crypto.com Pay — Growth Plans] --> [HubSpot CRM — Contractor Add-ons]
+
+Admin --> [Analytics Dashboard — Service Usage]
+
+@enduml

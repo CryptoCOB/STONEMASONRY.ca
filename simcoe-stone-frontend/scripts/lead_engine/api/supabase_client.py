@@ -1,0 +1,3 @@
+# Supabase client logic
+
+# ...existing code from contractor_rag_pipeline.py related to Supabase...

@@ -1,0 +1,75 @@
+{
+  "short_name": "STONEMASONRY.CA",
+  "name": "STONEMASONRY.CA",
+  "description": "Premier stone masonry services in Ontario. Custom stonework, repairs, and 24/7 emergency services.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "images/logo-stonemasonry.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/logo-stonemasonry.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#e2e8f0",
+  "background_color": "#ffffff",
+  "categories": [
+    "business",
+    "construction",
+    "home services"
+  ],
+  "orientation": "portrait-primary",
+  "lang": "en-US",
+  "screenshots": [
+    {
+      "src": "/images/screenshots/desktop-home.jpg",
+      "type": "image/jpeg",
+      "sizes": "1280x800",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/images/screenshots/mobile-home.jpg",
+      "type": "image/jpeg",
+      "sizes": "390x844",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Emergency Repair",
+      "short_name": "Emergency",
+      "description": "24/7 Emergency Stone Repair Services",
+      "url": "/#emergency-repair",
+      "icons": [
+        {
+          "src": "/images/emergency-icon.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get a free quote for your project",
+      "url": "/#contact-form",
+      "icons": [
+        {
+          "src": "/images/contact-icon.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

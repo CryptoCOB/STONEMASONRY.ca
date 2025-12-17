@@ -1,0 +1,76 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🗜️📉✨
+  alias: NegentropicCompressor
+  tag: InformationProcessing
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.464373'
+  source_file: tags\compress_negent.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+cognitive:
+  principle: Performs summarization or compression of information in a way that aims to preserve or even increase its negentropy
+    (information content relative to randomness or redundancy), allowing only lossless or semantically enriched compression,
+    thus preventing hallucinated or information-degrading summarization.
+  math: 'Let I(X) be the information content (e.g., Shannon entropy, semantic richness score) of text X. For input I_in and
+    output I_out from compression C: I_out(C(I_in)) ≥ I_in(I_in) - ε, where ε is a small acceptable loss margin (ideally ε
+    ≤ 0). Goal is to maximize compression ratio while satisfying this constraint.'
+  tags:
+  - summarization
+  - information_preservation
+  - lossless_compression_ideal
+  - enriched_abstraction
+  - hallucination_prevention
+  - high_fidelity_summary
+  structure:
+    composite_type: sequential
+    components:
+    - name: InputAnalyzer
+      description: Assesses the information content and key semantic elements of the input.
+    - name: CandidateSummaryGenerator
+      description: Generates one or more potential summaries/compressions.
+    - name: InformationDeltaAuditor
+      description: Compares the information content of the candidate summary against the original input, potentially using
+        semantic similarity, entailment checking, or entropy measures.
+    - name: SelectionRejectLoop
+      description: Selects a summary that meets the negentropic criteria or triggers regeneration/rejection if no suitable
+        candidate is found.
+    - name: EnrichmentModule (Optional)
+      description: Attempts to abstract or synthesize input to produce a richer, more insightful (though shorter) output.
+implementation:
+  usage:
+    description: Compresses or summarizes input text/data, but with a strict filter that ensures the output is either lossless
+      in terms of crucial information or provides an enriched, more abstract understanding. It actively tries to avoid summaries
+      that lose key meaning or introduce inaccuracies.
+    example: &id001
+      invocation_tag: <compress:negent information_preservation_level=high enrichment_preferred=true> [Long article about
+        quantum physics] </compress:negent>
+      scenario: An AI is asked to summarize a complex scientific article. The NegentropicCompressor ensures the summary retains
+        all core concepts and their relationships, potentially even highlighting a key insight not explicitly stated but inferable
+        from the text, rather than just shortening sentences.
+      expected_behavior: The summary is concise yet information-dense, accurately reflecting the source. If a purely extractive
+        summary would lose too much, it might refuse or offer a more abstract synthesis.
+    explanation: 'This sigil addresses a common problem with AI summarization: the tendency to hallucinate, omit critical
+      details, or oversimplify. By focusing on negentropy (preserving or increasing structured information), it aims for high-trust,
+      high-fidelity summarization. The ''token entropy audit + reject loop'' suggests an iterative refinement process.'
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - InputAnalyzer
+  - CandidateSummaryGenerator
+  - InformationDeltaAuditor
+  - SelectionRejectLoop
+  - EnrichmentModule (Optional)
+  event_topics: []
+  usage_patterns:
+  - *id001

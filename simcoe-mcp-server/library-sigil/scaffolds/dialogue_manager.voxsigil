@@ -1,0 +1,90 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 💬DIALOGUE_MANAGER_SCAFFOLD
+  alias: ConversationFlowArchitect
+  tag: CommunicationScaffold
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:15.710518'
+  source_file: scaffolds\dialogue_manager.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: event_driven_turn_based_sequence
+cognitive:
+  principle: 'The 💬DIALOGUE_MANAGER_SCAFFOLD provides the architectural framework for managing coherent,
+
+    goal-oriented, and contextually appropriate conversations between an AI and one or more
+
+    interlocutors (human or AI). It handles dialogue state tracking, turn-taking, intent
+
+    recognition, response generation strategy, context maintenance, and discourse phenomena
+
+    (like anaphora resolution or topic shifting). It''s the "conductor" of the conversational orchestra.
+
+    '
+  math: {}
+  tags:
+  - conversational_ai_core
+  - dialogue_state_tracking
+  - turn_management_framework
+  - intent_recognition_response_mapping
+  - discourse_coherence_engine
+  structure:
+    composite_type: state_machine_with_pluggable_modules
+    temporal_structure: event_driven_turn_based_sequence
+    components:
+    - name: 🎤 Utterance Processor & NLU Interface
+      description: Receives input utterances, performs Natural Language Understanding (NLU) to extract intent, entities, sentiment,
+        etc. (May use models like BERT, GPT for NLU).
+      sigil_ref: 🗣️NATURALIZE_SIGIL
+    - name: 📝 Dialogue State Tracker (DST)
+      description: Maintains the current state of the conversation (e.g., topic, user goals, dialogue history, belief states
+        about interlocutor).
+    - name: 🗺️ Dialogue Policy Engine
+      description: Selects the next system dialogue act or strategy based on the current dialogue state and system goals (e.g.,
+        ask_question, provide_info, clarify).
+    - name: 🖋️ Natural Language Generation (NLG) Interface
+      description: Takes a symbolic dialogue act and generates a natural language response, potentially styled by 🎭PERSONA_MODULATOR.
+    - name: 📚 Context & History Manager
+      description: Stores and provides access to relevant conversational history and broader context (e.g., user profile,
+        past interactions).
+      sigil_ref: ⏳CHRONOS_SCRIBE
+    - name: 🔄 Turn-Taking & Flow Controller
+      description: Manages who speaks when, handles interruptions, and guides the overall conversational flow.
+implementation:
+  usage:
+    description: Provides the core architecture for managing multi-turn, coherent, and goal-directed conversations. This scaffold
+      orchestrates NLU, dialogue state tracking, policy decisions, and NLG.
+    example: "<chatbot_application name=\"SupportPal\">\n  <conversation_engine>\n    <apply_scaffold>\U0001F4ACDIALOGUE_MANAGER_SCAFFOLD</apply_scaffold>\n\
+      \    <parameters>\n      <dialogue_policy_type>ReinforcementLearningDriven_Policy_v3</dialogue_policy_type>\n      <max_history_turns_for_context>20</max_history_turns_for_context>\n\
+      \      <default_persona_ref>HelpfulSupportAgent_Persona</default_persona_ref>\n    </parameters>\n  </conversation_engine>\n\
+      \  <!-- Chatbot then uses this to interact with users -->\n</chatbot_application>\n"
+    explanation: 'The 💬DIALOGUE_MANAGER_SCAFFOLD is essential for any AI that engages in extended conversations. It ensures
+      that the dialogue is not just a series of disconnected question-answer pairs but a developing interaction that maintains
+      coherence, pursues goals (e.g., solving a user''s problem, gathering information), and adapts to the flow of communication.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - 🎤 Utterance Processor & NLU Interface
+  - 📝 Dialogue State Tracker (DST)
+  - 🗺️ Dialogue Policy Engine
+  - 🖋️ Natural Language Generation (NLG) Interface
+  - 📚 Context & History Manager
+  - 🔄 Turn-Taking & Flow Controller
+  event_topics: []
+  usage_patterns:
+  - "<chatbot_application name=\"SupportPal\">\n  <conversation_engine>\n    <apply_scaffold>\U0001F4ACDIALOGUE_MANAGER_SCAFFOLD</apply_scaffold>\n\
+    \    <parameters>\n      <dialogue_policy_type>ReinforcementLearningDriven_Policy_v3</dialogue_policy_type>\n      <max_history_turns_for_context>20</max_history_turns_for_context>\n\
+    \      <default_persona_ref>HelpfulSupportAgent_Persona</default_persona_ref>\n    </parameters>\n  </conversation_engine>\n\
+    \  <!-- Chatbot then uses this to interact with users -->\n</chatbot_application>\n"

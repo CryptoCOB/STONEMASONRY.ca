@@ -1,0 +1,94 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🌿ECOSYSTEM_SIMULATION_SCAFFOLD
+  alias: MultiAgentEnvironmentFrame
+  tag: SimulationScaffold
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:15.748733'
+  source_file: scaffolds\ecosystem.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: tick_based_or_event_driven_simulation_loop
+cognitive:
+  principle: 'The 🌿ECOSYSTEM_SIMULATION_SCAFFOLD provides the architectural framework for creating and
+
+    managing a simulated environment wherein multiple agents (AI or human-simulated) can interact
+
+    with each other and with environmental elements. It defines the "laws of physics" or rules of
+
+    interaction for the simulation, manages the state of environmental objects, processes agent
+
+    actions, and simulates their consequences. It''s a "digital terrarium" or "virtual world"
+
+    engine for studying emergent behavior, training agents, or testing multi-agent coordination.
+
+    '
+  math: {}
+  tags:
+  - multi_agent_system_environment
+  - complex_adaptive_system_model
+  - emergent_behavior_testbed
+  - simulation_world_rules_engine
+  - digital_twin_framework_lite
+  structure:
+    composite_type: discrete_event_simulation_engine_or_continuous_physics_engine
+    temporal_structure: tick_based_or_event_driven_simulation_loop
+    components:
+    - name: 🌍 Environment State Manager
+      description: Maintains the current state of all non-agent entities, resources, and properties of the simulated world
+        (e.g., terrain, weather, resource availability).
+    - name: 📜 Simulation Rules Engine
+      description: Defines and enforces the laws, rules, and dynamics of the simulated environment (e.g., physics, resource
+        regeneration, consequences of actions).
+    - name: 🤖 Agent Interface Layer
+      description: Provides mechanisms for agents to perceive parts of the environment and submit actions to it. Manages agent
+        registration and communication within the simulation.
+    - name: ⏱️ Simulation Clock & Event Scheduler
+      description: Manages the passage of simulated time, schedules events, and synchronizes agent actions if needed.
+    - name: 🔬 Observation & Logging Module
+      description: Allows observers (human or AI) to monitor the simulation, collect data, and log significant events or emergent
+        phenomena.
+      sigil_ref: 📊PERFORMANCE_MONITOR
+    - name: 🌱 Dynamic Event Injector
+      description: Allows for the introduction of external events or changes into the simulation (e.g., disasters, new resource
+        appearance, external interventions).
+implementation:
+  usage:
+    description: Defines and manages a simulated environment for multiple agents to interact, enabling the study of emergent
+      behaviors, agent training, and multi-agent system dynamics. This scaffold is the 'stage' for agent interactions.
+    example: "<multi_agent_research_platform>\n  <simulation_environment name=\"ArtificialLife_KelpForest\">\n    <apply_scaffold>\U0001F33F\
+      ECOSYSTEM_SIMULATION_SCAFFOLD</apply_scaffold>\n    <parameters>\n      <simulation_rules_ref>KelpForestDynamics_v1.rules</simulation_rules_ref>\n\
+      \      <initial_agent_population_refs>[\"AgentTypeA_Herbivore_x10\", \"AgentTypeB_Predator_x2\"]</initial_agent_population_refs>\n\
+      \      <simulation_tick_rate_ms>100</simulation_tick_rate_ms>\n    </parameters>\n  </simulation_environment>\n  <!--\
+      \ Agents would then be run within this simulated ecosystem -->\n</multi_agent_research_platform>\n"
+    explanation: 'The 🌿ECOSYSTEM_SIMULATION_SCAFFOLD is used to create virtual worlds or testbeds where AI agents can learn,
+      compete, collaborate, or simply exist. It''s crucial for research in multi-agent systems (MAS), artificial life, reinforcement
+      learning in complex environments, and for testing social dynamics or economic models involving autonomous entities.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - 🌍 Environment State Manager
+  - 📜 Simulation Rules Engine
+  - 🤖 Agent Interface Layer
+  - ⏱️ Simulation Clock & Event Scheduler
+  - 🔬 Observation & Logging Module
+  - 🌱 Dynamic Event Injector
+  event_topics: []
+  usage_patterns:
+  - "<multi_agent_research_platform>\n  <simulation_environment name=\"ArtificialLife_KelpForest\">\n    <apply_scaffold>\U0001F33F\
+    ECOSYSTEM_SIMULATION_SCAFFOLD</apply_scaffold>\n    <parameters>\n      <simulation_rules_ref>KelpForestDynamics_v1.rules</simulation_rules_ref>\n\
+    \      <initial_agent_population_refs>[\"AgentTypeA_Herbivore_x10\", \"AgentTypeB_Predator_x2\"]</initial_agent_population_refs>\n\
+    \      <simulation_tick_rate_ms>100</simulation_tick_rate_ms>\n    </parameters>\n  </simulation_environment>\n  <!--\
+    \ Agents would then be run within this simulated ecosystem -->\n</multi_agent_research_platform>\n"

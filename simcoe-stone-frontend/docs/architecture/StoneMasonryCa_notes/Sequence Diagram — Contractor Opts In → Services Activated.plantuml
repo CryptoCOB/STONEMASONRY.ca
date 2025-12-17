@@ -1,0 +1,37 @@
+@startuml
+title Sequence — Contractor Opts In to Growth Services
+
+actor Contractor
+participant "Frontend\n(Growth Services Portal)" as FE
+participant "Stripe/Crypto\nCheckout (Growth Plan)" as PAY
+participant "Supabase EdgeFn\n(sync_growth_payment)" as EDGE
+database "Supabase DB\n(GROWTH_PLANS, CONTRACTORS)" as DB
+participant "Make.com\nGrowth Scenarios" as MAKE
+participant "HubSpot CRM" as CRM
+participant "Airtable Tracker" as AIR
+participant "Social Scheduler\n(IG/TikTok)" as SOCIAL
+participant "Website Update Jobs" as WEB
+participant "Admin Analytics" as ADMIN
+
+== Contractor Opt-in ==
+Contractor -> FE: selects "Growth Plan"
+FE -> PAY: hosted checkout
+PAY --> FE: success confirmation
+
+== Payment Sync ==
+FE -> EDGE: sync_growth_payment(session_id)
+EDGE -> PAY: verify transaction
+EDGE -> DB: update CONTRACTORS.growth_plan=active
+
+== Automation Trigger ==
+EDGE -> MAKE: webhook {contractor_id, plan_type}
+
+MAKE -> CRM: add contractor to "Growth Services" pipeline
+MAKE -> AIR: log Growth Services subscription
+MAKE -> SOCIAL: schedule IG/TikTok posts from portfolio
+MAKE -> WEB: generate/update contractor website landing page
+
+== Admin Visibility ==
+MAKE -> ADMIN: update analytics dashboard (new service revenue, usage)
+
+@enduml

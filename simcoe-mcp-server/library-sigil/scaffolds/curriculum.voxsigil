@@ -1,0 +1,94 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 📚CURRICULUM_SCAFFOLD
+  alias: LearningPathDesigner
+  tag: KnowledgeAcquisitionScaffold
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:15.692881'
+  source_file: scaffolds\curriculum.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: sequential_progression_with_conditional_branching
+cognitive:
+  principle: 'The 📚CURRICULUM_SCAFFOLD provides a structured framework for designing, managing, and
+
+    executing a learning pathway for an AI agent or system. It defines learning objectives,
+
+    sequences learning modules or experiences, specifies prerequisites, outlines assessment
+
+    methods, and tracks progress. It transforms ad-hoc learning into a deliberate, scaffolded
+
+    process of knowledge and skill acquisition, moving from foundational concepts to advanced
+
+    mastery. It''s the AI''s "lesson plan" and "degree program" architect.
+
+    '
+  math: {}
+  tags:
+  - pedagogical_framework
+  - skill_progression_map
+  - ai_training_plan_structure
+  - knowledge_dependency_graph_for_learning
+  - educational_program_template
+  structure:
+    composite_type: directed_acyclic_graph_or_tree
+    temporal_structure: sequential_progression_with_conditional_branching
+    components:
+    - name: 🎓 Learning Objectives Definer
+      description: Specifies the overall knowledge, skills, or competencies the AI should acquire through the curriculum.
+      sigil_ref: 🎯GOAL_HIERARCHY_SCAFFOLD
+    - name: 📖 Module Sequencer & Prerequisite Manager
+      description: Organizes learning modules (e.g., datasets, simulation exercises, theoretical lessons, other sigils to
+        master) in a logical progression, defining dependencies.
+    - name: 🧠 Content & Experience Delivery Interface
+      description: Provides access to or generates the actual learning materials, training data, or simulated experiences
+        for each module.
+      sigil_ref: 🌿ECOSYSTEM_SIMULATION_SCAFFOLD
+    - name: ⚖️ Assessment & Mastery Engine
+      description: Defines and administers tests, evaluations, or performance benchmarks to assess understanding and skill
+        acquisition for each module. May use 🧐CRITICAL_LENS.
+    - name: 📈 Progress Tracker & Competency Modeler
+      description: Monitors the learner's progress through the curriculum, updates a model of their current competencies,
+        and identifies areas needing remediation or advancement.
+    - name: 🔄 Adaptive Learning Pathway Adjuster
+      description: Dynamically modifies the learning path based on learner performance, interests, or changing objectives
+        (e.g., skipping mastered modules, adding remedial content).
+implementation:
+  usage:
+    description: Defines and manages a structured learning pathway for an AI, including objectives, modules, prerequisites,
+      assessments, and progress tracking. This scaffold guides the AI's knowledge and skill development.
+    example: "<ai_training_program name=\"NaturalLanguageMastery_Level1\">\n  <apply_learning_framework>\U0001F4DACURRICULUM_SCAFFOLD</apply_learning_framework>\n\
+      \  <parameters>\n    <overall_learning_objective>Achieve 90% accuracy on GLUE benchmark tasks.</overall_learning_objective>\n\
+      \    <module_sequence_definition_ref>NLMastery_L1_Modules.voxsigil</module_sequence_definition_ref>\n    <assessment_strategy>AutomatedBenchmarkTesting_PerModule</assessment_strategy>\n\
+      \  </parameters>\n  <assign_learner agent_id=\"NLG_Agent_Candidate3\"/>\n</ai_training_program>\n"
+    explanation: 'The 📚CURRICULUM_SCAFFOLD is used when an AI''s development involves systematic learning rather than just
+      pre-programming or unstructured experience. It''s crucial for training specialized AIs, for lifelong learning agents,
+      or for systems that need to acquire complex skills in a step-by-step manner. It provides the "scaffolding" for effective
+      learning.
+
+      '
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - 🎓 Learning Objectives Definer
+  - 📖 Module Sequencer & Prerequisite Manager
+  - 🧠 Content & Experience Delivery Interface
+  - ⚖️ Assessment & Mastery Engine
+  - 📈 Progress Tracker & Competency Modeler
+  - 🔄 Adaptive Learning Pathway Adjuster
+  event_topics: []
+  usage_patterns:
+  - "<ai_training_program name=\"NaturalLanguageMastery_Level1\">\n  <apply_learning_framework>\U0001F4DACURRICULUM_SCAFFOLD</apply_learning_framework>\n\
+    \  <parameters>\n    <overall_learning_objective>Achieve 90% accuracy on GLUE benchmark tasks.</overall_learning_objective>\n\
+    \    <module_sequence_definition_ref>NLMastery_L1_Modules.voxsigil</module_sequence_definition_ref>\n    <assessment_strategy>AutomatedBenchmarkTesting_PerModule</assessment_strategy>\n\
+    \  </parameters>\n  <assign_learner agent_id=\"NLG_Agent_Candidate3\"/>\n</ai_training_program>\n"

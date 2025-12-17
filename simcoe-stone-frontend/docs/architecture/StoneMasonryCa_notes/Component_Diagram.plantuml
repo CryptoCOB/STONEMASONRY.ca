@@ -1,0 +1,24 @@
+@startuml
+title Component Diagram - Masonry Platform
+
+skinparam componentStyle rectangle
+skinparam shadowing true
+skinparam rectangle {
+  BackgroundColor<<module>> #E1D5E7
+}
+
+package "System Components" {
+  [User Module\n(Auth, Profile, Roles)] <<module>>
+  [Job Module\n(Job Posting, Uploads)] <<module>>
+  [Lead Module\n(Bidding, Lead Purchase)] <<module>>
+  [Payment Module\n(Subscriptions, Transactions)] <<module>>
+  [Review Module\n(Ratings, Testimonials)] <<module>>
+  [Admin Module\n(Monitoring, Reports, Disputes)] <<module>>
+}
+
+[User Module\n(Auth, Profile, Roles)] --> [Job Module\n(Job Posting, Uploads)]
+[Job Module\n(Job Posting, Uploads)] --> [Lead Module\n(Bidding, Lead Purchase)]
+[Lead Module\n(Bidding, Lead Purchase)] --> [Payment Module\n(Subscriptions, Transactions)]
+[Payment Module\n(Subscriptions, Transactions)] --> [Admin Module\n(Monitoring, Reports, Disputes)]
+[Job Module\n(Job Posting, Uploads)] --> [Review Module\n(Ratings, Testimonials)]
+@enduml

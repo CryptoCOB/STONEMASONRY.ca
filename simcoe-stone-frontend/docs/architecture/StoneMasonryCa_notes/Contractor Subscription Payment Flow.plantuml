@@ -1,0 +1,35 @@
+@startuml
+title Sequence — Contractor Subscribes via Stripe/Crypto
+
+actor Contractor
+participant "Frontend\n(Checkout Button)" as FE
+participant "Stripe/Crypto\nHosted Checkout" as PAY
+participant "Supabase EdgeFn\n(sync_payment)" as EDGE
+database "Supabase DB\n(PAYMENTS, USERS)" as DB
+participant "Make.com\nScenario: new_subscription" as MAKE
+participant "CRM (Airtable/HubSpot)" as CRM
+participant "Email/SMS\nvia Make" as COMMS
+
+== Checkout ==
+Contractor -> FE: Click "Subscribe"
+FE -> PAY: Redirect to hosted checkout
+PAY --> FE: success, return_url with session_id
+
+== Payment Sync ==
+FE -> EDGE: call edge_fn.sync_payment(session_id)
+EDGE -> PAY: verify session & invoice
+PAY --> EDGE: success {amount, user_id, plan}
+
+EDGE -> DB: INSERT PAYMENTS record\nUPDATE USERS.subscription=active
+EDGE --> FE: 200 OK (subscription active)
+
+== Automation Trigger ==
+EDGE -> MAKE: POST webhook {user_id, plan, start_date}
+MAKE -> CRM: create/update contractor record
+MAKE -> COMMS: send welcome email + SMS
+MAKE -> CRM: schedule onboarding task (Calendly link)
+
+== Realtime Update ==
+DB -> FE: broadcast "subscription_active"
+
+@enduml

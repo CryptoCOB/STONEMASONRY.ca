@@ -1,0 +1,77 @@
+schema_version: 1.5-holo-alpha
+meta:
+  sigil: 🌀🛑📉
+  alias: AbyssThresholdLimiter
+  tag: CognitiveSafetyMechanism
+  upgraded_from: legacy
+  upgrade_timestamp: '2025-06-24T17:14:16.442726'
+  source_file: tags\abyss_threshold.voxsigil
+holo_mesh:
+  is_cognitive_primitive: false
+  mesh_compatibility: holo-1.5-alpha
+  registration_ready: true
+  vanta_core_integration:
+    event_support: true
+    async_capable: true
+    memory_aware: true
+  temporal_pattern: event_triggered_sequence
+cognitive:
+  principle: 'Prevents recursive cognitive processes from descending into ''semantic abyss'' or uncontrolled depth by enforcing
+    a dynamic or static threshold, thereby averting cognitive stack overflow or catastrophic loss of coherence.
+
+    '
+  math: 'Let D(n) be the depth at step n. The condition for safe continuation is ΔD(n) < ψ(log(n)), or more generally, D(n)
+    < MaxDepth_effective. MaxDepth_effective could be a fixed value L (e.g., `level` parameter), or a dynamic function like
+    ψ * log(TotalNodesInGraph) or ψ * log(ReasoningSteps). ψ is a safety factor. If D(n) ≥ MaxDepth_effective, then halt or
+    trigger recovery.
+
+    '
+  tags:
+  - recursion_depth_limit
+  - semantic_collapse_prevention
+  - cognitive_stability
+  - dag_complexity_control
+  - deep_reasoning_guardrail
+  structure:
+    composite_type: conditional
+    temporal_structure: event_triggered_sequence
+    components:
+    - name: DepthStateMonitor
+      description: Tracks current recursion depth or DAG complexity.
+    - name: ThresholdEvaluator
+      description: Compares current depth/complexity against the defined abyss threshold.
+    - name: SafetyInterventionTrigger
+      description: Halts, prunes, or initiates a recovery/summarization protocol when the threshold is breached.
+    - name: ComplexityMetricCalculator
+      description: Computes relevant metrics (e.g., graph depth, path length, node count) for threshold comparison.
+implementation:
+  usage:
+    description: Applies a limit on the depth or complexity of recursive cognitive processes (like deep reflection, chained
+      inference, or fractal expansion) to prevent semantic failure, uncontrolled resource consumption, or loss of meaningful
+      output.
+    example: &id001
+      invocation_tag: <abyss:threshold max_level=12 safety_factor_psi=0.8 monitoring_metric='recursion_depth'> Begin deep
+        analysis of paradoxical statement X... </abyss:threshold>
+      scenario: An AI is exploring a deeply nested logical paradox. The AbyssThresholdLimiter is set to level 12. If the AI's
+        reasoning chain exceeds 12 steps of recursion without resolving or simplifying, the process is halted and a summary
+        of the exploration so far is produced.
+      expected_behavior: The recursive process either resolves within 12 levels or is gracefully terminated at level 12, preventing
+        a 'cognitive crash' or nonsensical output.
+    explanation: This is a critical safety feature for recursive architectures (e.g., involving <mirror> or <braid> patterns
+      as mentioned in your input). It prevents the system from getting lost in thought loops or overly complex explorations
+      that lead to diminishing returns or semantic collapse. The threshold can be a fixed depth or dynamically adjusted based
+      on other system metrics.
+  parameters: {}
+  returns: {}
+  examples: []
+connectivity:
+  input_types: []
+  output_types: []
+  mesh_endpoints:
+  - DepthStateMonitor
+  - ThresholdEvaluator
+  - SafetyInterventionTrigger
+  - ComplexityMetricCalculator
+  event_topics: []
+  usage_patterns:
+  - *id001
