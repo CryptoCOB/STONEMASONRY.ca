@@ -75,9 +75,10 @@
 - Added invoice status update endpoint plus due-date index to manage overdue billing and collections.
 - Added audit logging hooks for invoices and payments to improve traceability of billing events.
 - Enforced account-scoped access across lead follow-ups, quote requests, bid responses, job tasks, invoices, and payments with shared helper + tenant-aware queries. Added migration 004 to make `account_id` mandatory on core tables with supporting indexes for tenant filtering.
+- Added account-level scoping to payments and reviews, backfilled existing rows, and exposed audit logging for review submissions to simplify CRM filtering and traceability.
 
 ## Enhancement suggestions (next pass)
 
 - Add account-aware validation to contractor profiles, properties, and files to close remaining multi-tenant gaps.
-- Introduce account_id columns for payments/reviews to simplify filtering without joins and backfill existing data.
 - Extend role matrix (owner/admin/estimator/crew) to reflect new scoping rules and document the mapping in `platform-api/README.md`.
+- Add CRM review moderation UI surface that highlights flagged/pending reviews with audit trail links and quick actions for approve/reject.

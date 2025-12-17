@@ -682,7 +682,10 @@ export async function registerRoutes(fastify: FastifyInstance) {
       return reply.status(403).send({ message: 'Invoice not in account scope' });
     }
 
-    const res = await pool.query('INSERT INTO payments (invoice_id, amount, paid_at, method, reference, status) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *', [invoice_id, amount, paid_at || null, method || null, reference || null, status || 'pending']);
+    const res = await pool.query(
+      'INSERT INTO payments (account_id, invoice_id, amount, paid_at, method, reference, status) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *',
+      [invoice.rows[0].account_id, invoice_id, amount, paid_at || null, method || null, reference || null, status || 'pending']
+    );
 
     await logAudit({
       accountId: invoice.rows[0].account_id,
@@ -770,13 +773,49 @@ export async function registerRoutes(fastify: FastifyInstance) {
   fastify.post('/api/reviews', {
     preHandler: ingestGuard,
     schema: { body: z.object({ job_id: z.string().optional(), rating: z.number().min(1).max(5), comments: z.string().optional(), submitted_by: z.string().optional(), submitted_email: z.string().email().optional() }) }
-  }, async (request) => {
+  }, async (request, reply) => {
     const { job_id, rating, comments, submitted_by, submitted_email } = request.body as any;
+    const requestAccountId = accountIdFromRequest(request);
+
+    if (!requestAccountId && !job_id) {
+      return reply.status(400).send({ message: 'Account context or job_id is required to submit a review' });
+    }
+
+    let accountId = requestAccountId;
+
+    if (job_id) {
+      const job = await pool.query('SELECT account_id FROM jobs WHERE id=$1', [job_id]);
+
+      if (!job.rows[0]) {
+        return reply.status(404).send({ message: 'Job not found' });
+      }
+
+      if (requestAccountId && requestAccountId !== job.rows[0].account_id) {
+        return reply.status(403).send({ message: 'Job not in account scope' });
+      }
+
+      accountId = job.rows[0].account_id;
+    }
+
+    if (!accountId) {
+      return reply.status(400).send({ message: 'Account context required' });
+    }
+
     const res = await pool.query(
-      'INSERT INTO reviews (job_id, rating, comments, submitted_by, submitted_email) VALUES ($1,$2,$3,$4,$5) RETURNING *',
-      [job_id || null, rating, comments || null, submitted_by || null, submitted_email || null]
+      'INSERT INTO reviews (account_id, job_id, rating, comments, submitted_by, submitted_email) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *',
+      [accountId, job_id || null, rating, comments || null, submitted_by || null, submitted_email || null]
     );
     await pool.query('INSERT INTO moderation_queue (entity_type, entity_id, reason, status) VALUES ($1,$2,$3,$4)', ['review', res.rows[0].id, 'auto-moderation', 'pending']);
+
+    await logAudit({
+      accountId,
+      actorId: actorIdFromRequest(request),
+      action: 'review:create',
+      entityType: 'review',
+      entityId: res.rows[0].id,
+      meta: { job_id: job_id || null, rating }
+    });
+
     return res.rows[0];
   });
 
