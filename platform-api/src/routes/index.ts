@@ -2,10 +2,14 @@ import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 import { ZodTypeProvider } from 'fastify-type-provider-zod';
 import { pool } from '../db/pool.js';
+import { logAudit } from '../utils/audit.js';
 import { hashPassword } from '../utils/passwords.js';
 
 const accountIdFromRequest = (request: any) => request.user?.account_id || process.env.DEFAULT_ACCOUNT_ID || null;
+const actorIdFromRequest = (request: any) => request.user?.id || null;
 const publicIngestKey = process.env.PUBLIC_API_KEY;
+const leadStatuses = ['new', 'contacted', 'site_visit', 'estimate_sent', 'won', 'lost'] as const;
+const followUpStatuses = ['pending', 'done'] as const;
 
 const ingestGuard = async (request: any, reply: any) => {
   if (!publicIngestKey) return;
@@ -24,6 +28,14 @@ export async function registerRoutes(fastify: FastifyInstance) {
   }, async (request) => {
     const { name, status } = request.body as { name: string; status?: string };
     const res = await pool.query('INSERT INTO accounts (name, status) VALUES ($1, $2) RETURNING *', [name, status || 'active']);
+    await logAudit({
+      accountId: res.rows[0].id,
+      actorId: actorIdFromRequest(request),
+      action: 'account:create',
+      entityType: 'account',
+      entityId: res.rows[0].id,
+      meta: { name, status: status || 'active' }
+    });
     return res.rows[0];
   });
 
@@ -37,6 +49,14 @@ export async function registerRoutes(fastify: FastifyInstance) {
       'INSERT INTO users (account_id, email, password_hash, first_name, last_name, role) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, account_id, email, first_name, last_name, role',
       [account_id, email, passwordHash, first_name || null, last_name || null, role]
     );
+    await logAudit({
+      accountId: account_id,
+      actorId: actorIdFromRequest(request),
+      action: 'user:create',
+      entityType: 'user',
+      entityId: res.rows[0].id,
+      meta: { email, role, first_name: first_name || null, last_name: last_name || null }
+    });
     return res.rows[0];
   });
 
@@ -83,23 +103,180 @@ export async function registerRoutes(fastify: FastifyInstance) {
 
   fastify.post('/api/leads', {
     preHandler: fastify.requireRole(['admin', 'member']),
-    schema: { body: z.object({ source: z.string().optional(), contact_name: z.string(), contact_email: z.string().email(), contact_phone: z.string().optional(), service_area_id: z.string().optional(), property_id: z.string().optional(), notes: z.string().optional() }) }
+    schema: {
+      body: z.object({
+        source: z.string().optional(),
+        contact_name: z.string(),
+        contact_email: z.string().email(),
+        contact_phone: z.string().optional(),
+        service_area_id: z.string().optional(),
+        property_id: z.string().optional(),
+        notes: z.string().optional(),
+        tags: z.array(z.string()).optional()
+      })
+    }
   }, async (request) => {
-    const { source, contact_name, contact_email, contact_phone, service_area_id, property_id, notes } = request.body as any;
+    const { source, contact_name, contact_email, contact_phone, service_area_id, property_id, notes, tags } = request.body as any;
     const accountId = accountIdFromRequest(request);
     const res = await pool.query(
-      'INSERT INTO leads (account_id, source, contact_name, contact_email, contact_phone, service_area_id, property_id, notes) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *',
-      [accountId, source || null, contact_name, contact_email, contact_phone || null, service_area_id || null, property_id || null, notes || null]
+      'INSERT INTO leads (account_id, source, contact_name, contact_email, contact_phone, service_area_id, property_id, notes, tags) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *',
+      [accountId, source || null, contact_name, contact_email, contact_phone || null, service_area_id || null, property_id || null, notes || null, tags || []]
     );
+    await logAudit({
+      accountId,
+      actorId: actorIdFromRequest(request),
+      action: 'lead:create',
+      entityType: 'lead',
+      entityId: res.rows[0].id,
+      meta: { source: source || null, tags: tags || [] }
+    });
+    return res.rows[0];
+  });
+
+  fastify.patch('/api/leads/:id/status', {
+    preHandler: fastify.requireRole(['admin', 'member']),
+    schema: {
+      params: z.object({ id: z.string() }),
+      body: z.object({
+        status: z.enum(leadStatuses as [string, ...string[]]),
+        notes: z.string().optional(),
+        tags: z.array(z.string()).optional(),
+        reason: z.string().optional()
+      })
+    }
+  }, async (request, reply) => {
+    const { id } = request.params as { id: string };
+    const { status, notes, tags, reason } = request.body as any;
+
+    const lead = await pool.query('SELECT * FROM leads WHERE id=$1', [id]);
+    if (!lead.rows[0]) {
+      return reply.status(404).send({ message: 'Lead not found' });
+    }
+
+    const existing = lead.rows[0];
+    const nextNotes = typeof notes === 'undefined' ? existing.notes : notes;
+    const nextTags = typeof tags === 'undefined' ? existing.tags || [] : tags;
+    const nextReason = typeof reason === 'undefined' ? existing.status_reason : reason;
+
+    const updated = await pool.query(
+      'UPDATE leads SET status=$1, notes=$2, tags=$3, status_reason=$4 WHERE id=$5 RETURNING *',
+      [status, nextNotes || null, nextTags, nextReason || null, id]
+    );
+
+    await logAudit({
+      accountId: existing.account_id,
+      actorId: actorIdFromRequest(request),
+      action: 'lead:status_update',
+      entityType: 'lead',
+      entityId: id,
+      meta: { previous_status: existing.status, status, reason: nextReason || null }
+    });
+
+    return updated.rows[0];
+  });
+
+  fastify.post('/api/leads/:id/follow-ups', {
+    preHandler: fastify.requireRole(['admin', 'member']),
+    schema: { params: z.object({ id: z.string() }), body: z.object({ due_at: z.string(), note: z.string().optional() }) }
+  }, async (request, reply) => {
+    const { id } = request.params as { id: string };
+    const { due_at, note } = request.body as any;
+    const lead = await pool.query('SELECT account_id FROM leads WHERE id=$1', [id]);
+
+    if (!lead.rows[0]) {
+      return reply.status(404).send({ message: 'Lead not found' });
+    }
+
+    const res = await pool.query(
+      'INSERT INTO lead_followups (lead_id, due_at, note) VALUES ($1, $2, $3) RETURNING *',
+      [id, due_at, note || null]
+    );
+
+    await logAudit({
+      accountId: lead.rows[0].account_id,
+      actorId: actorIdFromRequest(request),
+      action: 'lead_followup:create',
+      entityType: 'lead_followup',
+      entityId: res.rows[0].id,
+      meta: { lead_id: id, due_at }
+    });
+
+    return res.rows[0];
+  });
+
+  fastify.get('/api/leads/:id/follow-ups', { preHandler: fastify.requireRole(['admin', 'member']), schema: { params: z.object({ id: z.string() }) } }, async (request, reply) => {
+    const { id } = request.params as { id: string };
+    const lead = await pool.query('SELECT account_id FROM leads WHERE id=$1', [id]);
+
+    if (!lead.rows[0]) {
+      return reply.status(404).send({ message: 'Lead not found' });
+    }
+
+    const res = await pool.query('SELECT * FROM lead_followups WHERE lead_id=$1 ORDER BY due_at', [id]);
+    return res.rows;
+  });
+
+  fastify.patch('/api/leads/:leadId/follow-ups/:followUpId', {
+    preHandler: fastify.requireRole(['admin', 'member']),
+    schema: {
+      params: z.object({ leadId: z.string(), followUpId: z.string() }),
+      body: z.object({ status: z.enum(followUpStatuses as [string, ...string[]]), note: z.string().optional() })
+    }
+  }, async (request, reply) => {
+    const { leadId, followUpId } = request.params as { leadId: string; followUpId: string };
+    const { status, note } = request.body as any;
+    const lead = await pool.query('SELECT account_id FROM leads WHERE id=$1', [leadId]);
+
+    if (!lead.rows[0]) {
+      return reply.status(404).send({ message: 'Lead not found' });
+    }
+
+    const res = await pool.query(
+      'UPDATE lead_followups SET status=$1, note=COALESCE($2, note), completed_at=CASE WHEN $1=$3 THEN now() ELSE NULL END WHERE id=$4 AND lead_id=$5 RETURNING *',
+      [status, note || null, 'done', followUpId, leadId]
+    );
+
+    if (!res.rows[0]) {
+      return reply.status(404).send({ message: 'Follow-up not found' });
+    }
+
+    await logAudit({
+      accountId: lead.rows[0].account_id,
+      actorId: actorIdFromRequest(request),
+      action: 'lead_followup:update',
+      entityType: 'lead_followup',
+      entityId: followUpId,
+      meta: { lead_id: leadId, status }
+    });
+
     return res.rows[0];
   });
 
   fastify.post('/api/quote-requests', {
     preHandler: ingestGuard,
-    schema: { body: z.object({ contact_name: z.string(), contact_email: z.string().email(), contact_phone: z.string().optional(), project_type: z.string(), description: z.string(), budget: z.number().optional(), service_area_id: z.string().optional() }) }
+    schema: {
+      body: z.object({
+        contact_name: z.string(),
+        contact_email: z.string().email(),
+        contact_phone: z.string().optional(),
+        project_type: z.string(),
+        description: z.string(),
+        budget: z.number().optional(),
+        service_area_id: z.string().optional(),
+        idempotency_key: z.string().optional()
+      })
+    }
   }, async (request) => {
-    const { contact_name, contact_email, contact_phone, project_type, description, budget, service_area_id } = request.body as any;
+    const { contact_name, contact_email, contact_phone, project_type, description, budget, service_area_id, idempotency_key } = request.body as any;
     const accountId = accountIdFromRequest(request);
+
+    if (idempotency_key) {
+      const existing = await pool.query('SELECT * FROM quote_requests WHERE account_id=$1 AND idempotency_key=$2', [accountId, idempotency_key]);
+      if (existing.rows[0]) {
+        return { quote_request: existing.rows[0], idempotent: true };
+      }
+    }
+
     const client = await pool.connect();
     try {
       await client.query('BEGIN');
@@ -112,10 +289,31 @@ export async function registerRoutes(fastify: FastifyInstance) {
         [accountId, 'website', contact_name, contact_email, contact_phone || null, service_area_id || null, property.rows[0].id, 'new']
       );
       const quote = await client.query(
-        'INSERT INTO quote_requests (account_id, property_id, lead_id, project_type, description, budget, submitted_by, submitted_email, submitted_phone, source) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *',
-        [accountId, property.rows[0].id, lead.rows[0].id, project_type, description, budget || null, contact_name, contact_email, contact_phone || null, 'website']
+        'INSERT INTO quote_requests (account_id, property_id, lead_id, project_type, description, budget, submitted_by, submitted_email, submitted_phone, source, idempotency_key) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *',
+        [accountId, property.rows[0].id, lead.rows[0].id, project_type, description, budget || null, contact_name, contact_email, contact_phone || null, 'website', idempotency_key || null]
       );
       await client.query('COMMIT');
+      const leadId = lead.rows[0].id;
+      const quoteId = quote.rows[0].id;
+
+      await logAudit({
+        accountId,
+        actorId: actorIdFromRequest(request),
+        action: 'lead:create',
+        entityType: 'lead',
+        entityId: leadId,
+        meta: { source: 'website', quote_request_id: quoteId }
+      });
+
+      await logAudit({
+        accountId,
+        actorId: actorIdFromRequest(request),
+        action: 'quote_request:intake',
+        entityType: 'quote_request',
+        entityId: quoteId,
+        meta: { idempotency_key: idempotency_key || null, project_type }
+      });
+
       return { quote_request: quote.rows[0] };
     } catch (err) {
       await client.query('ROLLBACK');
