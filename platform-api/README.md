@@ -10,7 +10,7 @@ Service architecture designed for authenticated workflows, RBAC, file storage me
 - **File metadata** table for referencing object storage (S3/Backblaze/etc.)
 
 ## Running locally
-1. Create a Postgres database and set `DATABASE_URL` in a `.env` file. Include `PUBLIC_API_KEY` for intake endpoints and `DEFAULT_ACCOUNT_ID` to attribute unauthenticated requests.
+1. Copy `.env.example` to `.env`, then create a Postgres database and set `DATABASE_URL`. Include `PUBLIC_API_KEY` for intake endpoints and `DEFAULT_ACCOUNT_ID` to attribute unauthenticated requests.
 2. Install dependencies and run migrations:
    ```bash
    npm install
@@ -30,7 +30,8 @@ Service architecture designed for authenticated workflows, RBAC, file storage me
 - Accounts/Users: `/api/accounts`, `/api/users`, `/api/auth/login`
 - Territory & workforce: `/api/service-areas`, `/api/contractor-profiles`
 - Core CRM: `/api/leads`, `/api/properties`, `/api/quote-requests`, `/api/bid-responses`
-- Delivery: `/api/estimates`, `/api/jobs`, `/api/invoices`, `/api/payments`
+- Delivery: `/api/estimates`, `/api/jobs`, `/api/job/:jobId/tasks`, `/api/invoices`, `/api/invoices/:id/status`, `/api/payments`
 - Reputation & trust: `/api/reviews`, `/api/moderation/decision`
+- Operational visibility: `/api/dashboard/summary`, `/api/audit-logs`
 
 See `src/routes/index.ts` for the full contract. Migrations establish the data model, including moderation queues and file metadata to support downstream storage adapters.

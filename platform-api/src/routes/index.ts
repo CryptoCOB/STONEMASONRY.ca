@@ -10,6 +10,8 @@ const actorIdFromRequest = (request: any) => request.user?.id || null;
 const publicIngestKey = process.env.PUBLIC_API_KEY;
 const leadStatuses = ['new', 'contacted', 'site_visit', 'estimate_sent', 'won', 'lost'] as const;
 const followUpStatuses = ['pending', 'done'] as const;
+const jobTaskStatuses = ['pending', 'in_progress', 'done'] as const;
+const invoiceStatuses = ['draft', 'sent', 'paid', 'overdue', 'void'] as const;
 
 const ingestGuard = async (request: any, reply: any) => {
   if (!publicIngestKey) return;
@@ -366,22 +368,246 @@ export async function registerRoutes(fastify: FastifyInstance) {
     return res.rows[0];
   });
 
+  fastify.get('/api/dashboard/summary', { preHandler: fastify.requireRole(['admin', 'member']) }, async (request, reply) => {
+    const accountId = accountIdFromRequest(request);
+
+    if (!accountId) {
+      return reply.status(400).send({ message: 'Account context required' });
+    }
+
+    const [pendingLeads, todaysJobs, overdueInvoices] = await Promise.all([
+      pool.query("SELECT COUNT(*)::int AS count FROM leads WHERE account_id=$1 AND status IN ('new','contacted')", [accountId]),
+      pool.query(
+        "SELECT COUNT(*)::int AS count FROM jobs WHERE account_id=$1 AND start_date <= CURRENT_DATE AND (end_date IS NULL OR end_date >= CURRENT_DATE)",
+        [accountId]
+      ),
+      pool.query(
+        "SELECT COUNT(*)::int AS count FROM invoices JOIN jobs ON invoices.job_id = jobs.id WHERE jobs.account_id=$1 AND invoices.due_date < CURRENT_DATE AND invoices.status NOT IN ('paid','void')",
+        [accountId]
+      )
+    ]);
+
+    return {
+      pending_leads: pendingLeads.rows[0]?.count || 0,
+      todays_jobs: todaysJobs.rows[0]?.count || 0,
+      overdue_invoices: overdueInvoices.rows[0]?.count || 0
+    };
+  });
+
+  fastify.post('/api/jobs/:jobId/tasks', {
+    preHandler: fastify.requireRole(['admin', 'member']),
+    schema: {
+      params: z.object({ jobId: z.string() }),
+      body: z.object({
+        description: z.string(),
+        due_date: z.string().optional(),
+        assigned_to: z.string().optional(),
+        status: z.enum(jobTaskStatuses as [string, ...string[]]).optional()
+      })
+    }
+  }, async (request, reply) => {
+    const { jobId } = request.params as { jobId: string };
+    const { description, due_date, assigned_to, status } = request.body as any;
+    const job = await pool.query('SELECT account_id FROM jobs WHERE id=$1', [jobId]);
+
+    if (!job.rows[0]) {
+      return reply.status(404).send({ message: 'Job not found' });
+    }
+
+    const res = await pool.query(
+      'INSERT INTO job_tasks (account_id, job_id, description, due_date, assigned_to, status) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *',
+      [job.rows[0].account_id, jobId, description, due_date || null, assigned_to || null, status || 'pending']
+    );
+
+    await logAudit({
+      accountId: job.rows[0].account_id,
+      actorId: actorIdFromRequest(request),
+      action: 'job_task:create',
+      entityType: 'job_task',
+      entityId: res.rows[0].id,
+      meta: { job_id: jobId, status: status || 'pending' }
+    });
+
+    return res.rows[0];
+  });
+
+  fastify.get('/api/jobs/:jobId/tasks', {
+    preHandler: fastify.requireRole(['admin', 'member']),
+    schema: { params: z.object({ jobId: z.string() }) }
+  }, async (request, reply) => {
+    const { jobId } = request.params as { jobId: string };
+    const job = await pool.query('SELECT account_id FROM jobs WHERE id=$1', [jobId]);
+
+    if (!job.rows[0]) {
+      return reply.status(404).send({ message: 'Job not found' });
+    }
+
+    const res = await pool.query('SELECT * FROM job_tasks WHERE job_id=$1 ORDER BY due_date NULLS LAST, created_at', [jobId]);
+    return res.rows;
+  });
+
+  fastify.patch('/api/jobs/:jobId/tasks/:taskId', {
+    preHandler: fastify.requireRole(['admin', 'member']),
+    schema: {
+      params: z.object({ jobId: z.string(), taskId: z.string() }),
+      body: z.object({
+        description: z.string().optional(),
+        due_date: z.string().optional(),
+        assigned_to: z.string().optional(),
+        status: z.enum(jobTaskStatuses as [string, ...string[]]).optional()
+      })
+    }
+  }, async (request, reply) => {
+    const { jobId, taskId } = request.params as { jobId: string; taskId: string };
+    const { description, due_date, assigned_to, status } = request.body as any;
+    const job = await pool.query('SELECT account_id FROM jobs WHERE id=$1', [jobId]);
+
+    if (!job.rows[0]) {
+      return reply.status(404).send({ message: 'Job not found' });
+    }
+
+    const existing = await pool.query('SELECT * FROM job_tasks WHERE id=$1 AND job_id=$2', [taskId, jobId]);
+
+    if (!existing.rows[0]) {
+      return reply.status(404).send({ message: 'Task not found' });
+    }
+
+    const nextDescription = typeof description === 'undefined' ? existing.rows[0].description : description;
+    const nextDueDate = typeof due_date === 'undefined' ? existing.rows[0].due_date : due_date || null;
+    const nextAssignedTo = typeof assigned_to === 'undefined' ? existing.rows[0].assigned_to : assigned_to || null;
+    const nextStatus = typeof status === 'undefined' ? existing.rows[0].status : status;
+
+    const res = await pool.query(
+      'UPDATE job_tasks SET description=$1, due_date=$2, assigned_to=$3, status=$4 WHERE id=$5 AND job_id=$6 RETURNING *',
+      [nextDescription, nextDueDate, nextAssignedTo, nextStatus, taskId, jobId]
+    );
+
+    await logAudit({
+      accountId: job.rows[0].account_id,
+      actorId: actorIdFromRequest(request),
+      action: 'job_task:update',
+      entityType: 'job_task',
+      entityId: taskId,
+      meta: { job_id: jobId, status: res.rows[0].status }
+    });
+
+    return res.rows[0];
+  });
+
   fastify.post('/api/invoices', {
     preHandler: fastify.requireRole(['admin']),
-    schema: { body: z.object({ job_id: z.string(), amount: z.number(), due_date: z.string().optional(), status: z.string().optional() }) }
-  }, async (request) => {
+    schema: { body: z.object({ job_id: z.string(), amount: z.number(), due_date: z.string().optional(), status: z.enum(invoiceStatuses as [string, ...string[]]).optional() }) }
+  }, async (request, reply) => {
     const { job_id, amount, due_date, status } = request.body as any;
+    const job = await pool.query('SELECT account_id FROM jobs WHERE id=$1', [job_id]);
+
+    if (!job.rows[0]) {
+      return reply.status(404).send({ message: 'Job not found' });
+    }
+
     const res = await pool.query('INSERT INTO invoices (job_id, amount, due_date, status) VALUES ($1,$2,$3,$4) RETURNING *', [job_id, amount, due_date || null, status || 'draft']);
+
+    await logAudit({
+      accountId: job.rows[0].account_id,
+      actorId: actorIdFromRequest(request),
+      action: 'invoice:create',
+      entityType: 'invoice',
+      entityId: res.rows[0].id,
+      meta: { job_id, amount, status: status || 'draft', due_date: due_date || null }
+    });
+
     return res.rows[0];
   });
 
   fastify.post('/api/payments', {
     preHandler: fastify.requireRole(['admin']),
     schema: { body: z.object({ invoice_id: z.string(), amount: z.number(), paid_at: z.string().optional(), method: z.string().optional(), reference: z.string().optional(), status: z.string().optional() }) }
-  }, async (request) => {
+  }, async (request, reply) => {
     const { invoice_id, amount, paid_at, method, reference, status } = request.body as any;
+    const invoice = await pool.query(
+      'SELECT invoices.id, jobs.account_id FROM invoices JOIN jobs ON invoices.job_id = jobs.id WHERE invoices.id=$1',
+      [invoice_id]
+    );
+
+    if (!invoice.rows[0]) {
+      return reply.status(404).send({ message: 'Invoice not found' });
+    }
+
     const res = await pool.query('INSERT INTO payments (invoice_id, amount, paid_at, method, reference, status) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *', [invoice_id, amount, paid_at || null, method || null, reference || null, status || 'pending']);
+
+    await logAudit({
+      accountId: invoice.rows[0].account_id,
+      actorId: actorIdFromRequest(request),
+      action: 'payment:create',
+      entityType: 'payment',
+      entityId: res.rows[0].id,
+      meta: { invoice_id, amount, method: method || null, status: status || 'pending' }
+    });
+
     return res.rows[0];
+  });
+
+  fastify.patch('/api/invoices/:id/status', {
+    preHandler: fastify.requireRole(['admin']),
+    schema: {
+      params: z.object({ id: z.string() }),
+      body: z.object({ status: z.enum(invoiceStatuses as [string, ...string[]]), due_date: z.string().optional() })
+    }
+  }, async (request, reply) => {
+    const { id } = request.params as { id: string };
+    const { status, due_date } = request.body as any;
+    const invoice = await pool.query(
+      'SELECT invoices.*, jobs.account_id FROM invoices JOIN jobs ON invoices.job_id = jobs.id WHERE invoices.id=$1',
+      [id]
+    );
+
+    if (!invoice.rows[0]) {
+      return reply.status(404).send({ message: 'Invoice not found' });
+    }
+
+    const nextDueDate = typeof due_date === 'undefined' ? invoice.rows[0].due_date : due_date || null;
+    const res = await pool.query('UPDATE invoices SET status=$1, due_date=$2 WHERE id=$3 RETURNING *', [status, nextDueDate, id]);
+
+    await logAudit({
+      accountId: invoice.rows[0].account_id,
+      actorId: actorIdFromRequest(request),
+      action: 'invoice:status_update',
+      entityType: 'invoice',
+      entityId: id,
+      meta: { status, due_date: nextDueDate }
+    });
+
+    return res.rows[0];
+  });
+
+  fastify.get('/api/audit-logs', {
+    preHandler: fastify.requireRole(['admin']),
+    schema: { querystring: z.object({ entity_type: z.string().optional(), entity_id: z.string().optional(), limit: z.number().int().min(1).max(200).default(50) }) }
+  }, async (request, reply) => {
+    const { entity_type, entity_id, limit } = request.query as { entity_type?: string; entity_id?: string; limit: number };
+    const accountId = accountIdFromRequest(request);
+
+    if (!accountId) {
+      return reply.status(400).send({ message: 'Account context required' });
+    }
+
+    const conditions = ['account_id = $1'];
+    const params: Array<string | number> = [accountId];
+
+    if (entity_type) {
+      conditions.push('entity_type = $' + (params.length + 1));
+      params.push(entity_type);
+    }
+
+    if (entity_id) {
+      conditions.push('entity_id = $' + (params.length + 1));
+      params.push(entity_id);
+    }
+
+    params.push(limit);
+    const sql = `SELECT * FROM audit_logs WHERE ${conditions.join(' AND ')} ORDER BY created_at DESC LIMIT $${params.length}`;
+    const res = await pool.query(sql, params);
+    return res.rows;
   });
 
   fastify.post('/api/reviews', {
