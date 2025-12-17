@@ -69,3 +69,8 @@
 - Added lead pipeline controls: status updates with reasons and tags, plus follow-up reminders with completion tracking.
 - Added quote intake idempotency key to prevent duplicate submissions on public capture flows.
 - Added `.env.example` for the platform API to document required connection/auth settings.
+- Added account-scoped audit log feed endpoint with filters to surface history in CRM dashboards.
+- Added job task checklist table and CRUD routes to support scheduling and production workflows per job.
+- Added dashboard summary endpoint returning pending leads, today’s jobs, and overdue invoices counts.
+- Added invoice status update endpoint plus due-date index to manage overdue billing and collections.
+- Added audit logging hooks for invoices and payments to improve traceability of billing events.
