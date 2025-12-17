@@ -62,3 +62,10 @@
 | Marketplace UX/UX | 0% | Low | No directory/onboarding/messaging implemented. |
 | Trust & Safety | 15% | Medium | Moderation table + review ingestion exist; need UI, verification, disputes. |
 | Ops/Observability/CI | 10% | Low | Seeds available; pipelines/queue/metrics/logging not wired. |
+
+## Newly completed items
+
+- Added audit log table and helper to capture account/user/lead/quote events for CRM traceability.
+- Added lead pipeline controls: status updates with reasons and tags, plus follow-up reminders with completion tracking.
+- Added quote intake idempotency key to prevent duplicate submissions on public capture flows.
+- Added `.env.example` for the platform API to document required connection/auth settings.
